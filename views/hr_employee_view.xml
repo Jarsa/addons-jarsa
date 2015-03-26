@@ -8,9 +8,9 @@
         	<field name='inherit_id' ref='hr.employee'/>
         	<field name='arch' type='xml'>
         		<field name='name' position='after'>
-        			<label for='zk_id' class='oe_edit_only' groups='base.group_hr_user'/>
         			<field name='zk_id' placeholder='ZKTeco ID'/>
-        	</field>
+        	   </field>
+            </field>
         </record>
     </data>
 </openerp>

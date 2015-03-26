@@ -16,7 +16,8 @@
                     https://bitbucket.org/johnmc/zkemapi/overview
 
                     """,
-    "data": ['views/zk_device_view.xml'],
+    "data": ['views/zk_device_view.xml',
+             'views/hr_employee_view.xml'],
     "application": True,
     "installable": True,
 }

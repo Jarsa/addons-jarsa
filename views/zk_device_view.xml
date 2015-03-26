@@ -7,7 +7,7 @@
         	<field name='model'>zk.device</field>
         	<field name='type'>form</field>
         	<field name='arch' type='xml'>
-        		<form string='ZKTeco Device' version='7.0'>
+        		<form string='ZKTeco Device'>
         			<header>
         			</header>
         			<sheet>
@@ -21,12 +21,6 @@
         					<field name='port'/>
         					<field name='timezone'/>
         				</group>
-        				<notebook>
-        					<page string='Pagina 1'>
-        					</page>
-        					<page string='Pagina 2'>
-        					</page>
-        				</notebook>
         			</sheet>
         		</form>
         	</field>

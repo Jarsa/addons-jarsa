@@ -1,23 +1,16 @@
 # -*- encoding: utf-8 -*-
-from openerp.osv import fields, osv
+from openerp import fields, models
 import zkemapi
 
 
-class zk_device(osv.osv):
+class zk_device(models.Model):
     _name = 'zk.device'
     _description = 'ZKTeco Device'
-    _columns = {
-        'name': fields.char('Device Name', size=64, required=True),
-        'host': fields.char('Host/IP Address', required=True),
-        'number': fields.integer('Device Number', required=True),
-        'port': fields.integer('Port', required=True),
-        'timezone': fields.integer('Time Zone', required=True),
-    }
-    _defaults = {
-        'port': 4370,
-        'timezone': -6,
-        'host': '192.168.1.201',
-    }
+    name = fields.Char(string='Device Name', size=64, required=True)
+    host = fields.Char(string='Host/IP Address', required=True, default='192.168.1.201')
+    number = fields.Integer('Device Number', required=True)
+    port = fields.Integer('Port', required=True, default=4370)
+    timezone = fields.Integer('Time Zone', required=True, default=-6)
 
 # device = zkemapi.zkem()
 # host = '192.168.0.50'
