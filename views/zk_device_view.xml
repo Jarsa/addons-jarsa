@@ -9,6 +9,7 @@
         	<field name='arch' type='xml'>
         		<form string='ZKTeco Device'>
         			<header>
+                        <button name="connect_device" string="Test connection" type="object" icon="gtk-apply"/>
         			</header>
         			<sheet>
         				<h1>

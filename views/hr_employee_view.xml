@@ -5,11 +5,12 @@
         <record model='ir.ui.view' id='hr_employee_zk_form'>
         	<field name='name'>hr_employee_zk.form</field>
         	<field name='model'>hr.employee</field>
-        	<field name='inherit_id' ref='hr.employee'/>
+        	<field name='inherit_id' ref='hr.view_employee_form'/>
         	<field name='arch' type='xml'>
-        		<field name='name' position='after'>
-        			<field name='zk_id' placeholder='ZKTeco ID'/>
-        	   </field>
+        		<h1 position='after'>
+        			<label for="zk_id" class="oe_edit_only" groups="base.group_hr_user"/>
+                    <field name='zk_id' placeholder='ZKTeco ID'/>
+        	   </h1>
             </field>
         </record>
     </data>
