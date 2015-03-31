@@ -43,7 +43,9 @@ class zk_device(models.Model):
                 attendance_ids = attendance.search(cr, uid, [('employee_id', '=', employee_id[0])])
                 last_id = attendance_ids and max(attendance_ids)
                 attendance_obj = attendance.browse(cr, uid, last_id, context=None)
-                if attendance_obj[0].action == 'sign_in':
+                if not attendance_obj:
+                    sign = 'sign_in'
+                elif attendance_obj[0].action == 'sign_in':
                     sign = 'sign_out'
                 else:
                     sign = 'sign_in'
