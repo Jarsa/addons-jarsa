@@ -18,7 +18,9 @@
                     """,
     "data": ['views/zk_device_view.xml',
              'views/hr_employee_view.xml',
-             'data/ir_cron.xml',],
+             'data/ir_cron.xml',
+             'security/security.xml',
+             'security/ir.model.access.csv',],
     "application": True,
     "installable": True,
 }
