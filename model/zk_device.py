@@ -39,6 +39,8 @@ class zk_device(models.Model):
             attendance_log = device.unpack_attendance_log()
             for log in attendance_log:
                 employee_id = employee.search(cr, uid, [('zk_id', '=', log[0])])
+                if not employee_id:
+                    raise except_orm(_('Error!'),_('There is no employee linked to ID %s') % log[0])
                 date = log[1] + timedelta(hours=timezone)
                 attendance_ids = attendance.search(cr, uid, [('employee_id', '=', employee_id[0])])
                 last_id = attendance_ids and max(attendance_ids)
