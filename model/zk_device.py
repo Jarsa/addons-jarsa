@@ -25,7 +25,7 @@ class zk_device(models.Model):
         else:
             raise except_orm(_('Connection Failed!'),_('Please review configuration parameters'))
 
-    def sync_timesheet(self, cr, uid):
+    def get_attendace_log(self, cr, uid):
         attendance = self.pool['hr.attendance']
         employee = self.pool['hr.employee']
         devices_ids = self.search(cr, uid, [])

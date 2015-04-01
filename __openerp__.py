@@ -19,6 +19,7 @@
     "data": ['views/zk_device_view.xml',
              'views/hr_employee_view.xml',
              'data/ir_cron.xml',
+             'wizard/zk_connector_wizard.xml',
              'security/security.xml',
              'security/ir.model.access.csv',],
     "application": True,
