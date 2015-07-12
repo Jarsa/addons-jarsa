@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+user_zk_device,user_zk_device,model_zk_device,zk_group_user,1,0,0,0
+manager_zk_device,manager_zk_device,model_zk_device,zk_group_manager,1,1,1,1

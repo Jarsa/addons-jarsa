@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <!-- Form View -->
+        <record model='ir.ui.view' id='zk_device_form'>
+        	<field name='name'>zk_device.form</field>
+        	<field name='model'>zk.device</field>
+        	<field name='type'>form</field>
+        	<field name='arch' type='xml'>
+        		<form string='ZKTeco Device'>
+        			<header>
+                        <button name="connect_device" string="Test connection" type="object" icon="gtk-apply"/>
+        			</header>
+        			<sheet>
+        				<h1>
+        					<label string='ZKTeco Device'/>
+        				</h1>
+        				<group col='4'>
+        					<field name='name'/>
+        					<field name='host'/>
+        					<field name='number'/>
+        					<field name='port'/>
+        					<field name='timezone'/>
+        				</group>
+        			</sheet>
+        		</form>
+        	</field>
+        </record>
+        <!-- Tree View -->
+        <record model='ir.ui.view' id='zkt_device_tree'>
+        	<field name='name'>zkt_device.tree</field>
+        	<field name='model'>zk.device</field>
+        	<field name='type'>tree</field>
+        	<field name='arch' type='xml'>
+        		<tree string='ZKTeco Device'>
+        			<field name='name'/>
+        			<field name='host'/>
+        			<field name='number'/>
+        		</tree>
+        	</field>
+        </record>
+        <!-- Action -->
+        <record id='action_zk_device' model='ir.actions.act_window'>
+        	<field name='name'>ZKTeco Device</field>
+        	<field name='res_model'>zk.device</field>
+        	<field name='view_type'>form</field>
+        	<field name='view_mode'>tree,form</field>
+        </record>
+        <!-- Menu -->
+        <menuitem id="zk_device_menu" name="ZKTeco Device" parent="hr.menu_hr_configuration" action="action_zk_device"/>
+    </data>
+</openerp>
