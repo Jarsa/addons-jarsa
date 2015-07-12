@@ -4,7 +4,6 @@
         <record model='ir.ui.view' id='sync_cva_wizard_form'>
             <field name='name'>sync_cva_wizard.form</field>
             <field name='model'>cva.sync</field>
-            <field name='type'>form</field>
             <field name='arch' type='xml'>
                 <form string='Sync with CVA'>
                     <header>
