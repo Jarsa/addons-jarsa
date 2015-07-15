@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
-from openerp import fields, models, api
+from openerp import fields, models, api, _
 import requests
 from lxml import etree
+import base64
 
 
 class cva_config(models.Model):
@@ -36,7 +37,41 @@ class cva_config(models.Model):
                                  'parent_id': parent_id})
                 category_list.append(item.findtext('subgrupo'))
                 
+    @api.multi
+    def create_product(self, item):
+        product_obj = self.env['product.template']
+        category_obj = self.env['product.public.category']
+        category = category_obj.search([('name', '=', item.findtext('grupo'))])
+        print 'Producto creado' + item.findtext('clave')
+        if not item.findtext('imagen'):
+            image = False
+        else:
+            image = base64.encodestring(requests.get(item.findtext('imagen')).content)
+        if item.findtext('moneda') == 'Dolares':
+            price = float(item.findtext('precio')) * float(item.findtext('tipocambio'))
+        else:
+            price = float(item.findtext('precio'))
+        product_obj.create({'name': item.findtext('descripcion'),
+                            'default_code': item.findtext('clave'), # + '/' + item.findtext('codigo_fabricante'),
+                            'standard_price': price,
+                            'public_categ_ids': [(6, 0, [x.id for x in category])],
+                            'description': _('Ficha comercial\n') + 
+                                           item.findtext('ficha_comercial') + '\n\n' +
+                                           _('Ficha tecnica\n') + item.findtext('ficha_tecnica'),
+                            'image_medium': image,
+                            })
 
+    @api.multi
+    def update_product(self, item):
+        product_obj = self.env('product.template')
+        if item.findtext('moneda') == 'Dolares':
+            price = float(item.findtext('precio')) * float(item.findtext('tipocambio'))
+        else:
+            price = float(item.findtext('precio'))
+        product_obj.write({
+                           'standard_price': price
+                          })
+    
     @api.one
     def get_products(self):
         product = self.env['product.product']
@@ -53,21 +88,18 @@ class cva_config(models.Model):
                       'grupo': category,
                       'depto': '1',
                       'dt': '1',
-                      'dc': '1'}
+                      'dc': '1',
+                      'tc': '1',}
             root = self.connect_cva(params)
             for item in root:
-                if int(item.findtext('disponible')) > 0 and self.avialable == True:
-                    print 'TRC', item.findtext('disponible'), item.findtext('descripcion')
-                elif int(item.findtext('disponibleCD')) > 0 and self.avialable_dc == True:
-                    print 'CD', item.findtext('disponibleCD'), item.findtext('descripcion')
-                elif self.all_products == True:
-                    print 'SE VAN A GUARDAR TODOS LOS PRODUCTOS'
-                #if item.findtext('disponible') != 0:
-                #    category_list = [x.name for x in category.search([])]
-                #    if item.findtext('grupo') not in category_list:
-                #        category.create({'name': item.findtext('grupo')})
-                #    categ_id = category.search([('name', '=', item.findtext('grupo'))]).id
-                #    if item.findtext('clave') in product_list:
+                if item.findtext('clave') not in product_list:
+                    if int(item.findtext('disponible')) > 0 and self.avialable == True:
+                        self.create_product(item)
+                    elif int(item.findtext('disponibleCD')) > 0 and self.avialable_dc == True:
+                        self.create_product(item)
+                    elif self.all_products == True:
+                        self.create_product(item)
+
                 #        product_id = product.search([('default_code', '=', item.findtext('clave'))])
                 #        if item.findtext('moneda') == 'Dolares':
                 #             product_id.write({'standard_price': float(item.findtext('precio')) * float(item.findtext('tipocambio')),
