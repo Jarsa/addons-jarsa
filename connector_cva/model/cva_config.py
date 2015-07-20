@@ -3,6 +3,7 @@ from openerp import fields, models, api, _
 import requests
 from lxml import etree
 import base64
+import ipdb
 
 
 class cva_config(models.Model):
@@ -16,6 +17,11 @@ class cva_config(models.Model):
 
     @api.multi
     def connect_cva(self, params):
+        """
+            Connect to CVA web-services
+            @param params: dict with parameters to generate xml file
+            @return: returns a xml object
+        """   
         data = requests.get(self.url, params=params).content
         root = etree.XML(data)
         return root
@@ -41,8 +47,7 @@ class cva_config(models.Model):
     def create_product(self, item):
         product_obj = self.env['product.template']
         category_obj = self.env['product.public.category']
-        category = category_obj.search([('name', '=', item.findtext('grupo'))])
-        print 'Producto creado' + item.findtext('clave')
+        category = category_obj.search(['|', ('name', '=', item.findtext('grupo')), ('name', '=', item.findtext('subgrupo'))])
         if not item.findtext('imagen'):
             image = False
         else:
@@ -74,6 +79,7 @@ class cva_config(models.Model):
     
     @api.one
     def get_products(self):
+        ipdb.set_trace()
         product = self.env['product.product']
         category_list = []
         for x in self.allowed_groups:
@@ -89,7 +95,8 @@ class cva_config(models.Model):
                       'depto': '1',
                       'dt': '1',
                       'dc': '1',
-                      'tc': '1',}
+                      'tc': '1',
+                      'subgpo': '1',}
             root = self.connect_cva(params)
             for item in root:
                 if item.findtext('clave') not in product_list:
