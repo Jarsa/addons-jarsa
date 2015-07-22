@@ -3,14 +3,14 @@ from openerp import fields, models, api, _
 import requests
 from lxml import etree
 import base64
-import ipdb
+#import ipdb
 
 
 class cva_config(models.Model):
     _name = 'cva.config.settings'
     name = fields.Char(string='Client number')
     url = fields.Char(string='URL', default='http://www.grupocva.com/catalogo_clientes_xml/lista_precios.xml')
-    allowed_groups = fields.Many2many('product.public.category', string='Allowed groups')
+    allowed_groups = fields.Many2many('cva.group', string='Allowed groups')
     avialable = fields.Boolean(string='Get avialable products')
     avialable_dc = fields.Boolean(string='Get avialable products in Distribution Center')
     all_products = fields.Boolean(string='Get all products')
@@ -27,27 +27,21 @@ class cva_config(models.Model):
         return root
 
     @api.multi
-    def get_categories(self):
-        category = self.env['product.public.category']
-        category_list = [x.name for x in category.search([])]
-        params = {'cliente': self.name, 
-                  'subgpo': '1'}
+    def get_groups(self):
+        group = self.env['cva.group']
+        group_list = [x.name for x in group.search([])]
+        params = {'cliente': self.name}
         root = self.connect_cva(params)
         for item in root:
-            if item.findtext('grupo') not in category_list:
-                category.create({'name': item.findtext('grupo')})
-                category_list.append(item.findtext('grupo'))
-            if item.findtext('subgrupo') not in category_list:
-                parent_id = category.search([('name', '=', item.findtext('grupo'))]).id
-                category.create({'name': item.findtext('subgrupo'),
-                                 'parent_id': parent_id})
-                category_list.append(item.findtext('subgrupo'))
+            if item.findtext('grupo') not in group_list:
+                group.create({'name': item.findtext('grupo')})
+                group_list.append(item.findtext('grupo'))
                 
     @api.multi
     def create_product(self, item):
         product_obj = self.env['product.template']
-        category_obj = self.env['product.public.category']
-        category = category_obj.search(['|', ('name', '=', item.findtext('grupo')), ('name', '=', item.findtext('subgrupo'))])
+        group_obj = self.env['cva.group']
+        group = group_obj.search([('name', '=', item.findtext('grupo'))])
         if not item.findtext('imagen'):
             image = False
         else:
@@ -57,12 +51,13 @@ class cva_config(models.Model):
         else:
             price = float(item.findtext('precio'))
         product_obj.create({'name': item.findtext('descripcion'),
-                            'default_code': item.findtext('clave'), # + '/' + item.findtext('codigo_fabricante'),
+                            'default_code': item.findtext('clave'),
                             'standard_price': price,
-                            'public_categ_ids': [(6, 0, [x.id for x in category])],
-                            'description': _('Ficha comercial\n') + 
-                                           item.findtext('ficha_comercial') + '\n\n' +
-                                           _('Ficha tecnica\n') + item.findtext('ficha_tecnica'),
+                            'description': _('Group\n' + item.findtext('grupo') + '\n\n' +
+                                             'Subgroup\n' + item.findtext('subgrupo') + '\n\n' +
+                                             'Ficha comercial\n' + item.findtext('ficha_comercial') +
+                                             '\n\n' +
+                                             'Ficha tecnica\n' + item.findtext('ficha_tecnica')),
                             'image_medium': image,
                             })
 
@@ -79,19 +74,15 @@ class cva_config(models.Model):
     
     @api.one
     def get_products(self):
-        ipdb.set_trace()
-        product = self.env['product.product']
-        category_list = []
+        product = self.env['product.template']
+        group_list = []
         for x in self.allowed_groups:
-            if x.parent_id:
-                category_list.append(x.parent_id.name)
-            else:
-                category_list.append(x.name)
-        category_list = list(set(category_list))
+            group_list.append(x.name)
+        group_list = list(set(group_list))
         product_list = [x.default_code for x in product.search([])]
-        for category in category_list:
+        for group in group_list:
             params = {'cliente': self.name,
-                      'grupo': category,
+                      'grupo': group,
                       'depto': '1',
                       'dt': '1',
                       'dc': '1',
@@ -107,24 +98,10 @@ class cva_config(models.Model):
                     elif self.all_products == True:
                         self.create_product(item)
 
-                #        product_id = product.search([('default_code', '=', item.findtext('clave'))])
-                #        if item.findtext('moneda') == 'Dolares':
-                #             product_id.write({'standard_price': float(item.findtext('precio')) * float(item.findtext('tipocambio')),
-                #                               'public_categ_ids': [4, categ_id, 0],
-                #                               })
-                #         else:
-                #             product_id.write({'standard_price': item.findtext('precio'),
-                #                               'public_categ_ids': [4, categ_id, 0],
-                #                               })
-                #     elif item.findtext('moneda') == 'Dolares':
-                #         product.create({'name': item.findtext('descripcion'),
-                #                         'default_code': item.findtext('clave'),
-                #                         'standard_price': float(item.findtext('precio')) * float(item.findtext('tipocambio')),
-                #                         'public_categ_ids': [4, categ_id, 0],
-                #                         })
-                #     else:
-                #         product.create({'name': item.findtext('descripcion'),
-                #                         'default_code': item.findtext('clave'),
-                #                         'standard_price': item.findtext('precio'),
-                #                         'public_categ_ids': [4, categ_id, 0],
-                #                         })
+
+class cva_group(models.Model):
+    _name = 'cva.group'
+    _description = 'group of CVA'
+    _order = 'name'
+    
+    name = fields.Char(required=True)
