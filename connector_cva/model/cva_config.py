@@ -61,16 +61,24 @@ class cva_config(models.Model):
                             'image_medium': image,
                             })
 
-    @api.multi
-    def update_product(self, item):
-        product_obj = self.env('product.template')
-        if item.findtext('moneda') == 'Dolares':
-            price = float(item.findtext('precio')) * float(item.findtext('tipocambio'))
-        else:
-            price = float(item.findtext('precio'))
-        product_obj.write({
-                           'standard_price': price
-                          })
+    def update_product_cron(self, cr, uid):
+        cva_obj = self.pool.get('cva.config.settings')
+        cva_id = cva_obj.search(cr, uid, [])
+        cva = cva_obj.browse(cr, uid, cva_id[0])
+        product_obj = self.pool.get('product.template')
+        product_ids = product_obj.search(cr, uid, [])
+        product_list = product_obj.browse(cr, uid, product_ids)
+        for product in product_list:
+            params = {'cliente': cva.name,
+                      'clave': product.default_code,
+                      'tc': '1',}
+            root = cva.connect_cva(params=params)
+            for item in root:
+                if item.findtext('moneda') == 'Dolares':
+                    price = float(item.findtext('precio')) * float(item.findtext('tipocambio'))
+                else:
+                    price = float(item.findtext('precio'))
+                product_obj.write(cr, uid, product.id, {'standard_price': price})
     
     @api.one
     def get_products(self):
