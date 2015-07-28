@@ -3,7 +3,6 @@ from openerp import fields, models, api, _
 import requests
 from lxml import etree
 import base64
-#import ipdb
 
 
 class cva_config(models.Model):
@@ -40,8 +39,6 @@ class cva_config(models.Model):
     @api.multi
     def create_product(self, item):
         product_obj = self.env['product.template']
-        group_obj = self.env['cva.group']
-        group = group_obj.search([('name', '=', item.findtext('grupo'))])
         if not item.findtext('imagen'):
             image = False
         else:
@@ -83,10 +80,7 @@ class cva_config(models.Model):
     @api.one
     def get_products(self):
         product = self.env['product.template']
-        group_list = []
-        for x in self.allowed_groups:
-            group_list.append(x.name)
-        group_list = list(set(group_list))
+        group_list = [x.name for x in self.allowed_groups]
         product_list = [x.default_code for x in product.search([])]
         for group in group_list:
             params = {'cliente': self.name,
