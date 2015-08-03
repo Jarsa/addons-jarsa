@@ -43,13 +43,9 @@ class cva_config(models.Model):
             image = False
         else:
             image = base64.encodestring(requests.get(item.findtext('imagen')).content)
-        if item.findtext('moneda') == 'Dolares':
-            price = float(item.findtext('precio')) * float(item.findtext('tipocambio'))
-        else:
-            price = float(item.findtext('precio'))
         product_obj.create({'name': item.findtext('descripcion'),
                             'default_code': item.findtext('clave'),
-                            'standard_price': price,
+                            'standard_price': float(item.findtext('precio')),
                             'description': _('Group\n' + item.findtext('grupo') + '\n\n' +
                                              'Subgroup\n' + item.findtext('subgrupo') + '\n\n' +
                                              'Ficha comercial\n' + item.findtext('ficha_comercial') +
@@ -68,14 +64,10 @@ class cva_config(models.Model):
         for product in product_list:
             params = {'cliente': cva.name,
                       'clave': product.default_code,
-                      'tc': '1',}
+                      'MonedaPesos': '1',}
             root = cva.connect_cva(params=params)
             for item in root:
-                if item.findtext('moneda') == 'Dolares':
-                    price = float(item.findtext('precio')) * float(item.findtext('tipocambio'))
-                else:
-                    price = float(item.findtext('precio'))
-                product_obj.write(cr, uid, product.id, {'standard_price': price})
+                product_obj.write(cr, uid, product.id, {'standard_price': float(item.findtext('precio'))})
     
     @api.one
     def get_products(self):
@@ -88,8 +80,8 @@ class cva_config(models.Model):
                       'depto': '1',
                       'dt': '1',
                       'dc': '1',
-                      'tc': '1',
-                      'subgpo': '1',}
+                      'subgpo': '1',
+                      'MonedaPesos': '1',}
             root = self.connect_cva(params)
             for item in root:
                 if item.findtext('clave') not in product_list:
