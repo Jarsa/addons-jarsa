@@ -66,9 +66,15 @@ class cva_config(models.Model):
                       'clave': product.default_code,
                       'MonedaPesos': '1',}
             root = cva.connect_cva(params=params)
-            for item in root:
-                product_obj.write(cr, uid, product.id, {'standard_price': float(item.findtext('precio'))})
-    
+            if len(root) == 0:
+                pass
+            elif len(root) > 1:
+                for item in root:
+                    if item.findtext('clave') == product.default_code:
+                        product_obj.write(cr, uid, product.id, {'standard_price': float(item.findtext('precio'))})
+            else:
+                product_obj.write(cr, uid, product.id, {'standard_price': float(root[0].findtext('precio'))})
+
     @api.one
     def get_products(self):
         product = self.env['product.template']
