@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="stock_picking_price_report" inherit_id="stock.report_picking">
+        	<xpath expr="//table[@t-if='not o.pack_operation_ids']//thead//tr" position="inside">
+                <th class="text-right">
+                	<strong>List Price</strong>
+                </th>
+                <th class="text-right">
+                	<strong>Cost Price</strong>
+                </th>
+                <th class="text-right">
+                	<strong>Total Cost</strong>
+                </th>
+            </xpath>
+            <xpath expr="//table[@t-if='not o.pack_operation_ids']//tbody//tr" position="inside">
+            	<td class="text-right">
+            		<span t-field="move.product_id.lst_price"/>
+            	</td>
+            	<td class="text-right">
+            		<span t-esc="move.product_id.standard_price"/>
+            	</td>
+            	<td class="text-right">
+            		<span t-esc="move.product_id.standard_price * move.product_uom_qty"/>
+            	</td>
+            </xpath>
+            <xpath expr="//table[@t-if='o.pack_operation_ids']//thead//tr" position="inside">
+                <th class="text-right">
+                	<strong>List Price</strong>
+                </th>
+                <th class="text-right">
+                	<strong>Cost Price</strong>
+                </th>
+                <th class="text-right">
+                	<strong>Total Cost</strong>
+                </th>
+            </xpath>
+            <xpath expr="//table[@t-if='o.pack_operation_ids']//tbody//tr" position="inside">
+            	<td class="text-right">
+            		<span t-field="move.product_id.lst_price"/>
+            	</td>
+            	<td class="text-right">
+            		<span t-esc="move.product_id.standard_price"/>
+            	</td>
+            	<td class="text-right">
+            		<span t-esc="move.product_id.standard_price * move.product_uom_qty"/>
+            	</td>
+            </xpath>
+            <xpath expr="//table[@t-if='o.pack_operation_ids']" position="after">
+            	<div class="text-right">
+            		<h4><strong>Total: </strong>
+            		<t t-esc="sum(l.product_id.standard_price * l.product_uom_qty for l in o.move_lines)"/></h4>
+            	</div>
+        	</xpath>
+        </template>
+    </data>
+</openerp>
