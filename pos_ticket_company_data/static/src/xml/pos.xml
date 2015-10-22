@@ -14,7 +14,8 @@
                 <span>,</span>
                 <t t-if="widget.pos.company.state_id[1]"><t t-esc="widget.pos.company.state_id[1]"/><br /></t>
                 <t t-if="widget.pos.company.zip">Zip: <t t-esc="widget.pos.company.zip"/><br/></t>
-                <t t-if="widget.pos.company.vat">VAT: <t t-esc="widget.pos.company.vat"/><br/></t>
+                <t t-set="v" t-value="widget.pos.company.vat"/>
+                <t t-if="widget.pos.company.vat">VAT: <t t-esc="v[2] + v[3] + v[4] + v[5] + v[6] + v[7] + v[8] + v[9] + v[10] + v[11] + v[12] + v[13]"/><t t-if="v[14]"><t t-esc="v[14]"/></t><br/></t>
                 <t t-esc="widget.pos.company.phone || ''"/><br />
                 User: <t t-esc="widget.pos.cashier ? widget.pos.cashier.name : widget.pos.user.name"/>
                 Shop: <t t-esc="widget.pos.shop.name"/><br />
