@@ -7,8 +7,13 @@
     "author"      : "Jarsa Sistemas, S.A. de C.V.",
     "website"     : "www.jarsa.com.mx",
     "depends"     : ['point_of_sale'],
-    "summary"     : "Add address and other fields to POS ticket",
-    "data" : ['views/pos_ticket_company_data.xml'],
+    "summary"     : "Add address and VAT fields to POS ticket",
+    "data" : [
+        'views/pos_ticket_company_data.xml'
+    ],
+    "qweb" : [
+        'static/src/xml/pos.xml',
+    ],
     "application": True,
     "installable": True,
 }
