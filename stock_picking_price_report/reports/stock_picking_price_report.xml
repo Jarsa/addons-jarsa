@@ -38,19 +38,26 @@
             </xpath>
             <xpath expr="//table[@t-if='o.pack_operation_ids']//tbody//tr" position="inside">
             	<td class="text-right">
-            		<span t-field="move.product_id.lst_price"/>
+            		<span t-field="pack_operation.product_id.lst_price"/>
             	</td>
             	<td class="text-right">
-            		<span t-esc="move.product_id.standard_price"/>
+            		<span t-esc="pack_operation.product_id.standard_price"/>
             	</td>
             	<td class="text-right">
-            		<span t-esc="move.product_id.standard_price * move.product_uom_qty"/>
+            		<span t-esc="pack_operation.product_id.standard_price * pack_operation.product_qty"/>
             	</td>
             </xpath>
             <xpath expr="//table[@t-if='o.pack_operation_ids']" position="after">
             	<div class="text-right">
-            		<h4><strong>Total: </strong>
-            		<t t-esc="sum(l.product_id.standard_price * l.product_uom_qty for l in o.move_lines)"/></h4>
+            		<h4>
+                        <strong>Total: </strong>
+            		<t t-if="not o.pack_operation_ids">
+                        <t t-esc="sum(l.product_id.standard_price * l.product_uom_qty for l in o.move_lines)"/>
+                    </t>
+                    <t t-if="o.pack_operation_ids">
+                        <t t-esc="sum(l.product_id.standard_price * l.product_qty for l in o.pack_operation)"/>
+                    </t>
+                    </h4>
             	</div>
         	</xpath>
         </template>
