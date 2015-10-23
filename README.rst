@@ -1,6 +1,9 @@
 .. image:: https://img.shields.io/badge/licence-AGPL--3-blue.svg
    :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
-   :alt: License: AGPL-3 [![Build Status](https://travis-ci.org/odoo-jarsa/addons-jarsa.svg)](https://travis-ci.org/odoo-jarsa/addons-jarsa)
+   :alt: License: AGPL-3
+
+.. image:: https://travis-ci.org/odoo-jarsa/addons-jarsa.svg
+   :target: https://travis-ci.org/odoo-jarsa/addons-jarsa   
 
 ==============
 Addons Jarsa
