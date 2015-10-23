@@ -2,7 +2,7 @@
 from openerp import fields, models
 
 
-class hr_employee(models.Model):
+class HrEmployee(models.Model):
     _name = 'hr.employee'
     _inherit = 'hr.employee'
     zk_id = fields.Char(string='ID')

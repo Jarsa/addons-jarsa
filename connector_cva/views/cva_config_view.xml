@@ -20,8 +20,8 @@
         					<group>
         						<field name='name'/>
                                 <field name='url'/>
-        						<field name='avialable'/>
-        						<field name='avialable_dc'/>
+        						<field name='available'/>
+        						<field name='available_dc'/>
         						<field name='all_products'/>
         					</group>
         					<group colspan='4'>

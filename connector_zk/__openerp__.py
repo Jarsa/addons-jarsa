@@ -14,5 +14,5 @@
     #          'security/security.xml',
     #          'security/ir.model.access.csv',],
     "application": True,
-    "installable": True,
+    "installable": False,
 }
