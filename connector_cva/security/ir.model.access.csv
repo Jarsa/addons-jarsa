@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+manager_cva_config_settings,manager_cva_config_settings,model_cva_config_settings,cva_group_manager,1,1,1,1
+manager_cva_group,manager_cva_group,model_cva_group,cva_group_manager,1,1,1,1
