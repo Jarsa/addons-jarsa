@@ -1,0 +1,25 @@
+<openerp>
+	<data>
+		<template id="pos_order_by_date_report">
+		    <t t-call="report.html_container">
+		        <t t-foreach="docs" t-as="o">
+		            <t t-call="report.external_layout">
+		                <div class="page">
+		                    <h2>POS Order by Date Report</h2>
+		                    <p>This object's name is</p>
+		                </div>
+		            </t>
+		        </t>
+		    </t>
+		</template>
+
+		<report
+		    id="pos_order_by_date_report"
+		    model="pos.order"
+		    string="Report Weekly and Montly"
+		    report_type="qweb-pdf"
+		    name="pos_order_report.pos_order_by_date_report"
+		    file="pos_order_report.pos_order_by_date_report"
+		/>
+	</data>
+</openerp>
