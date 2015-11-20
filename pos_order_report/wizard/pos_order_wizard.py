@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# coding: utf-8` or `# -*- coding: utf-8 -*-
 from openerp import models, fields, api
 
 
@@ -22,7 +22,4 @@ class wizard(models.TransientModel):
 
         datas['form']['active_ids'] = context.get('active_ids', False)
 
-        return self.pool['report'].get_action(cr, uid, [], 'pos_order_report.pos_order_by_date_report', data=datas, context=context)
-
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
-
+        return self.pool['report'].get_action(cr, uid, [], 'pos_order_report.report_pos_order_by_date', data=datas, context=context)

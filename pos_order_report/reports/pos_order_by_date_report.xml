@@ -1,25 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <openerp>
 	<data>
-		<template id="pos_order_by_date_report">
+		<template id="report_pos_order_by_date">
 		    <t t-call="report.html_container">
-		        <t t-foreach="docs" t-as="o">
+		        <!-- <t t-foreach="docs" t-as="o"> -->
 		            <t t-call="report.external_layout">
 		                <div class="page">
 		                    <h2>POS Order by Date Report</h2>
-		                    <p>This object's name is</p>
+		                    <!-- <p>This object's name is <t t-esc="get_objects(data['form']['date_start'])"/></p> -->
+		                    <!-- <p>Date start:<span t-esc="data['form']['date_start']"/></p><br/>
+		                    Date end:<span t-esc="data['form']['date_end']"/><br/> -->
+		                    Warehouse:<span t-esc="data['form']['date_end']"/><br/>
+		                    Warehouse bueno: <span t-esc="get_warehouse(data['form']['warehouse_id'])"/>
 		                </div>
 		            </t>
-		        </t>
+		        <!-- </t> -->
 		    </t>
 		</template>
-
 		<report
 		    id="pos_order_by_date_report"
 		    model="pos.order"
 		    string="Report Weekly and Montly"
 		    report_type="qweb-pdf"
-		    name="pos_order_report.pos_order_by_date_report"
-		    file="pos_order_report.pos_order_by_date_report"
+		    name="pos_order_report.report_pos_order_by_date"
+		    file="pos_order_report.report_pos_order_by_date"
 		/>
 	</data>
 </openerp>
