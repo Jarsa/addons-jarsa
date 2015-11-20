@@ -23,7 +23,7 @@
         </record>
 
         <record id="action_pos_order_wizard" model="ir.actions.act_window">
-            <field name="name">POS Order Wizard Action</field>
+            <field name="name">Sales by date</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pos.order.wizard</field>
             <field name="view_type">form</field>
@@ -32,14 +32,13 @@
             <field name="target">new</field>
         </record>
 
-        <record model="ir.values" id="pos_order_wizard_value">
-            <field name="model_id" ref="point_of_sale.model_pos_order" />
-            <field name="name">Orders by Date</field>
-            <field name="key2">client_print_multi</field>
-            <field name="value" eval="'ir.actions.act_window,' + str(ref('action_pos_order_wizard'))" />
-            <field name="key">action</field>
-            <field name="model">pos.order</field>
-        </record>
+        <menuitem
+            name="Sales by date"
+            parent="point_of_sale.menu_point_rep"
+            action="action_pos_order_wizard"
+            groups="point_of_sale.group_pos_manager"
+            id="menu_sales_by_date"
+           />
 
     </data>
 </openerp>
