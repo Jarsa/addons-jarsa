@@ -57,8 +57,9 @@ class ZkDevice(models.Model):
             timezone = -zk_device.timezone
             device = zkemapi.zkem()
             connect = device.connect(host=host, port=port)
-            get_attendace_log = device.get_attendance_log()
+            connect
             attendance_log = device.unpack_attendance_log()
+            attendance_log
             for log in attendance_log:
                 employee_id = employee.search(
                     cr, uid, [('zk_id', '=', log[0])])
