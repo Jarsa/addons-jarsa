@@ -8,6 +8,8 @@ cache:
 python:
   - "2.7"
 
+install:
+  - pip install pandas
 addons:
   apt:
 # only add the two lines below if you need wkhtmltopdf for your tests

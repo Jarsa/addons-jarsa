@@ -4,7 +4,7 @@ from openerp.tools.misc import DEFAULT_SERVER_DATETIME_FORMAT as DT
 from openerp.tools.misc import DEFAULT_SERVER_DATE_FORMAT as DF
 from datetime import datetime, timedelta
 import pytz
-from pandas import bdate_range
+from pandas import date_range
 from pandas.tseries.offsets import CDay
 
 
@@ -23,7 +23,7 @@ class PosOrderByDateReport(models.AbstractModel):
 
     def get_pos_orders_by_date(self, data):
         pos_order_obj = self.env['pos.order']
-        rng = bdate_range(
+        rng = date_range(
             datetime.strptime(data['form']['date_start'], DF),
             datetime.strptime(data['form']['date_end'], DF),
             freq=CDay(weekmask='Mon Tue Wed Thu Fri Sat'))
