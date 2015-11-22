@@ -16,7 +16,7 @@
                     <field name="date_start"/>
                     <field name="date_end"/>
                     <newline/>
-                    <field name="warehouse_id"/>
+                    <field name="pos_config_id"/>
                 </group>
             </form>
             </field>

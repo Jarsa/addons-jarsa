@@ -7,9 +7,8 @@ class PosOrderWizard(models.TransientModel):
 
     date_start = fields.Date(required=True, default=fields.Date.today)
     date_end = fields.Date(required=True, default=fields.Date.today)
-    warehouse_id = fields.Many2one('stock.warehouse',
-                                   string="Warehouse",
-                                   required=True)
+    pos_config_id = fields.Many2one(
+        'pos.config', string="Point of Sale", required=True)
 
     def print_report(self, cr, uid, ids, context=None):
         if context is None:

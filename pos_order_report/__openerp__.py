@@ -11,6 +11,11 @@
         ],
     "summary": "Calculates all the week and montly sales",
     "license": "AGPL-3",
+    "external_dependencies": {
+        "python": [
+            "pandas",
+        ],
+    },
     "data": [
         "reports/pos_order_by_date_report.xml",
         "wizard/pos_order_wizard_view.xml",

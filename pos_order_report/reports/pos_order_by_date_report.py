@@ -1,7 +1,8 @@
 # coding: utf-8` or `# -*- coding: utf-8 -*-
 from openerp import api, models
 from openerp.tools.misc import DEFAULT_SERVER_DATETIME_FORMAT as DT
-from datetime import datetime
+from openerp.tools.misc import DEFAULT_SERVER_DATE_FORMAT as DF
+from datetime import datetime, timedelta
 import pytz
 from pandas import bdate_range
 from pandas.tseries.offsets import CDay
@@ -16,28 +17,28 @@ class PosOrderByDateReport(models.AbstractModel):
         '''
         tz = self.env.context['tz']
         local_tz = pytz.timezone(tz)
-        datetime_without_tz = datetime.strptime(date, DT)
-        datetime_with_tz = local_tz.localize(datetime_without_tz, is_dst=None)
+        datetime_with_tz = local_tz.localize(date, is_dst=None)
         datetime_in_utc = datetime_with_tz.astimezone(pytz.utc)
         return datetime_in_utc.strftime(DT)
 
-    def get_date_range(self, date_start, date_end):
-        rng = bdate_range(
-            date_start,
-            date_end,
-            freq=CDay(weekmask='Mon Tue Wed Thu Fri Sat'))
-        return rng
-
     def get_pos_orders_by_date(self, data):
         pos_order_obj = self.env['pos.order']
-        date_start = self.get_date_in_utc(
-            data['form']['date_start'] + ' 10:00:00')
-        date_end = self.get_date_in_utc(
-            data['form']['date_end'] + ' 18:00:00')
-        pos_order_ids = pos_order_obj.search([
-            ('date_order', '>=', date_start),
-            ('date_order', '<=', date_end)
-            ])
+        rng = bdate_range(
+            datetime.strptime(data['form']['date_start'], DF),
+            datetime.strptime(data['form']['date_end'], DF),
+            freq=CDay(weekmask='Mon Tue Wed Thu Fri Sat'))
+        pos_order_ids = []
+        for date in rng:
+            date_start = date + timedelta(hours=10)
+            date_start_utc = self.get_date_in_utc(date_start)
+            date_end = date + timedelta(hours=18)
+            date_end_utc = self.get_date_in_utc(date_end)
+            pos_order = pos_order_obj.search([
+                ('date_order', '>=', date_start_utc),
+                ('date_order', '<=', date_end_utc),
+                ('session_id.config_id', '=', data['form']['pos_config_id'][0])
+                ])
+            [pos_order_ids.append(x.id) for x in pos_order]
         return pos_order_ids
 
     @api.multi

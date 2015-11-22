@@ -8,7 +8,6 @@
 	                    <h2>POS Order by Date Report</h2>
 	                    <!-- Warehouse:<span t-esc="data['date_end']"/><br/>
 	                    Warehouse bueno: <span t-esc="data['warehouse_id'][1]"/><br/> -->
-	                    Test: <span t-esc="hello_world()"/>
 	                    Test: <span t-esc="pos_order_ids(data)"/>
 	                </div>
 	            </t>
