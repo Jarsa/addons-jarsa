@@ -21,14 +21,15 @@ class PosOrderByDateReport(models.AbstractModel):
         datetime_in_utc = datetime_with_tz.astimezone(pytz.utc)
         return datetime_in_utc.strftime(DT)
 
-    def get_pos_orders_by_date(self, data):
+    def get_totals(self, data):
         pos_order_obj = self.env['pos.order']
         rng = date_range(
             datetime.strptime(data['form']['date_start'], DF),
             datetime.strptime(data['form']['date_end'], DF),
             freq=CDay(weekmask='Mon Tue Wed Thu Fri Sat'))
-        pos_order_ids = []
+        result = []
         for date in rng:
+            total = bank = cash = tax = 0
             date_start = date + timedelta(hours=10)
             date_start_utc = self.get_date_in_utc(date_start)
             date_end = date + timedelta(hours=18)
@@ -38,38 +39,21 @@ class PosOrderByDateReport(models.AbstractModel):
                 ('date_order', '<=', date_end_utc),
                 ('session_id.config_id', '=', data['form']['pos_config_id'][0])
                 ])
-            pos_order_ids.append(pos_order)
-        return pos_order_ids
-
-    def get_totals(self, data, type):
-        pos_order_ids = self.get_pos_orders_by_date(data)
-        result = []
-        for pos_orders_by_day in pos_order_ids:
-            total = 0
-            for pos_order in pos_orders_by_day:
-                if type == 'tax':
-                    total += pos_order.amount_tax
-                elif type == 'total':
-                    total += pos_order.amount_total
-                elif type == 'cash' or 'bank':
-                    for statement in pos_order.statement_ids:
-                        if statement.journal_id.type == type:
-                            total += statement.amount
-            result.append(total)
-        return result
-
-    def pos_order_line(self, data):
-        result = []
-        cash = self.get_totals(data, 'cash')
-        bank = self.get_totals(data, 'bank')
-        tax = self.get_totals(data, 'tax')
-        total = self.get_totals(data, 'total')
-        for x in range(len(cash)):
+            for order in pos_order:
+                tax += order.amount_tax
+                total += order.amount_total
+                for statement in order.statement_ids:
+                    if statement.journal_id.type == 'cash':
+                        cash += statement.amount
+                    elif statement.journal_id.type == 'bank':
+                        bank += statement.amount
             result.append({
-                'cash': cash[x],
-                'bank': bank[x],
-                'tax': tax[x],
-                'total': total[x],
+                'date': date.strftime(DF),
+                'cash': cash,
+                'bank': bank,
+                'subtotal': total - tax,
+                'tax': tax,
+                'total': total,
                 })
         return result
 
@@ -83,7 +67,7 @@ class PosOrderByDateReport(models.AbstractModel):
             'doc_model': report.model,
             'docs': self,
             'data': data,
-            'pos_order_line': self.pos_order_line,
+            'get_totals': self.get_totals,
         }
         return report_obj.render(
             'pos_order_report.report_pos_order_by_date', docargs)
