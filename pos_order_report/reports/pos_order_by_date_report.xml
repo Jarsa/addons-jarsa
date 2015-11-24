@@ -19,8 +19,9 @@
 			                    	<th>Total</th>
 			                    </tr>
 			                </thead>
+			                <t t-set="function" t-value="get_totals(data)"/>
 		                    <tbody class="sale_tbody">
-			                    <tr t-foreach="get_totals(data)" t-as="o">
+			                    <tr t-foreach="function['result']" t-as="o">
 			                    	<td>
 			                    		<span t-esc="o['date']"/>
 			                    	</td>
@@ -38,6 +39,26 @@
 			                    	</td>
 			                    	<td>
 			                    		<span t-esc="o['total']"/>
+			                    	</td>
+			                    </tr>
+			                    <tr>
+			                    	<td>
+			                    		<span>Totals</span>
+			                    	</td>
+			                    	<td>
+			                    		<span t-esc="function['totals']['total_cash'][0]" t-field-options='{"widget": "monetary", "display_currency": function["totals"]["currency_id"]}'/>
+			                    	</td>
+			                    	<td>
+			                    		<span t-esc="function['totals']['total_bank'][0]" t-field-options='{"widget": "monetary", "display_currency": function["totals"]["currency_id"]}'/>
+			                    	</td>
+			                    	<td>
+			                    		<span t-esc="function['totals']['total_subtotal'][0]" t-field-options='{"widget": "monetary", "display_currency": function["totals"]["currency_id"]}'/>
+			                    	</td>
+			                    	<td>
+			                    		<span t-esc="function['totals']['total_tax'][0]" t-field-options='{"widget": "monetary", "display_currency": function["totals"]["currency_id"]}'/>
+			                    	</td>
+			                    	<td>
+			                    		<span t-esc="function['totals']['total_total'][0]" t-field-options='{"widget": "monetary", "display_currency": function["totals"]["currency_id"]}'/>
 			                    	</td>
 			                    </tr>
 		                	</tbody>

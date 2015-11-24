@@ -28,6 +28,8 @@ class PosOrderByDateReport(models.AbstractModel):
             datetime.strptime(data['form']['date_end'], DF),
             freq=CDay(weekmask='Mon Tue Wed Thu Fri Sat'))
         result = []
+        totals = {}
+        total_total = total_bank = total_cash = total_tax = 0
         for date in rng:
             total = bank = cash = tax = 0
             date_start = date + timedelta(hours=10)
@@ -41,12 +43,16 @@ class PosOrderByDateReport(models.AbstractModel):
                 ])
             for order in pos_order:
                 tax += order.amount_tax
+                total_tax += order.amount_tax
                 total += order.amount_total
+                total_total += order.amount_total
                 for statement in order.statement_ids:
                     if statement.journal_id.type == 'cash':
                         cash += statement.amount
+                        total_cash += statement.amount
                     elif statement.journal_id.type == 'bank':
                         bank += statement.amount
+                        total_bank += statement.amount
             result.append({
                 'date': date.strftime(DF),
                 'cash': cash,
@@ -55,7 +61,15 @@ class PosOrderByDateReport(models.AbstractModel):
                 'tax': tax,
                 'total': total,
                 })
-        return result
+        totals['total_total'] = total_total,
+        totals['total_bank'] = total_bank,
+        totals['total_cash'] = total_cash,
+        totals['total_tax'] = total_tax,
+        totals['total_subtotal'] = total_total - total_tax,
+        return {
+            'result': result,
+            'totals': totals,
+            }
 
     @api.multi
     def render_html(self, data=None):
