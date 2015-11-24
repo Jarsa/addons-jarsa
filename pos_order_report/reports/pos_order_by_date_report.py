@@ -38,8 +38,40 @@ class PosOrderByDateReport(models.AbstractModel):
                 ('date_order', '<=', date_end_utc),
                 ('session_id.config_id', '=', data['form']['pos_config_id'][0])
                 ])
-            [pos_order_ids.append(x.id) for x in pos_order]
+            pos_order_ids.append(pos_order)
         return pos_order_ids
+
+    def get_totals(self, data, type):
+        pos_order_ids = self.get_pos_orders_by_date(data)
+        result = []
+        for pos_orders_by_day in pos_order_ids:
+            total = 0
+            for pos_order in pos_orders_by_day:
+                if type == 'tax':
+                    total += pos_order.amount_tax
+                elif type == 'total':
+                    total += pos_order.amount_total
+                elif type == 'cash' or 'bank':
+                    for statement in pos_order.statement_ids:
+                        if statement.journal_id.type == type:
+                            total += statement.amount
+            result.append(total)
+        return result
+
+    def pos_order_line(self, data):
+        result = []
+        cash = self.get_totals(data, 'cash')
+        bank = self.get_totals(data, 'bank')
+        tax = self.get_totals(data, 'tax')
+        total = self.get_totals(data, 'total')
+        for x in range(len(cash)):
+            result.append({
+                'cash': cash[x],
+                'bank': bank[x],
+                'tax': tax[x],
+                'total': total[x],
+                })
+        return result
 
     @api.multi
     def render_html(self, data=None):
@@ -51,7 +83,7 @@ class PosOrderByDateReport(models.AbstractModel):
             'doc_model': report.model,
             'docs': self,
             'data': data,
-            'pos_order_ids': self.get_pos_orders_by_date,
+            'pos_order_line': self.pos_order_line,
         }
         return report_obj.render(
             'pos_order_report.report_pos_order_by_date', docargs)

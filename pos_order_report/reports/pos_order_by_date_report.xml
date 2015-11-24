@@ -5,10 +5,35 @@
 		    <t t-call="report.html_container">
 	            <t t-call="report.external_layout">
 	                <div class="page">
-	                    <h2>POS Order by Date Report</h2>
-	                    <!-- Warehouse:<span t-esc="data['date_end']"/><br/>
-	                    Warehouse bueno: <span t-esc="data['warehouse_id'][1]"/><br/> -->
-	                    Test: <span t-esc="pos_order_ids(data)"/>
+	                    <h2>POS Order by Date Report</h2><br/><br/>
+	                    <table class="table table-condensed">
+	                    	<thead>
+	                    		<tr>
+			                    	<!-- <th>Date</th> -->
+			                    	<th>Cash</th>
+			                    	<th>Card</th>
+			                    	<!-- <th>Subtotal</th> -->
+			                    	<th>Tax</th>
+			                    	<th>Total</th>
+			                    </tr>
+			                </thead>
+		                    <tbody class="sale_tbody">
+			                    <tr t-foreach="pos_order_line(data)" t-as="o">
+			                    	<td>
+			                    		<span t-esc="o['cash']"/>
+			                    	</td>
+			                    	<td>
+			                    		<span t-esc="o['bank']"/>
+			                    	</td>
+			                    	<td>
+			                    		<span t-esc="o['tax']"/>
+			                    	</td>
+			                    	<td>
+			                    		<span t-esc="o['total']"/>
+			                    	</td>
+			                    </tr>
+		                	</tbody>
+	                    </table>
 	                </div>
 	            </t>
 		    </t>
