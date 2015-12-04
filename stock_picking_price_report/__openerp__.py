@@ -17,5 +17,5 @@
     "demo": [
     ],
     "application": True,
-    "installable": True,
+    "installable": False,
 }

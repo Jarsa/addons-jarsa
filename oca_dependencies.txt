@@ -1,1 +1,1 @@
-odoo-mexico-v2 https://alan196:RWnR8XZ2@github.com/vauxoo/odoo-mexico-v2.git 8.0
+odoo-mexico-v2 https://alan196:RWnR8XZ2@github.com/jarsa-dev/odoo-mexico-v2.git 9.0-migrate

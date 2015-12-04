@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record  model="ir.ui.view" id="fleet_vehicle_model_auth_signup_motomanic">
+            <field name="name">fleet_vehicle_model_auth_signup_motomanic</field>
+            <field name="model">fleet.vehicle.model</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_model_form"/>
+            <field name="arch" type="xml">
+                <field name="brand_id" position="after">
+                    <field name="year_ids" widget="many2many_tags"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>

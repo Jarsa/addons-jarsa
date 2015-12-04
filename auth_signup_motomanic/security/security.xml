@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record id="fleet.group_fleet_manager" model="res.groups">
+        	<field name="menu_access" eval="[(4, ref('fleet.fleet_vehicle_model_menu')), (4, ref('fleet.fleet_vehicle_model_brand_menu'))]"/>
+        </record>
+    </data>
+</openerp>

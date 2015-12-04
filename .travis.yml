@@ -8,8 +8,6 @@ cache:
 python:
   - "2.7"
 
-install:
-  - pip install pandas
 addons:
   apt:
 # only add the two lines below if you need wkhtmltopdf for your tests
@@ -34,7 +32,7 @@ addons:
 
 env:
   global:
-  - VERSION="8.0" TESTS="0" LINT_CHECK="0" #TRANSIFEX="0"
+  - VERSION="9.0" TESTS="0" LINT_CHECK="0" #TRANSIFEX="0"
   #- TRANSIFEX_USER='transbot@odoo-community.org'
   # This line contains the encrypted transifex password
   # To encrypt transifex password, install travis ruby utils with:
@@ -68,6 +66,7 @@ virtualenv:
   system_site_packages: true
 
 install:
+  #- pip install --user -r requirements.txt
   - git clone --depth=1 https://github.com/OCA/maintainer-quality-tools.git ${HOME}/maintainer-quality-tools
   - export PATH=${HOME}/maintainer-quality-tools/travis:${PATH}
   - travis_install_nightly
