@@ -3,7 +3,10 @@
    :alt: License: AGPL-3
 
 .. image:: https://travis-ci.org/odoo-jarsa/addons-jarsa.svg
-   :target: https://travis-ci.org/odoo-jarsa/addons-jarsa   
+   :target: https://travis-ci.org/odoo-jarsa/addons-jarsa
+
+.. image:: https://coveralls.io/repos/odoo-jarsa/addons-jarsa/badge.svg?branch=9.0&service=github
+  :target: https://coveralls.io/github/odoo-jarsa/addons-jarsa?branch=9.0
 
 ==============
 Addons Jarsa
