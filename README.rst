@@ -5,6 +5,9 @@
 .. image:: https://travis-ci.org/odoo-jarsa/addons-jarsa.svg
    :target: https://travis-ci.org/odoo-jarsa/addons-jarsa   
 
+.. image:: https://coveralls.io/repos/Jarsa-dev/addons-jarsa/badge.svg?branch=8.0&service=github
+  :target: https://coveralls.io/github/Jarsa-dev/addons-jarsa?branch=8.0
+
 ==============
 Addons Jarsa
 ==============

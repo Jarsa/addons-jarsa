@@ -2,7 +2,6 @@
 from openerp import api, models
 from openerp.tools.misc import DEFAULT_SERVER_DATETIME_FORMAT as DT
 from openerp.tools.misc import DEFAULT_SERVER_DATE_FORMAT as DF
-import openerp.addons.decimal_precision as dp
 from datetime import datetime, timedelta
 import pytz
 from pandas import date_range
