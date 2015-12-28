@@ -21,5 +21,5 @@
         "wizard/pos_order_wizard_view.xml",
     ],
     "application": True,
-    "installable": True,
+    "installable": False,
 }

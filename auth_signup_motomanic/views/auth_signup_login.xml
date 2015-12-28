@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+
+    <template id="auth_signup_motomanic.fields"
+              inherit_id="auth_signup.fields"
+              name="Auth Signup/ResetPassword form fields">
+        <xpath expr="//div[@class='form-group field-confirm_password']" position="after">
+            <div t-attf-class="form-group #{error and 'brand_id' in error and 'has-error' or ''}">
+                <label class="control-label" for="brand_id">Brand</label>
+                <select name="brand_id" class="form-control">
+                    <option value="">Brand...</option>
+                    <option value="">Other...</option>
+                        <t t-foreach="request.env['fleet.vehicle.model.brand'].search([])" t-as="brand">
+                            <option t-att-value="brand.id" t-att-selected="brand.id == (int(brand_id) if brand_id else website.user_id.partner_id.vehicle_ids.model_id.brand_id.id)">
+                                <t t-esc="brand.name"/>
+                            </option>
+                        </t>
+                </select>
+            </div>
+            <div t-attf-class="form-group #{error and 'model_id' in error and 'has-error' or ''}">
+                <label class="control-label" for="model_id">Model</label>
+                <label class="control-label" for="model_id"><t t-esc="brand_id"/></label>
+                <select name="model_id" class="form-control">
+                    <option value="">Model...</option>
+                    <option value="">Other...</option>
+                    <t t-foreach="request.env['fleet.vehicle.model'].search([])" t-as="model">
+                        <script>
+                        $("select[name='brand_id']").change(function(){
+                            var $select = $("select[name='model_id']");
+                            $select.find("option:not(:first)").hide();
+                            var nb = $select.find("option[data-brand_id="+($(this).val() || 0)+"]").show().size();
+                            $select.val(0);
+                        });
+                        </script>
+                        <option t-att-value="model.id" t-att-selected="model.id == (int(model_id) if model_id else website.user_id.partner_id.vehicle_ids.model_id.id)" style="display:none;" t-att-data-brand_id="model.brand_id.id">
+                            <t t-esc="model.name"/>
+                        </option>
+                    </t>
+                </select>
+            </div>
+            <div t-attf-class="form-group #{error and 'year_ids' in error and 'has-error' or ''}">
+                <label class="control-label" for="year_ids">Year</label>
+                <select name="year_ids" class="form-control">
+                    <option value="0">Year...</option>
+                    <t t-foreach="request.env['fleet.vehicle.year'].search([])" t-as="year">
+                        <t t-foreach="year.model_ids" t-as="model">
+                            <script>
+                            $("select[name='model_id']").change(function(){
+                                var $select = $("select[name='year_ids']");
+                                $select.find("option:not(:first)").hide();
+                                var nb = $select.find("option[data-model_id="+($(this).val() || 0)+"]").show().size();
+                                $select.val(0);
+                            });
+                            </script>
+                            <option t-att-value="year.id" t-att-selected="year.id == (int(year_id) if year_id else website.user_id.partner_id.vehicle_ids.model_id.year_ids.id)" style="display:none;" t-att-data-model_id="model.id">
+                                <t t-esc="year.name"/>
+                            </option>
+                        </t>
+                    </t>
+                </select>
+            </div>
+        </xpath>
+    </template>
+
+</data>
+</openerp>

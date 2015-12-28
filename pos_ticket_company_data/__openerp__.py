@@ -16,5 +16,5 @@
         'static/src/xml/pos.xml',
     ],
     "application": True,
-    "installable": True,
+    "installable": False,
 }

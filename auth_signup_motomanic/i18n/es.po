@@ -1,0 +1,132 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* auth_signup_motomanic
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 9.0e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-12-16 03:02+0000\n"
+"PO-Revision-Date: 2015-12-15 21:03-0600\n"
+"Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: \n"
+"Language: es\n"
+"X-Generator: Poedit 1.8.6\n"
+
+#. module: auth_signup_motomanic
+#: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
+msgid "Brand"
+msgstr "Marca"
+
+#. module: auth_signup_motomanic
+#: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
+msgid "Brand..."
+msgstr "Marca…"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_display_name
+msgid "Display Name"
+msgstr "Nombre desplegado"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_id
+msgid "ID"
+msgstr "ID"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year___last_update
+msgid "Last Modified on"
+msgstr "Ultima modificacion realizada"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_write_uid
+msgid "Last Updated by"
+msgstr "Ultima actualizacion por"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización realizada"
+
+#. module: auth_signup_motomanic
+#: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
+msgid "Model"
+msgstr "Modelo"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_model_ids
+msgid "Model ids"
+msgstr "Ids de modelo"
+
+#. module: auth_signup_motomanic
+#: model:ir.model,name:auth_signup_motomanic.model_fleet_vehicle_model
+msgid "Model of a vehicle"
+msgstr "Modelo de un vehículo"
+
+#. module: auth_signup_motomanic
+#: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
+msgid "Model..."
+msgstr "Modelo…"
+
+#. module: auth_signup_motomanic
+#: code:addons/auth_signup_motomanic/models/res_users.py:23
+#, python-format
+msgid "Not defined"
+msgstr "No definido"
+
+#. module: auth_signup_motomanic
+#: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
+msgid "Other..."
+msgstr "Otro…"
+
+#. module: auth_signup_motomanic
+#: model:ir.model,name:auth_signup_motomanic.model_res_partner
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: auth_signup_motomanic
+#: model:ir.model,name:auth_signup_motomanic.model_res_users
+msgid "Users"
+msgstr "Usuarios"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_partner_vehicle_ids
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_vehicle_ids
+msgid "Vehicles"
+msgstr "Vehículos"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_model_year_ids
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_name
+#: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
+msgid "Year"
+msgstr "Año"
+
+#. module: auth_signup_motomanic
+#: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
+msgid "Year..."
+msgstr "Año…"
+
+#. module: auth_signup_motomanic
+#: model:ir.model,name:auth_signup_motomanic.model_base_config_settings
+msgid "base.config.settings"
+msgstr "base.config.settings"
+
+#. module: auth_signup_motomanic
+#: model:ir.model,name:auth_signup_motomanic.model_fleet_vehicle_year
+msgid "fleet.vehicle.year"
+msgstr "fleet.vehicle.year"
