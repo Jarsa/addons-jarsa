@@ -15,6 +15,7 @@
         "python": [],
         "bin": [],
     },
+    "description": "test",
     "depends": [
         "website_sale",
         "stock"
