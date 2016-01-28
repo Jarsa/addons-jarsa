@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+<!-- /shop/product product page -->
+
+<template id="stock_product_custom1" inherit_id="website_sale.product" name="Product Custom stock">
+    <xpath expr="//div[@class='js_product']" position="after">
+        <t t-if="product.sudo().qty_available &lt; min_stock and product.sudo().qty_available &gt; 0">
+            <div class="mt16">
+                <span t-esc="product.sudo().qty_available"/> Items <span class="label label-success">In Stock</span>
+            </div>
+        </t>
+        <t t-if="product.sudo().qty_available &lt;= 0">
+            <div class="mt16">
+                <span class="label label-danger">Out of Stock</span>
+            </div>
+        </t>
+    </xpath>
+    <xpath expr="//a[@id='add_to_cart']" position="attributes">
+        <attribute name="t-att-disabled">product.sudo().qty_available &lt; 0</attribute>
+    </xpath>
+</template>
+
+    </data>
+</openerp>
