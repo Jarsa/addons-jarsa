@@ -17,6 +17,12 @@ class ResUsers(models.Model):
         if isinstance(res, int):
             user = self.env['res.users'].browse(res)
             try:
+                model_id = self.env['fleet.vehicle.model'].browse(
+                    int(model_id))[0].id
+            except:
+                model_id = self.env.ref(
+                    'auth_signup_motomanic.fleet_vehicle_model_not_defined').id
+            try:
                 year = self.env['fleet.vehicle.year'].browse(
                     int(year_ids))[0].name
             except:

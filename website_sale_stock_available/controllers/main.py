@@ -1,4 +1,7 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# © <2016> <DRC Systems - ported by Jarsa Sistemas S.A. de C.V.>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 from openerp import http
 from openerp.http import request
 from openerp.addons.website_sale.controllers.main import website_sale
