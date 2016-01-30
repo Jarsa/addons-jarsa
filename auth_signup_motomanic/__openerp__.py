@@ -24,4 +24,5 @@
     ],
     "application": True,
     "installable": True,
+    "images": [],
 }

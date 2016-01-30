@@ -20,4 +20,5 @@
         'views/website_templates.xml',
         'security/ir.model.access.csv',
     ],
+    'images': [],
 }
