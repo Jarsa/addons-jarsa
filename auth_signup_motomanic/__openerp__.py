@@ -14,6 +14,7 @@
     "summary": "",
     "data": [
         'data/fleet_vehicle_year_data.xml',
+        'data/fleet_vehicle_model_data.xml',
         'views/auth_signup_login.xml',
         'views/base_config_settings.xml',
         'views/fleet_vehicle_model_view.xml',

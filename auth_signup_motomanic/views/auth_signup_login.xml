@@ -21,7 +21,9 @@
             <script>
             $("select[name='brand_id']").change(function(){
                 var $div = $("div[id='model_div']");
+                var $div2 = $("div[id='year_div']");
                 $div.hide();
+                $div2.hide();
                 if ($(this).val()!="0"){
                     $div.show();
                 };
@@ -31,8 +33,8 @@
                 <label class="control-label" for="model_id">Model</label>
                 <label class="control-label" for="model_id"><t t-esc="brand_id"/></label>
                 <select name="model_id" class="form-control">
-                    <option value="">Model...</option>
-                    <option value="">Other...</option>
+                    <option value="0">Model...</option>
+                    <option value="0">Other...</option>
                     <t t-foreach="request.env['fleet.vehicle.model'].search([])" t-as="model">
                         <script>
                         $("select[name='brand_id']").change(function(){
@@ -48,7 +50,16 @@
                     </t>
                 </select>
             </div>
-            <div t-attf-class="form-group #{error and 'year_ids' in error and 'has-error' or ''}">
+            <script>
+            $("select[name='model_id']").change(function(){
+                var $div = $("div[id='year_div']");
+                $div.hide();
+                if ($(this).val()!="0"){
+                    $div.show();
+                };
+            });
+            </script>
+            <div id="year_div" style="display: none;" t-attf-class="form-group #{error and 'year_ids' in error and 'has-error' or ''}">
                 <label class="control-label" for="year_ids">Year</label>
                 <select name="year_ids" class="form-control">
                     <option value="0">Year...</option>
