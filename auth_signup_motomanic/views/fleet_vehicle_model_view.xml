@@ -8,6 +8,8 @@
             <field name="arch" type="xml">
                 <field name="brand_id" position="after">
                     <field name="year_ids" widget="many2many_tags"/>
+                    <label for="active"/>
+                    <field name="active"/>
                 </field>
             </field>
         </record>
