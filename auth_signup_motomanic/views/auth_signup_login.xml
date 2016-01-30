@@ -9,8 +9,8 @@
             <div t-attf-class="form-group #{error and 'brand_id' in error and 'has-error' or ''}">
                 <label class="control-label" for="brand_id">Brand</label>
                 <select name="brand_id" class="form-control">
-                    <option value="">Brand...</option>
-                    <option value="">Other...</option>
+                    <option value="0">Brand...</option>
+                    <option value="0">Other...</option>
                         <t t-foreach="request.env['fleet.vehicle.model.brand'].search([])" t-as="brand">
                             <option t-att-value="brand.id" t-att-selected="brand.id == (int(brand_id) if brand_id else website.user_id.partner_id.vehicle_ids.model_id.brand_id.id)">
                                 <t t-esc="brand.name"/>
@@ -18,7 +18,16 @@
                         </t>
                 </select>
             </div>
-            <div t-attf-class="form-group #{error and 'model_id' in error and 'has-error' or ''}">
+            <script>
+            $("select[name='brand_id']").change(function(){
+                var $div = $("div[id='model_div']");
+                $div.hide();
+                if ($(this).val()!="0"){
+                    $div.show();
+                };
+            });
+            </script>
+            <div id="model_div" style="display: none;" t-attf-class="form-group #{error and 'model_id' in error and 'has-error' or ''}">
                 <label class="control-label" for="model_id">Model</label>
                 <label class="control-label" for="model_id"><t t-esc="brand_id"/></label>
                 <select name="model_id" class="form-control">
