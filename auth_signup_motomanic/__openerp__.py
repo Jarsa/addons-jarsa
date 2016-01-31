@@ -23,6 +23,9 @@
         'security/ir.model.access.csv',
         'security/security.xml',
     ],
+    "demo": [
+        'demo/fleet_vehicle_model.xml',
+    ],
     "application": True,
     "installable": True,
     "images": [],
