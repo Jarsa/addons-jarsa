@@ -19,6 +19,7 @@
         'views/base_config_settings.xml',
         'views/fleet_vehicle_model_view.xml',
         'views/fleet_vehicle_model_brand_view.xml',
+        'views/fleet_vehicle_year_view.xml',
         'views/res_partner_view.xml',
         'security/ir.model.access.csv',
         'security/security.xml',
