@@ -7,5 +7,6 @@ from openerp import fields, models
 
 class FleetVehicleModelBrand(models.Model):
     _name = 'fleet.vehicle.model.brand'
+    _inherit = 'fleet.vehicle.model.brand'
 
-    active = fields.Boolean()
+    active = fields.Boolean(default=True)

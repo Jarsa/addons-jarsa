@@ -18,9 +18,13 @@
         'views/auth_signup_login.xml',
         'views/base_config_settings.xml',
         'views/fleet_vehicle_model_view.xml',
+        'views/fleet_vehicle_model_brand_view.xml',
         'views/res_partner_view.xml',
         'security/ir.model.access.csv',
         'security/security.xml',
+    ],
+    "demo": [
+        'demo/fleet_vehicle_model.xml',
     ],
     "application": True,
     "installable": True,

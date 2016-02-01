@@ -56,3 +56,6 @@ docs/_build/
 # PyBuilder
 target/
 .DS_Store
+.coveragerc
+odoo.tar.gz
+sftp-config.json
