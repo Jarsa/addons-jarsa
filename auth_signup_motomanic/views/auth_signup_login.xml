@@ -19,7 +19,15 @@
                 </select>
             </div>
             <script>
-            $("select[name='brand_id']").change(function(){
+                $.fn.optVisible = function( show ) {
+                    if( show ) {
+                        this.filter( "span > option" ).unwrap();
+                    } else {
+                        this.filter( ":not(span > option)" ).wrap( "<span></span>" ).parent().hide();
+                    }
+                    return this;
+                }
+                $("select[name='brand_id']").change(function(){
                 var $div = $("div[id='model_div']");
                 var $div2 = $("div[id='year_div']");
                 $div.hide();
@@ -27,6 +35,10 @@
                 if ($(this).val()!="0"){
                     $div.show();
                 };
+                var $select = $("select[name='model_id']");
+                $select.find("option:not(:first)").optVisible(false);
+                $select.find("option[data-brand_id="+($(this).val() || 0)+"]").optVisible(true);
+                $select.find("option[data-brand_id="+($(this).val() || 0)+"]").show().size();
             });
             </script>
             <div id="model_div" style="display: none;" t-attf-class="form-group #{error and 'model_id' in error and 'has-error' or ''}">
@@ -36,23 +48,6 @@
                     <option value="0">Model...</option>
                     <option value="0">Other...</option>
                     <t t-foreach="request.env['fleet.vehicle.model'].search([])" t-as="model">
-                        <script>
-                        $.fn.optVisible = function( show ) {
-                            if( show ) {
-                                this.filter( "span > option" ).unwrap();
-                            } else {
-                                this.filter( ":not(span > option)" ).wrap( "<span></span>" ).parent().hide();
-                            }
-                            return this;
-                        }
-                        $("select[name='brand_id']").change(function(){
-                            var $select = $("select[name='model_id']");
-                            $select.find("option:not(:first)").optVisible(false);
-                            $select.find("option[data-brand_id="+($(this).val() || 0)+"]").optVisible(true);
-                            $select.find("option[data-brand_id="+($(this).val() || 0)+"]").show().size();
-                            $select.val(0);
-                        });
-                        </script>
                         <option t-att-value="model.id" t-att-selected="model.id == (int(model_id) if model_id else website.user_id.partner_id.vehicle_ids.model_id.id)" style="display:none;" t-att-data-brand_id="model.brand_id.id">
                             <t t-esc="model.name"/>
                         </option>
@@ -60,12 +55,16 @@
                 </select>
             </div>
             <script>
-            $("select[name='model_id']").change(function(){
-                var $div = $("div[id='year_div']");
-                $div.hide();
+                $("select[name='model_id']").change(function(){
+                var $div2 = $("div[id='year_div']");
+                $div2.hide();
                 if ($(this).val()!="0"){
-                    $div.show();
+                    $div2.show();
                 };
+                var $select2 = $("select[name='year_ids']");
+                $select2.find("option:not(:first)").optVisible(false);
+                $select2.find("option[data-model_id="+($(this).val() || 0)+"]").optVisible(true);
+                $select2.find("option[data-model_id="+($(this).val() || 0)+"]").show().size();
             });
             </script>
             <div id="year_div" style="display: none;" t-attf-class="form-group #{error and 'year_ids' in error and 'has-error' or ''}">
@@ -74,15 +73,6 @@
                     <option value="0">Year...</option>
                     <t t-foreach="request.env['fleet.vehicle.year'].search([])" t-as="year">
                         <t t-foreach="year.model_ids" t-as="model">
-                            <script>
-                            $("select[name='model_id']").change(function(){
-                                var $select = $("select[name='year_ids']");
-                                $select.find("option:not(:first)").optVisible(false);
-                                $select.find("option[data-model_id="+($(this).val() || 0)+"]").optVisible(true);
-                                $select.find("option[data-model_id="+($(this).val() || 0)+"]").show().size();
-                                $select.val(0);
-                            });
-                            </script>
                             <option t-att-value="year.id" t-att-selected="year.id == (int(year_id) if year_id else website.user_id.partner_id.vehicle_ids.model_id.year_ids.id)" style="display:none;" t-att-data-model_id="model.id">
                                 <t t-esc="year.name"/>
                             </option>
