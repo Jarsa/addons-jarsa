@@ -19,38 +19,27 @@
                 </select>
             </div>
             <script>
-            $.fn.optVisible = function( show ) {
-                            if( show ) {
-                                this.filter( "span > option" ).unwrap();
-                            } else {
-                                this.filter( ":not(span > option)" ).wrap( "<span></span>" ).parent().hide();
-                            }
-                            return this;
-                        }
-            $(document).on('change', 'select[name='brand_id']', function() {
+                $.fn.optVisible = function( show ) {
+                    if( show ) {
+                        this.filter( "span > option" ).unwrap();
+                    } else {
+                        this.filter( ":not(span > option)" ).wrap( "<span></span>" ).parent().hide();
+                    }
+                    return this;
+                }
+                $("select[name='brand_id']").change(function(){
                 var $div = $("div[id='model_div']");
                 var $div2 = $("div[id='year_div']");
-                var $select = $("select[name='model_id']");
-                $select.find("option:not(:first)").optVisible(false);
-                $select.find("option[data-brand_id="+($(this).val() || 0)+"]").optVisible(true);
-                $select.find("option[data-brand_id="+($(this).val() || 0)+"]").show().size();
                 $div.hide();
                 $div2.hide();
                 if ($(this).val()!="0"){
                     $div.show();
                 };
-            });
-            $(document).on('change', 'select[name='model_id']', function() {
-                var $div = $("div[id='year_div']");
-                var $select = $("select[name='year_ids']");
+                var $select = $("select[name='model_id']");
                 $select.find("option:not(:first)").optVisible(false);
-                $select.find("option[data-model_id="+($(this).val() || 0)+"]").optVisible(true);
-                $select.find("option[data-model_id="+($(this).val() || 0)+"]").show().size();
-                $div.hide();
-                if ($(this).val()!="0"){
-                    $div.show();
-                };
-            };
+                $select.find("option[data-brand_id="+($(this).val() || 0)+"]").optVisible(true);
+                $select.find("option[data-brand_id="+($(this).val() || 0)+"]").show().size();
+            });
             </script>
             <div id="model_div" style="display: none;" t-attf-class="form-group #{error and 'model_id' in error and 'has-error' or ''}">
                 <label class="control-label" for="model_id">Model</label>
@@ -65,6 +54,19 @@
                     </t>
                 </select>
             </div>
+            <script>
+                $("select[name='model_id']").change(function(){
+                var $div2 = $("div[id='year_div']");
+                $div2.hide();
+                if ($(this).val()!="0"){
+                    $div2.show();
+                };
+                var $select2 = $("select[name='year_ids']");
+                $select2.find("option:not(:first)").optVisible(false);
+                $select2.find("option[data-model_id="+($(this).val() || 0)+"]").optVisible(true);
+                $select2.find("option[data-model_id="+($(this).val() || 0)+"]").show().size();
+            });
+            </script>
             <div id="year_div" style="display: none;" t-attf-class="form-group #{error and 'year_ids' in error and 'has-error' or ''}">
                 <label class="control-label" for="year_ids">Year</label>
                 <select name="year_ids" class="form-control">
