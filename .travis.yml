@@ -32,27 +32,27 @@ addons:
 
 env:
   global:
-  - VERSION="9.0" TESTS="0" LINT_CHECK="0" #TRANSIFEX="0"
-  #- TRANSIFEX_USER='transbot@odoo-community.org'
+  - VERSION="9.0" TESTS="0" LINT_CHECK="0" TRANSIFEX="0"
+  - TRANSIFEX_USER='info@jarsa.com.mx'
   # This line contains the encrypted transifex password
   # To encrypt transifex password, install travis ruby utils with:
   #   $ gem install travis --user-install
   # and use:
   #   $ travis encrypt TRANSIFEX_PASSWORD=your-password -r owner/project
-  #- secure: PjP88tPSwimBv4tsgn3UcQAD1heK/wcuSaSfhi2xUt/jSrOaTmWzjaW2gH/eKM1ilxPXwlPGyAIShJ2JJdBiA97hQufOeiqxdkWDctnNVVEDx2Tk0BiG3PPYyhXPgUZ+FNOnjZFF3pNWvzXTQaB0Nvz8plqp93Ov/DEyhrCxHDs=
+  - secure: "LGpTlEeUw3rXAhDCwHHr0PO54SDA2U6AMjzS/thMX3MCsdNYoFhh2tbuy5o2bZUxOnW/qCxNRdkcUlEerVp3y6zwQP0+FsiEFb248Fy5Zlxgmtl1vmlCIWOfOKg5ozB1Nt3R3wHWGUJsg0pJwaS6aA5BZYJ4pUGGFvDbyQv2SxLFG4DU2ICYzARCFfm/qb9qzl2X34ROXzKQ0D6wlnHDvQOqYQ7+40ABWzgOeeZ+Anl0hPp9UXzOhtZy3pWsLHJdrtbHAmKf5w5Kh/ENOJjBgV5Fsu13BymZnoHidH2f7GRqufCoWAHMpm1YISIcuxWEZsLnatjNPn+IbETSuA4l9aEpdoPAbj2CrPRWp6lJDbHJBqtQSbGXSYbTIsy82zLfAjL6KLZWtvN7v6mKu6GpSRjqhcX9eF0iNndFBDxYx3aUgFqZ7XvpUt6eQJYFIxSqHyuTqvZ0hCYir6+Z9fRAYBl6SgGJS3UsMelYFP8TivX1EXvwJ4JXpsbfrwREu6BbxzELtWW0vIo3FObyRk6kFcKR9BX4It/Exw/xKqjp3kT1MJpUoaRK2OLQlMatOhKMizWsbEBuih2cNZgzJ5OapaeDCB7QqNWGM1koATxn49ZkHn6xtPigkWSDV/hEemgFbOBaRGHU9846z1OT/IKk+04XUy3+Q/q9sxjxs1PIp/c="
   # Use the following lines if you need to manually change the transifex project slug or/and the transifex organization.
   # The default project slug is owner-repo_name-version (with dash in the version string).
   # The default organization is the owner of the repo.
   # The default fill up resources (TM) is True.
   # The default team is 23907. https://www.transifex.com/organization/oca/team/23907/
-  # - TRANSIFEX_PROJECT_SLUG=
-  # - TRANSIFEX_ORGANIZATION=
+  - TRANSIFEX_PROJECT_SLUG='Jarsa-addons-jarsa-9-0'
+  - TRANSIFEX_ORGANIZATION='jarsa'
   # - TRANSIFEX_FILL_UP_RESOURCES=
-  # - TRANSIFEX_TEAM=
+  - TRANSIFEX_TEAM='62171'
 
   matrix:
   - LINT_CHECK="1"
-  #- TRANSIFEX="1"
+  - TRANSIFEX="1"
   - TESTS="1" ODOO_REPO="odoo/odoo"
   - TESTS="1" ODOO_REPO="OCA/OCB"
 # either use the two lines above or the two below. Don't change the default if
