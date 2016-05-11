@@ -1,12 +1,14 @@
 # coding: utf-8` or `# -*- coding: utf-8 -*-
-from openerp import fields, models, api, _
+from openerp import api, fields, models, _
 import requests
 from lxml import etree
 import base64
+import urllib2
 
 
 class CvaConfig(models.Model):
     _name = 'cva.config.settings'
+
     name = fields.Char(
         string='Client number')
     url = fields.Char(
@@ -28,7 +30,7 @@ class CvaConfig(models.Model):
             @param params: dict with parameters to generate xml file
             @return: returns a xml object
         """
-        data = requests.get(self.url, params=params).content
+        data = requests.get(str(self.url), params=params).content
         root = etree.XML(data)
         return root
 
@@ -39,7 +41,8 @@ class CvaConfig(models.Model):
         params = {'cliente': self.name}
         root = self.connect_cva(params)
         for item in root:
-            if item.findtext('grupo') not in group_list:
+            if (item.findtext('grupo') not in group_list and
+                    item.findtext('grupo') != ''):
                 group.create({'name': item.findtext('grupo')})
                 group_list.append(item.findtext('grupo'))
 
@@ -77,7 +80,7 @@ class CvaConfig(models.Model):
                 'cliente': cva.name,
                 'clave': product.default_code,
                 'MonedaPesos': '1',
-                }
+            }
             root = cva.connect_cva(params=params)
             if len(root) == 0:
                 pass
@@ -88,15 +91,15 @@ class CvaConfig(models.Model):
                             cr, uid, product.id, {
                                 'standard_price':
                                 float(item.findtext('precio'))
-                                })
+                            })
             else:
                 product_obj.write(
                     cr, uid, product.id, {
                         'standard_price':
                         float(root[0].findtext('precio'))
-                        })
+                    })
 
-    @api.one
+    @api.multi
     def get_products(self):
         product = self.env['product.template']
         group_list = [x.name for x in self.allowed_groups]
@@ -110,7 +113,7 @@ class CvaConfig(models.Model):
                 'dc': '1',
                 'subgpo': '1',
                 'MonedaPesos': '1',
-                }
+            }
             root = self.connect_cva(params)
             for item in root:
                 find = item.findtext
@@ -121,6 +124,8 @@ class CvaConfig(models.Model):
                         self.create_product(item)
                     elif self.all_products:
                         self.create_product(item)
+
+            return root
 
 
 class CvaGroup(models.Model):
