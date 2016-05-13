@@ -1,27 +1,21 @@
-# coding: utf-8` or `# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
+# © <2016> <Jarsa Sistemas, S.A. de C.V.>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
 from openerp import api, fields, models, _
 import requests
 from lxml import etree
 import base64
-import urllib2
 
 
 class CvaConfig(models.Model):
     _name = 'cva.config.settings'
+    _inherit = 'res.config.settings'
 
     name = fields.Char(
         string='Client number')
-    url = fields.Char(
-        string='URL')
     allowed_groups = fields.Many2many(
-        'cva.group',
-        string='Allowed groups')
-    available = fields.Boolean(
-        string='Get available products')
-    available_dc = fields.Boolean(
-        string='Get available products in Distribution Center')
-    all_products = fields.Boolean(
-        string='Get all products')
+        'cva.group', string='Allowed groups')
 
     @api.multi
     def connect_cva(self, params):
@@ -30,7 +24,9 @@ class CvaConfig(models.Model):
             @param params: dict with parameters to generate xml file
             @return: returns a xml object
         """
-        data = requests.get(str(self.url), params=params).content
+        url = (
+            'https://www.grupocva.com/catalogo_clientes_xml/lista_precios.xml')
+        data = requests.get(str(url), params=params).content
         root = etree.XML(data)
         return root
 
@@ -118,19 +114,6 @@ class CvaConfig(models.Model):
             for item in root:
                 find = item.findtext
                 if find('clave') not in product_list:
-                    if int(find('disponible')) > 0 and self.available:
-                        self.create_product(item)
-                    elif int(find('disponibleCD')) > 0 and self.available_dc:
-                        self.create_product(item)
-                    elif self.all_products:
-                        self.create_product(item)
+                    self.create_product(item)
 
             return root
-
-
-class CvaGroup(models.Model):
-    _name = 'cva.group'
-    _description = 'group of CVA'
-    _order = 'name'
-
-    name = fields.Char(required=True)

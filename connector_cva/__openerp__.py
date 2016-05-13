@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# © 2015 Jarsa Sistemas, S.A. de C.V.
+# © <2016> <Jarsa Sistemas, S.A. de C.V.>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
     "name": "Connector CVA",
@@ -14,6 +14,8 @@
     ],
     "data": [
         'views/cva_config_view.xml',
+        'views/cva_group_view.xml',
+        'views/product_template_view.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
     ],

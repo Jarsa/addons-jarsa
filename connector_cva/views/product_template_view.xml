@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>       
+        <record id="product_template_form_view" model="ir.ui.view">
+            <field name="name">product.template.product.form</field>
+            <field name="model">product.template</field>
+            <field name="mode">primary</field>
+            <field name="priority" eval="8" />
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button class="oe_highlight" name="update_price" string="Update Price" type="object"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</openerp>

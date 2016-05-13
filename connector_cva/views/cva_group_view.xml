@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+    	<!-- Form views -->
+        <record model='ir.ui.view' id='cva_group_form'>
+            <field name='name'>cva_group.form</field>
+            <field name='model'>cva.group</field>
+            <field name='arch' type='xml'>
+                <form string='CVA Group'>
+                    <header>
+                    </header>
+                    <sheet>
+                        <h1>
+                            <label string='CVA Group'/>
+                        </h1>
+                        <group>
+                            <field name='name'/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- Actions -->
+        <record id='action_cva_group' model='ir.actions.act_window'>
+            <field name='name'>CVA Group</field>
+            <field name='res_model'>cva.group</field>
+            <field name='view_type'>form</field>
+            <field name='view_mode'>tree,form</field>
+        </record>
+        <!-- Menus -->
+        <menuitem id="cva_group_menu" name="CVA Groups" parent="base.menu_custom" action="action_cva_group"/>
+    </data>
+</openerp>
+
