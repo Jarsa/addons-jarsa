@@ -13,7 +13,7 @@ class CvaConfig(models.Model):
     _inherit = 'res.config.settings'
 
     name = fields.Char(
-        string='Client number')
+        string='Client number', required=True)
     allowed_groups = fields.Many2many(
         'cva.group', string='Allowed groups')
 
@@ -64,36 +64,36 @@ class CvaConfig(models.Model):
              'image_medium': image,
              })
 
-    def update_product_cron(self, cr, uid):
-        cva_obj = self.pool.get('cva.config.settings')
-        cva_id = cva_obj.search(cr, uid, [])
-        cva = cva_obj.browse(cr, uid, cva_id[0])
-        product_obj = self.pool.get('product.template')
-        product_ids = product_obj.search(cr, uid, [])
-        product_list = product_obj.browse(cr, uid, product_ids)
-        for product in product_list:
-            params = {
-                'cliente': cva.name,
-                'clave': product.default_code,
-                'MonedaPesos': '1',
-            }
-            root = cva.connect_cva(params=params)
-            if len(root) == 0:
-                pass
-            elif len(root) > 1:
-                for item in root:
-                    if item.findtext('clave') == product.default_code:
-                        product_obj.write(
-                            cr, uid, product.id, {
-                                'standard_price':
-                                float(item.findtext('precio'))
-                            })
-            else:
-                product_obj.write(
-                    cr, uid, product.id, {
-                        'standard_price':
-                        float(root[0].findtext('precio'))
-                    })
+    # def update_product_cron(self, cr, uid):
+    #     cva_obj = self.pool.get('cva.config.settings')
+    #     cva_id = cva_obj.search(cr, uid, [])
+    #     cva = cva_obj.browse(cr, uid, cva_id[0])
+    #     product_obj = self.pool.get('product.template')
+    #     product_ids = product_obj.search(cr, uid, [])
+    #     product_list = product_obj.browse(cr, uid, product_ids)
+    #     for product in product_list:
+    #         params = {
+    #             'cliente': cva.name,
+    #             'clave': product.default_code,
+    #             'MonedaPesos': '1',
+    #         }
+    #         root = cva.connect_cva(params=params)
+    #         if len(root) == 0:
+    #             pass
+    #         elif len(root) > 1:
+    #             for item in root:
+    #                 if item.findtext('clave') == product.default_code:
+    #                     product_obj.write(
+    #                         cr, uid, product.id, {
+    #                             'standard_price':
+    #                             float(item.findtext('precio'))
+    #                         })
+    #         else:
+    #             product_obj.write(
+    #                 cr, uid, product.id, {
+    #                     'standard_price':
+    #                     float(root[0].findtext('precio'))
+    #                 })
 
     @api.multi
     def get_products(self):
