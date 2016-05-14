@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+        <template id="conekta_acquirer_button">
+            <form method="post" t-att-action="tx_url" target="_self">
+                <button t-att-class="submit_class" type="submit" width="100px">
+                    <img src="/payment_conekta/static/src/img/conekta_icon.png" t-if="not submit_txt"/>
+                    <span t-if="submit_txt">
+                        <t t-esc="submit_txt"/>
+                        <span class="fa fa-long-arrow-right"/>
+                    </span>
+                </button>
+            </form>
+        </template>
+        <template id="conekta_card" inherit_id="website_sale.payment">
+            <xpath expr="//div[@class='col-lg-3 col-sm-3']" position="after">
+                <t t-set="head">
+                    <script src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js" type="text/javascript"/>
+                </t>
+                <script type="text/javascript">
+                    Conekta.setPublishableKey('<t t-esc="conekta.conekta_public_key"/>');
+                </script>
+                <t t-set="conekta_id" t-value='request.env["payment.acquirer"].search([("provider", "=", "conekta")]).id'/>
+                <script>
+                    function showConektaForm(){
+                        var $form = $("#card-form");
+                        var $input = $("input[checked='True']")
+                        if ($input.val() == '<t t-esc="conekta_id"/>'){
+                            $form.show().size();
+                        };
+                    }
+                    window.onload = showConektaForm;
+                    $("input[name='acquirer']").change(function(){
+                        var $form = $("#card-form");
+                        $form.hide();
+                        if ($(this).val() == '<t t-esc="conekta_id"/>'){
+                            $form.show().size();
+                        };
+                    });
+                </script>
+                <script src="../../payment_conekta/static/src/js/conekta.js"/>
+                <div class="col-lg-4">
+                    <form style="display: none;" action="/conekta/charge" id="card-form" method="POST">
+                        <span class="card-errors"/>
+                        <div class="form-group form-field">
+                            <label class="col-md-3 col-sm-4 control-label" for="phone">Cardholder Name</label>
+                            <div class="col-md-7 col-sm-8">
+                                <input data-conekta="card[name]" type="text" class="form-control o_website_form_input" size="20"/>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <span>Número de tarjeta de crédito</span>
+                                <input data-conekta="card[number]" size="20" type="text"/>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <span>CVC</span>
+                                <input data-conekta="card[cvc]" size="4" type="text"/>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <span>Fecha de expiración (MM/AAAA)</span>
+                                <input data-conekta="card[exp_month]" size="2" type="text"/>
+                            </label>
+                            <span>/</span>
+                            <input data-conekta="card[exp_year]" size="4" type="text"/>
+                        </div>
+                        <!-- Información recomendada para sistema antifraude -->
+                        <div class="form-row">
+                            <label>
+                                <span>Calle</span>
+                                <input data-conekta="card[address][street1]" size="25" type="text"/>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <span>Colonia</span>
+                                <input data-conekta="card[address][street2]" size="25" type="text"/>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <span>Ciudad</span>
+                                <input data-conekta="card[address][city]" size="25" type="text"/>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <span>Estado</span>
+                                <input data-conekta="card[address][state]" size="25" type="text"/>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <span>CP</span>
+                                <input data-conekta="card[address][zip]" size="5" type="text"/>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label>
+                                <span>País</span>
+                                <input data-conekta="card[address][country]" size="25" type="text"/>
+                            </label>
+                        </div>
+                        <button type="submit">¡Pagar ahora!</button>
+                    </form>
+                </div>
+            </xpath>
+        </template>
+    </data>
+</openerp>
