@@ -12,13 +12,26 @@ class CvaConfigSettings(models.TransientModel):
     _name = 'cva.config.settings'
     _inherit = 'res.config.settings'
 
-    name = fields.Char(
-        string='Client number', related='company_id.cva_user')
-    allowed_groups = fields.Many2many(
-        'cva.group', string='Allowed groups')
-    company_id = fields.Many2many(
-        'res.company', string='company', required=True,
+    company_id = fields.Many2one(
+        'res.company', string='Company', required=True,
         default=lambda self: self.env.user.company_id)
+    name = fields.Char(
+        string='Client number', related='company_id.cva_user',
+        default=lambda self: self.env.user.company_id.cva_user)
+    allowed_groups = fields.Many2many(
+        'cva.group',
+        related='company_id.cva_group', string='Allowed groups',
+        default=lambda self: self.env.user.company_id.cva_group)
+
+    @api.multi
+    def set_allowed_groups(self):
+        if self.allowed_groups:
+            self.company_id.write({'cva_group': self.allowed_groups})
+
+    @api.multi
+    def set_name(self):
+        if self.name:
+            self.company_id.write({'cva_user': self.name})
 
     @api.multi
     def connect_cva(self, params):

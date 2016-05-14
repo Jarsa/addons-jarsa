@@ -3,5 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from . import cva_group
-from . import cva_config
+from . import cva_config_settings
 from . import product_template
+from . import res_company
