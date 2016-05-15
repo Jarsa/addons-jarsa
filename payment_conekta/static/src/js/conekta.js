@@ -60,3 +60,14 @@ function validateCVC() {
         $("#cvc-div").removeClass("has-success").addClass("has-error");
     }
 }
+
+function validateExpiration() {
+    var exp_month = document.getElementById("exp_month");
+    var exp_year = document.getElementById("exp_year");
+    var validation = Conekta.card.validateExpirationDate(exp_month.value, exp_year.value)
+    if (validation == true) {
+        $("#expiration-div").removeClass("has-error").addClass("has-success");
+    } else {
+        $("#expiration-div").removeClass("has-success").addClass("has-error");
+    }
+}
