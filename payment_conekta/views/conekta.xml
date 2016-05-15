@@ -20,13 +20,12 @@
                 <script type="text/javascript">
                     Conekta.setPublishableKey('<t t-esc="conekta.conekta_public_key"/>');
                 </script>
-                <t t-set="conekta_id" t-value='request.env["payment.acquirer"].search([("provider", "=", "conekta")]).id'/>
                 <script>
                     function showConektaForm(){
                         var $form = $("#card-form");
                         var $acquirers_list = $("#acquirers_list")
                         var $input = $("input[checked='True']")
-                        if ($input.val() == '<t t-esc="conekta_id"/>'){
+                        if ($input.val() == '<t t-esc="conekta.id"/>'){
                             $form.show().size();
                             $acquirers_list.hide();
                         };
@@ -37,7 +36,7 @@
                         var $acquirers_list = $("#acquirers_list")
                         $form.hide();
                         $acquirers_list.show();
-                        if ($(this).val() == '<t t-esc="conekta_id"/>'){
+                        if ($(this).val() == '<t t-esc="conekta.id"/>'){
                             $form.show().size();
                             $acquirers_list.hide();
                         };
@@ -45,7 +44,7 @@
                 </script>
                 <script src="../../payment_conekta/static/src/js/conekta.js"/>
                 <div class="col-md-7 col-sm-7">
-                    <form style="display: none;" class="s_website_form form-horizontal container-fluid mt32" action="/conekta/charge" id="card-form" method="POST">
+                    <form style="display: none;" class="s_website_form form-horizontal container-fluid mt32" action="" method="POST" id="card-form">
                         <span class="card-errors"/>
                         <div class="form-group form-field o_website_form_required">
                             <label class="col-md-3 col-sm-4">Cardholder Name</label>
@@ -85,7 +84,7 @@
                         </div>
                         <button class="btn btn-primary" type="submit">
                             <span>Pay Now</span>
-                            <span class="fa fa-long-arrow-right" data-oe-id="652" data-oe-model="ir.ui.view" data-oe-field="arch"/>
+                            <span class="fa fa-long-arrow-right"/>
                         </button>
                     </form>
                 </div>
