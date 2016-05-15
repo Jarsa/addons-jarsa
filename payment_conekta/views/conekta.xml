@@ -13,7 +13,7 @@
             </form>
         </template>
         <template id="conekta_card" inherit_id="website_sale.payment">
-            <xpath expr="//div[@class='col-lg-3 col-sm-3']" position="after">
+            <xpath expr="//div[@class='col-lg-3 col-sm-3']" position="before">
                 <t t-set="head">
                     <script src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js" type="text/javascript"/>
                 </t>
@@ -39,73 +39,91 @@
                     });
                 </script>
                 <script src="../../payment_conekta/static/src/js/conekta.js"/>
-                <div class="col-lg-4">
-                    <form style="display: none;" action="/conekta/charge" id="card-form" method="POST">
+                <div class="col-md-7 col-sm-7">
+                    <form style="display: none;" class="s_website_form form-horizontal container-fluid mt32" action="/conekta/charge" id="card-form" method="POST">
                         <span class="card-errors"/>
-                        <div class="form-group form-field">
-                            <label class="col-md-3 col-sm-4 control-label" for="phone">Cardholder Name</label>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">Cardholder Name</label>
                             <div class="col-md-7 col-sm-8">
                                 <input data-conekta="card[name]" type="text" class="form-control o_website_form_input" size="20"/>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <label>
-                                <span>Número de tarjeta de crédito</span>
-                                <input data-conekta="card[number]" size="20" type="text"/>
-                            </label>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">Card Number</label>
+                            <div class="col-md-7 col-sm-8">
+                                <input data-conekta="card[number]" type="text" class="form-control o_website_form_input" size="20"/>
+                            </div>
                         </div>
-                        <div class="form-row">
-                            <label>
-                                <span>CVC</span>
-                                <input data-conekta="card[cvc]" size="4" type="text"/>
-                            </label>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">CVC</label>
+                            <div class="col-md-2 col-sm-3">
+                                <input data-conekta="card[cvc]" type="text" class="form-control o_website_form_input" size="4"/>
+                            </div>
                         </div>
-                        <div class="form-row">
-                            <label>
-                                <span>Fecha de expiración (MM/AAAA)</span>
-                                <input data-conekta="card[exp_month]" size="2" type="text"/>
-                            </label>
-                            <span>/</span>
-                            <input data-conekta="card[exp_year]" size="4" type="text"/>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">Expiration date (MM/YYYY)</label>
+                            <div class="col-md-7 col-sm-8">
+                                <div class="col-md-4 col-sm-4">
+                                    <input data-conekta="card[exp_month]" type="text" class="form-control o_website_form_input" size="2"/>
+                                </div>
+                                <span>/</span>
+                                <div class="col-md-4 col-sm-4">
+                                    <input data-conekta="card[exp_year]" type="text" class="form-control o_website_form_input" size="4"/>
+                                </div>
+                            </div>
                         </div>
                         <!-- Información recomendada para sistema antifraude -->
-                        <div class="form-row">
-                            <label>
-                                <span>Calle</span>
-                                <input data-conekta="card[address][street1]" size="25" type="text"/>
-                            </label>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">Street</label>
+                            <div class="col-md-7 col-sm-8">
+                                <input data-conekta="card[address][street1]" type="text" class="form-control o_website_form_input" size="25"/>
+                            </div>
                         </div>
-                        <div class="form-row">
-                            <label>
-                                <span>Colonia</span>
-                                <input data-conekta="card[address][street2]" size="25" type="text"/>
-                            </label>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">Street 2</label>
+                            <div class="col-md-7 col-sm-8">
+                                <input data-conekta="card[address][street2]" type="text" class="form-control o_website_form_input" size="25"/>
+                            </div>
                         </div>
-                        <div class="form-row">
-                            <label>
-                                <span>Ciudad</span>
-                                <input data-conekta="card[address][city]" size="25" type="text"/>
-                            </label>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">City</label>
+                            <div class="col-md-7 col-sm-8">
+                                <input data-conekta="card[address][city]" type="text" class="form-control o_website_form_input" size="25"/>
+                            </div>
                         </div>
-                        <div class="form-row">
-                            <label>
-                                <span>Estado</span>
-                                <input data-conekta="card[address][state]" size="25" type="text"/>
-                            </label>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">Country</label>
+                            <div class="col-md-7 col-sm-8">
+                                <select name="country_id" class="form-control">
+                                    <option value="0">Country...</option>
+                                    <t t-foreach="request.env['res.country'].search([])" t-as="country">
+                                        <option t-att-value="country.id" t-att-data-conekta="'card[address][' + country.name + ']'">
+                                            <t t-esc="country.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-row">
-                            <label>
-                                <span>CP</span>
-                                <input data-conekta="card[address][zip]" size="5" type="text"/>
-                            </label>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">State</label>
+                            <div class="col-md-7 col-sm-8">
+                                <select name="state_id" class="form-control">
+                                    <option value="0">State...</option>
+                                    <t t-foreach="request.env['res.country.state'].search([])" t-as="state">
+                                        <!-- TODO: filter states by country like addons/website_sale/static/src/website_sale.js:335 -->
+                                        <option t-att-value="state.id" t-att-data-conekta="'card[address][' + state.name + ']'">
+                                            <t t-esc="state.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-row">
-                            <label>
-                                <span>País</span>
-                                <input data-conekta="card[address][country]" size="25" type="text"/>
-                            </label>
+                        <div class="form-group form-field o_website_form_required">
+                            <label class="col-md-3 col-sm-4">Zip</label>
+                            <div class="col-md-2 col-sm-3">
+                                <input data-conekta="card[address][zip]" type="text" class="form-control o_website_form_input" size="5"/>
+                            </div>
                         </div>
-                        <button type="submit">¡Pagar ahora!</button>
                     </form>
                 </div>
             </xpath>
