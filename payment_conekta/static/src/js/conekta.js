@@ -22,7 +22,6 @@ var conektaErrorResponseHandler = function(response) {
 function getCardBrand() {
     var card_number = document.getElementById("conekta-card-number");
     var brand = Conekta.card.getBrand(card_number.value);
-    console.log(brand)
     if (brand == "visa") {
         $("#visa").show();
         $("#mastercard").hide();
@@ -43,5 +42,15 @@ function getCardBrand() {
         $("#mastercard").hide();
         $("#amex").hide();
         $("#all-cards").show();
+    }
+}
+
+function validateCVC() {
+    var cvc = document.getElementById("cvc");
+    var validation = Conekta.card.validateCVC(cvc.value);
+    if (validation == true) {
+        $("#cvc-div").removeClass("has-error").addClass("has-success");
+    } else {
+        $("#cvc-div").removeClass("has-success").addClass("has-error");
     }
 }

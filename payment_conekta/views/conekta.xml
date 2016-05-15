@@ -60,10 +60,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group form-field o_website_form_required">
+                        <div id="cvc-div" class="form-group form-field o_website_form_required">
                             <label class="col-md-3 col-sm-4">CVC</label>
                             <div class="col-md-2 col-sm-3">
-                                <input data-conekta="card[cvc]" type="text" class="form-control o_website_form_input" size="4"/>
+                                <input id="cvc" onkeyup="validateCVC()" data-conekta="card[cvc]" type="text" class="form-control o_website_form_input" size="4"/>
                             </div>
                         </div>
                         <div class="form-group form-field o_website_form_required">
