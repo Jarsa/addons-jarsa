@@ -23,4 +23,7 @@
         "views/payment_acquirer_view.xml",
         "data/payment_acquirer_data.xml",
     ],
+    "demo": [
+        "demo/payment_acquirer_demo.xml",
+    ]
 }
