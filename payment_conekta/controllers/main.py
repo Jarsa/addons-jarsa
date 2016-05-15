@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 # © 2016 Jarsa Sistemas, S.A. de C.V.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+import logging
+
 from openerp import http
-import conekta
 from openerp.addons.website_sale.controllers.main import website_sale
+
+_logger = logging.getLogger(__name__)
+try:
+    import conekta
+except:
+    _logger.debug('Cannot `import conekta`.')
 
 
 class ConektaController(website_sale):
