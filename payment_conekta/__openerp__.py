@@ -16,6 +16,7 @@
     },
     "depends": [
         "payment",
+        "website_sale",
     ],
     "data": [
         "views/conekta.xml",
