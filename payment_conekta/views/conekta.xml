@@ -51,7 +51,13 @@
                         <div class="form-group form-field o_website_form_required">
                             <label class="col-md-3 col-sm-4">Card Number</label>
                             <div class="col-md-7 col-sm-8">
-                                <input data-conekta="card[number]" type="text" class="form-control o_website_form_input" size="20"/>
+                                <input id="conekta-card-number" data-conekta="card[number]" type="text" class="form-control o_website_form_input" size="20" onkeyup="getCardBrand()"/>
+                                <div align="right">
+                                    <img id="all-cards" width="120" src="/payment_conekta/static/src/img/all-cards.png"/>
+                                    <img id="visa" width="120" style="display: none;" src="/payment_conekta/static/src/img/visa.png"/>
+                                    <img id="mastercard" width="120" style="display: none;" src="/payment_conekta/static/src/img/mastercard.png"/>
+                                    <img id="amex" width="120" style="display: none;" src="/payment_conekta/static/src/img/amex.png"/>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group form-field o_website_form_required">
