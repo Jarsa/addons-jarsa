@@ -19,8 +19,14 @@ var conektaErrorResponseHandler = function(response) {
   $form.find("button").prop("disabled", false);
 };
 
-function getCardBrand() {
+function getCardInfo() {
     var card_number = document.getElementById("conekta-card-number");
+    var validation = Conekta.card.validateNumber(card_number.value)
+    if (validation == true) {
+        $("#card-number-div").removeClass("has-error").addClass("has-success");
+    } else {
+        $("#card-number-div").removeClass("has-success").addClass("has-error");
+    }
     var brand = Conekta.card.getBrand(card_number.value);
     if (brand == "visa") {
         $("#visa").show();
