@@ -24,17 +24,22 @@
                 <script>
                     function showConektaForm(){
                         var $form = $("#card-form");
+                        var $acquirers_list = $("#acquirers_list")
                         var $input = $("input[checked='True']")
                         if ($input.val() == '<t t-esc="conekta_id"/>'){
                             $form.show().size();
+                            $acquirers_list.hide();
                         };
                     }
                     window.onload = showConektaForm;
                     $("input[name='acquirer']").change(function(){
                         var $form = $("#card-form");
+                        var $acquirers_list = $("#acquirers_list")
                         $form.hide();
+                        $acquirers_list.show();
                         if ($(this).val() == '<t t-esc="conekta_id"/>'){
                             $form.show().size();
+                            $acquirers_list.hide();
                         };
                     });
                 </script>
@@ -78,58 +83,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- Información recomendada para sistema antifraude -->
-                        <div class="form-group form-field o_website_form_required">
-                            <label class="col-md-3 col-sm-4">Street</label>
-                            <div class="col-md-7 col-sm-8">
-                                <input data-conekta="card[address][street1]" type="text" class="form-control o_website_form_input" size="25"/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required">
-                            <label class="col-md-3 col-sm-4">Street 2</label>
-                            <div class="col-md-7 col-sm-8">
-                                <input data-conekta="card[address][street2]" type="text" class="form-control o_website_form_input" size="25"/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required">
-                            <label class="col-md-3 col-sm-4">City</label>
-                            <div class="col-md-7 col-sm-8">
-                                <input data-conekta="card[address][city]" type="text" class="form-control o_website_form_input" size="25"/>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required">
-                            <label class="col-md-3 col-sm-4">Country</label>
-                            <div class="col-md-7 col-sm-8">
-                                <select name="country_id" class="form-control">
-                                    <option value="0">Country...</option>
-                                    <t t-foreach="request.env['res.country'].search([])" t-as="country">
-                                        <option t-att-value="country.id" t-att-data-conekta="'card[address][' + country.name + ']'">
-                                            <t t-esc="country.name"/>
-                                        </option>
-                                    </t>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required">
-                            <label class="col-md-3 col-sm-4">State</label>
-                            <div class="col-md-7 col-sm-8">
-                                <select name="state_id" class="form-control">
-                                    <option value="0">State...</option>
-                                    <t t-foreach="request.env['res.country.state'].search([])" t-as="state">
-                                        <!-- TODO: filter states by country like addons/website_sale/static/src/website_sale.js:335 -->
-                                        <option t-att-value="state.id" t-att-data-conekta="'card[address][' + state.name + ']'">
-                                            <t t-esc="state.name"/>
-                                        </option>
-                                    </t>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group form-field o_website_form_required">
-                            <label class="col-md-3 col-sm-4">Zip</label>
-                            <div class="col-md-2 col-sm-3">
-                                <input data-conekta="card[address][zip]" type="text" class="form-control o_website_form_input" size="5"/>
-                            </div>
-                        </div>
+                        <button class="btn btn-primary" type="submit">
+                            <span>Pay Now</span>
+                            <span class="fa fa-long-arrow-right" data-oe-id="652" data-oe-model="ir.ui.view" data-oe-field="arch"/>
+                        </button>
                     </form>
                 </div>
             </xpath>

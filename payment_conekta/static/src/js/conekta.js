@@ -24,8 +24,10 @@ function getCardInfo() {
     var validation = Conekta.card.validateNumber(card_number.value)
     if (validation == true) {
         $("#card-number-div").removeClass("has-error").addClass("has-success");
+        $("#card-form").find("button").prop("disabled", false);
     } else {
         $("#card-number-div").removeClass("has-success").addClass("has-error");
+        $("#card-form").find("button").prop("disabled", true);
     }
     var brand = Conekta.card.getBrand(card_number.value);
     if (brand == "visa") {
@@ -56,8 +58,10 @@ function validateCVC() {
     var validation = Conekta.card.validateCVC(cvc.value);
     if (validation == true) {
         $("#cvc-div").removeClass("has-error").addClass("has-success");
+        $("#card-form").find("button").prop("disabled", false);
     } else {
         $("#cvc-div").removeClass("has-success").addClass("has-error");
+        $("#card-form").find("button").prop("disabled", true);
     }
 }
 
@@ -67,7 +71,9 @@ function validateExpiration() {
     var validation = Conekta.card.validateExpirationDate(exp_month.value, exp_year.value)
     if (validation == true) {
         $("#expiration-div").removeClass("has-error").addClass("has-success");
+        $("#card-form").find("button").prop("disabled", false);
     } else {
         $("#expiration-div").removeClass("has-success").addClass("has-error");
+        $("#card-form").find("button").prop("disabled", true);
     }
 }
