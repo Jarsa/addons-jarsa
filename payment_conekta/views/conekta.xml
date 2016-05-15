@@ -44,7 +44,8 @@
                 </script>
                 <script src="../../payment_conekta/static/src/js/conekta.js"/>
                 <div class="col-md-7 col-sm-7">
-                    <form style="display: none;" class="s_website_form form-horizontal container-fluid mt32" action="" method="POST" id="card-form">
+                    <form style="display: none;" class="s_website_form form-horizontal container-fluid mt32" action="../../conekta/charge" method="POST" id="card-form">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
                         <span class="card-errors"/>
                         <div class="form-group form-field o_website_form_required">
                             <label class="col-md-3 col-sm-4">Cardholder Name</label>
@@ -82,7 +83,7 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">
+                        <button class="btn btn-primary" onclick="submitConektaForm()">
                             <span>Pay Now</span>
                             <span class="fa fa-long-arrow-right"/>
                         </button>

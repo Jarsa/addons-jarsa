@@ -1,15 +1,15 @@
-$(function () {
+function submitConektaForm() {
   $("#card-form").submit(function(event) {
     var $form = $(this);
     $form.find("button").prop("disabled", true);
     Conekta.token.create($form, conektaSuccessResponseHandler, conektaErrorResponseHandler);
     return false;
   });
-});
+};
 
 var conektaSuccessResponseHandler = function(token) {
     var $form = $("#card-form");
-    $form.append($("<input name='token_id'>").val(token.id));
+    $form.append($("<input type='hidden' name='token_id'>").val(token.id));
     $form.get(0).submit();
 };
 
