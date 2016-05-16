@@ -80,13 +80,13 @@ class CvaConfigSettings(models.TransientModel):
              'image_medium': image,
              })
 
-    def update_product_cron(self, cr, uid):
-        cva_obj = self.pool.get('cva.config.settings')
-        cva_id = cva_obj.search(cr, uid, [])
-        cva = cva_obj.browse(cr, uid, cva_id[0])
-        product_obj = self.pool.get('product.template')
-        product_ids = product_obj.search(cr, uid, [])
-        product_list = product_obj.browse(cr, uid, product_ids)
+    def update_product_cron(self):
+        cva_obj = self.env['cva.config.settings']
+        cva_id = cva_obj.search([])
+        cva = cva_obj.browse(cva_id[0])
+        product_obj = self.env['product.template']
+        product_ids = product_obj.search([])
+        product_list = product_obj.browse(product_ids)
         for product in product_list:
             params = {
                 'cliente': cva.name,
@@ -99,17 +99,15 @@ class CvaConfigSettings(models.TransientModel):
             elif len(root) > 1:
                 for item in root:
                     if item.findtext('clave') == product.default_code:
-                        product_obj.write(
-                            cr, uid, product.id, {
-                                'standard_price':
-                                float(item.findtext('precio'))
-                            })
+                        product_obj.write({
+                            'standard_price':
+                            float(item.findtext('precio'))
+                        })
             else:
-                product_obj.write(
-                    cr, uid, product.id, {
-                        'standard_price':
-                        float(root[0].findtext('precio'))
-                    })
+                product_obj.write({
+                    'standard_price':
+                    float(root[0].findtext('precio'))
+                })
 
     @api.multi
     def get_products(self):

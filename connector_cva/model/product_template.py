@@ -27,3 +27,8 @@ class ProductTemplate(models.Model):
                         float(item.findtext('precio'))
                 })
                 return self.standard_price
+
+    def update_price_multi(self, context=None):
+        if context is not None:
+            self = self.search([('id', '=', self.env.context['active_id'])])
+        self.update_price()

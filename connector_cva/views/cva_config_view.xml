@@ -15,11 +15,11 @@
         			<group>
                         <div class="oe_button_box" name="button_box">
                             <button name="get_groups" type="object"
-                                    class="oe_stat_button" icon="fa-archive">
+                                    class="oe_stat_button" icon="fa-group">
                                 <label string="Get Groups"/>
                             </button>
                             <button name="get_products" type="object"
-                                    class="oe_stat_button" icon="fa-archive">
+                                    class="oe_stat_button" icon="fa-barcode">
                                 <label string="Get Products"/>
                             </button>
                         </div>
