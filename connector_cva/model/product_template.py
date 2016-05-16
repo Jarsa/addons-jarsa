@@ -12,7 +12,7 @@ class ProductTemplate(models.Model):
     @api.multi
     def update_price(self):
         cva = self.env['cva.config.settings']
-        client = cva.search().name
+        client = self.env.user.company_id.cva_user
         params = {
             'cliente': client,
             'descripcion': self.name,
@@ -21,7 +21,7 @@ class ProductTemplate(models.Model):
         print params
         root = cva.connect_cva(params=params)
         for item in root:
-            if item.findtext('descripcion') == self.name:
+            if item.findtext('clave') == self.default_code:
                 self.write({
                     'standard_price':
                         float(item.findtext('precio'))
