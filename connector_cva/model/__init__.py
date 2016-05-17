@@ -6,3 +6,4 @@ from . import cva_group
 from . import cva_config_settings
 from . import product_template
 from . import res_company
+from . import stock_config_settings
