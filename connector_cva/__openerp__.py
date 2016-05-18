@@ -10,12 +10,14 @@
     "website": "http://www.jarsa.com.mx",
     "category": "connector",
     "depends": [
-        'website_sale'
+        'website_sale',
+        'stock',
     ],
     "data": [
         'views/cva_config_view.xml',
         'views/cva_group_view.xml',
         'views/product_template_view.xml',
+        'views/stock_config_settings.xml',
         'security/security.xml',
         'security/ir.model.access.csv',
     ],

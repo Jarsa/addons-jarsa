@@ -1,15 +1,12 @@
 # -*- coding: utf-8 -*-
-from openerp import models
+from openerp import models, api
 
 
-class BaseConfigSettings(models.TransientModel):
+class StockConfigSettings(models.TransientModel):
     _inherit = 'stock.config.settings'
 
-    @api.multi
+    @api.model
     def action_stock_config_settings(self):
-        res = self.create(
-            {'group_stock_multiple_locations': 1}
-            )
-
-        self.execute([res])
-        return 1
+        res = self.create({'group_stock_multiple_locations': 1})
+        res.execute()
+        return True
