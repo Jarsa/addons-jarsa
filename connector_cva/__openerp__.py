@@ -14,6 +14,7 @@
         'stock',
     ],
     "data": [
+        'data/cva_warehouse.xml',
         'views/cva_config_view.xml',
         'views/cva_group_view.xml',
         'views/product_template_view.xml',
