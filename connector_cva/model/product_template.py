@@ -9,22 +9,9 @@ class ProductTemplate(models.Model):
     _name = 'product.template'
     _inherit = 'product.template'
 
-    def update_price_multi(self, context=None):
-        if context is not None:
-            self = self.search([('id', '=', self.env.context['active_id'])])
+    @api.multi
+    def update_price_multi(self, model=None):
+        product_list = self.search(
+            [('id', '=', self.env.context['active_ids'])])
         cva = self.env['cva.config.settings']
-        client = self.env.user.company_id.cva_user
-        params = {
-            'cliente': client,
-            'descripcion': self.name,
-            'clave': self.default_code,
-        }
-        print params
-        root = cva.connect_cva(params=params)
-        for item in root:
-            if item.findtext('clave') == self.default_code:
-                self.write({
-                    'standard_price':
-                        float(item.findtext('precio'))
-                })
-                return self.standard_price
+        cva.update_product(product_list)

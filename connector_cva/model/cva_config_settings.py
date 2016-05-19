@@ -81,6 +81,27 @@ class CvaConfigSettings(models.TransientModel):
              'type': 'product'
              })
 
+    @api.model
+    def update_product(self, product_list):
+        cva = self.env['cva.config.settings']
+        user_id = self.env.user.company_id.cva_user
+        for product in product_list:
+            params = {
+                'cliente': user_id,
+                'clave': product.default_code,
+                'MonedaPesos': '1',
+            }
+            root = cva.connect_cva(params=params)
+            if len(root) == 0:
+                pass
+            elif len(root) > 1:
+                for item in root:
+                    if item.findtext('clave') == product.default_code:
+                        product.standard_price = float(
+                            item.findtext('precio'))
+            else:
+                product.standard_price = float(root[0].findtext('precio'))
+
     def update_product_cron(self):
         product = self.env['product.template']
         product_list = [x.default_code for x in product.search([])]
