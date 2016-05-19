@@ -8,22 +8,12 @@
         	<field name='arch' type='xml'>
         		<form string='CVA Configuration' class="oe_form_configuration">
         			<header>
-                        <separator string="CVA Configuration"/>
                         <button string="Apply" type="object" name="execute" class="oe_highlight"/>or
                         <button string="Cancel" type="object" name="cancel" class="oe_link"/>
+                        <button string="Get groups" name="get_groups" type="object" icon="fa-group"/>
+                        <button string="Get products" name="get_products" type="object" icon="fa-barcode"/>
         			</header>
         			<group>
-                        <div class="oe_button_box" name="button_box">
-                            <button name="get_groups" type="object"
-                                    class="oe_stat_button" icon="fa-group">
-                                <label string="Get Groups"/>
-                            </button>
-                            <button name="get_products" type="object"
-                                    class="oe_stat_button" icon="fa-barcode">
-                                <label string="Get Products"/>
-                            </button>
-                        </div>
-                        <newline />
                         <div>
                             <label for="id" string="Client number" />
                             <field class="oe_inline" name="name"/>
