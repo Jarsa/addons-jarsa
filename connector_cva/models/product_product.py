@@ -5,13 +5,13 @@
 from openerp import api, models
 
 
-class ProductTemplate(models.Model):
-    _name = 'product.template'
-    _inherit = 'product.template'
+class ProductProduct(models.Model):
+    _name = 'product.product'
+    _inherit = 'product.product'
 
     @api.multi
     def update_price_multi(self, model=None):
         product_list = self.search(
-            [('id', '=', self.env.context['active_ids'])])
+            [('id', 'in', self.env.context['active_ids'])])
         cva = self.env['cva.config.settings']
         cva.update_product(product_list)

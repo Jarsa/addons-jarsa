@@ -111,7 +111,7 @@
             <field name="usage">internal</field>
             <field name="location_id" ref="cva_main_location"/>
         </record>
-        <record id="loc_tuxtla" model="stock.location">
+        <record id="loc_torreon" model="stock.location">
             <field name="name">TORREON</field>
             <field name="usage">internal</field>
             <field name="location_id" ref="cva_main_location"/>

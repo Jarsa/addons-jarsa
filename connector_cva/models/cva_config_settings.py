@@ -60,14 +60,14 @@ class CvaConfigSettings(models.TransientModel):
 
     @api.multi
     def create_product(self, item):
-        product_obj = self.env['product.template']
+        product_obj = self.env['product.product']
         find = item.findtext
         if not find('imagen'):
             image = False
         else:
             image = base64.encodestring(
                 requests.get(find('imagen')).content)
-        product_obj.create(
+        product = product_obj.create(
             {'name': find('descripcion'),
              'default_code': find('clave'),
              'standard_price': float(find('precio')),
@@ -80,8 +80,9 @@ class CvaConfigSettings(models.TransientModel):
              'image_medium': image,
              'type': 'product'
              })
+        self.update_product_qty(product.id, item)
 
-    @api.model
+    @api.multi
     def update_product(self, product_list):
         cva = self.env['cva.config.settings']
         user_id = self.env.user.company_id.cva_user
@@ -90,6 +91,7 @@ class CvaConfigSettings(models.TransientModel):
                 'cliente': user_id,
                 'clave': product.default_code,
                 'MonedaPesos': '1',
+                'sucursales': '1',
             }
             root = cva.connect_cva(params=params)
             if len(root) == 0:
@@ -97,13 +99,33 @@ class CvaConfigSettings(models.TransientModel):
             elif len(root) > 1:
                 for item in root:
                     if item.findtext('clave') == product.default_code:
+                        cva.update_product_qty(product.id, item)
                         product.standard_price = float(
                             item.findtext('precio'))
             else:
-                product.standard_price = float(root[0].findtext('precio'))
+                if root[0].findtext('clave') == product.default_code:
+                    product.standard_price = float(root[0].findtext('precio'))
+                    cva.update_product_qty(product.id, root[0])
+
+    @api.multi
+    def update_product_qty(self, product_id, item):
+        change_qty_wiz = self.env['stock.change.product.qty']
+        location_obj = self.env['stock.location']
+        location_ids = location_obj.search([(
+            'location_id', '=',
+            self.env.ref('connector_cva.cva_main_location').id)])
+        for location in location_ids:
+            name = 'VENTAS_' + location.name
+            if item.findtext(name) != '0':
+                wizard = change_qty_wiz.create({
+                    'product_id': product_id,
+                    'new_quantity': float(item.findtext(name)),
+                    'location_id': location.id,
+                })
+                wizard.change_product_qty()
 
     def update_product_cron(self):
-        product = self.env['product.template']
+        product = self.env['product.product']
         product_list = [x.default_code for x in product.search([])]
         params = {
             'cliente': self.name,
@@ -137,11 +159,9 @@ class CvaConfigSettings(models.TransientModel):
                     'type': 'product'
                 })
 
-        return root
-
     @api.multi
     def get_products(self):
-        product = self.env['product.template']
+        product = self.env['product.product']
         group_list = [x.name for x in self.allowed_groups]
         product_list = [x.default_code for x in product.search([])]
         for group in group_list:
@@ -152,6 +172,7 @@ class CvaConfigSettings(models.TransientModel):
                 'dt': '1',
                 'dc': '1',
                 'subgpo': '1',
+                'sucursales': '1',
                 'MonedaPesos': '1',
             }
             root = self.connect_cva(params)
@@ -159,5 +180,3 @@ class CvaConfigSettings(models.TransientModel):
                 find = item.findtext
                 if find('clave') not in product_list:
                     self.create_product(item)
-
-            return root

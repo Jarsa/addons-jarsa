@@ -15,11 +15,11 @@
     ],
     "data": [
         'data/cva_warehouse.xml',
-        'views/cva_config_view.xml',
+        'security/security.xml',
+        'views/cva_config_settings_view.xml',
         'views/cva_group_view.xml',
         'views/product_template_view.xml',
         'views/stock_config_settings.xml',
-        'security/security.xml',
         'security/ir.model.access.csv',
     ],
     "installable": True,

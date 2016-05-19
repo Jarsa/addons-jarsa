@@ -5,7 +5,7 @@
 from openerp import fields, models
 
 
-class ResCompany(models.TransientModel):
+class ResCompany(models.Model):
     _name = 'res.company'
     _inherit = 'res.company'
 
