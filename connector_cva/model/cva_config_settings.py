@@ -78,36 +78,45 @@ class CvaConfigSettings(models.TransientModel):
                               '\n' + 'Ficha tecnica\n' +
                               find('ficha_tecnica')),
              'image_medium': image,
+             'type': 'product'
              })
 
     def update_product_cron(self):
-        cva_obj = self.env['cva.config.settings']
-        cva_id = cva_obj.search([])
-        cva = cva_obj.browse(cva_id[0])
-        product_obj = self.env['product.template']
-        product_ids = product_obj.search([])
-        product_list = product_obj.browse(product_ids)
-        for product in product_list:
-            params = {
-                'cliente': cva.name,
-                'clave': product.default_code,
-                'MonedaPesos': '1',
-            }
-            root = cva.connect_cva(params=params)
-            if len(root) == 0:
-                pass
-            elif len(root) > 1:
-                for item in root:
-                    if item.findtext('clave') == product.default_code:
-                        product_obj.write({
-                            'standard_price':
-                            float(item.findtext('precio'))
-                        })
-            else:
-                product_obj.write({
-                    'standard_price':
-                    float(root[0].findtext('precio'))
+        product = self.env['product.template']
+        product_list = [x.default_code for x in product.search([])]
+        params = {
+            'cliente': self.name,
+            'depto': '1',
+            'dt': '1',
+            'dc': '1',
+            'subgpo': '1',
+            'MonedaPesos': '1',
+        }
+        root = self.connect_cva(params)
+        for item in root:
+            find = item.findtext
+            if find('clave') in product_list:
+                find = item.findtext
+                if not find('imagen'):
+                    image = False
+                else:
+                    image = base64.encodestring(
+                        requests.get(find('imagen')).content)
+                product.write({
+                    'name': find('descripcion'),
+                    'default_code': find('clave'),
+                    'standard_price': float(find('precio')),
+                    'description': _('Group\n' + find('grupo') + '\n' +
+                                     'Subgroup\n' + find('subgrupo') +
+                                     '\n' + 'Ficha comercial\n' +
+                                     find('ficha_comercial') +
+                                     '\n' + 'Ficha tecnica\n' +
+                                     find('ficha_tecnica')),
+                    'image_medium': image,
+                    'type': 'product'
                 })
+
+        return root
 
     @api.multi
     def get_products(self):

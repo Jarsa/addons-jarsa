@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<odoo>
+		<data>
+			<record model='stock.location' id="loc_aguascalientes">
+				<field name='name'>AGUASCALIENTES</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_cancun">
+				<field name='name'>CANCUN</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_chihuahua">
+				<field name='name'>CHIHUAHUA</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_colima">
+				<field name='name'>COLIMA</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_culiacan">
+				<field name='name'>CULIACAN</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_durango">
+				<field name='name'>DURANGO</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_hermosillo">
+				<field name='name'>HERMOSILLO</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_lapaz">
+				<field name='name'>LA_PAZ</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_leon">
+				<field name='name'>LEON</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_merida">
+				<field name='name'>MERIDA</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_mexicoh">
+				<field name='name'>MEXICO_HEROES</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_mexicot">
+				<field name='name'>MEXICO_TALLER</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_monterrey">
+				<field name='name'>MONTERREY</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_morelia">
+				<field name='name'>MORELIA</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_oaxaca">
+				<field name='name'>OAXACA</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_guadalajara">
+				<field name='name'>PLAZA_DE_LA_COMPUTACION_GDL</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_puebla">
+				<field name='name'>PUEBLA</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_queretaro">
+				<field name='name'>QUERETARO</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_potosi">
+				<field name='name'>SAN_LUIS_POTOSI</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_tijuana">
+				<field name='name'>TIJUANA</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_toluca">
+				<field name='name'>TOLUCA</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_tuxtla">
+				<field name='name'>TUXTLA</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_veracruz">
+				<field name='name'>VERACRUZ</field>
+				<field name='usage'>supplier</field>
+			</record>
+			<record model='stock.location' id="loc_villahermosa">
+				<field name='name'>VILLAHERMOSA</field>
+				<field name='usage'>supplier</field>
+			</record>
+		</data>
+	</odoo>       
+
+
+
+
+
+
+
+
