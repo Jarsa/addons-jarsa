@@ -28,7 +28,7 @@
             <field name='view_mode'>tree,form</field>
         </record>
         <!-- Menus -->
-        <menuitem id="cva_group_menu" name="CVA Groups" parent="base.menu_custom" action="action_cva_group"/>
+        <menuitem id="cva_group_menu" name="CVA Groups" parent="connector_cva.cva_config_menu" action="action_cva_group"/>
     </data>
 </openerp>
 

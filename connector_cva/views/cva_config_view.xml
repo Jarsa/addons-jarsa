@@ -46,7 +46,8 @@
             <field name="target">inline</field>
         </record>
         <!-- Menus -->
-        <menuitem id="cva_config_settings_menu" name="CVA" parent="base.menu_custom" action="action_cva_config_settings" sequence="0" groups="base.group_configuration"/>
+        <menuitem id="cva_config_menu" name="CVA" parent="base.menu_custom" sequence="40"/>
+        <menuitem id="cva_config_settings_menu" name="Settings" parent="cva_config_menu" action="action_cva_config_settings" sequence="0"/>
         <!-- Accion Cron -->
         <record forcecreate="True" id="ir_cron_scheduler_action_update_products" model="ir.cron">
             <field name="name">Update Products</field>
