@@ -5,9 +5,9 @@
 from openerp import api, models
 
 
-class ProductProduct(models.Model):
-    _name = 'product.product'
-    _inherit = 'product.product'
+class ProductTemplate(models.Model):
+    _name = 'product.template'
+    _inherit = 'product.template'
 
     @api.multi
     def update_price_multi(self, model=None):
