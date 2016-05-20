@@ -11,3 +11,4 @@ class ResCompany(models.Model):
 
     cva_user = fields.Char()
     cva_group = fields.Many2many('cva.group')
+    cva_main_location = fields.Many2one('stock.location')

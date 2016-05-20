@@ -4,7 +4,7 @@
         <record model="ir.actions.server" id="action_update_price">
             <field name="name">Update Price</field>
             <field name="model_id" ref="product.model_product_template"/>
-            <field name="code">env['product.template'].update_price_multi(self)</field>
+            <field name="code">env['product.product'].update_price_multi(self)</field>
         </record>
         <record model="ir.values" id="product_update_price">
             <field name="model_id" ref="product.model_product_template" />

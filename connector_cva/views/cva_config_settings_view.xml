@@ -18,6 +18,10 @@
                             <label for="id" string="Client number" />
                             <field class="oe_inline" name="name"/>
                         </div>
+                        <div>
+                            <label for="id" string="Main location" />
+                            <field class="oe_inline" name="main_location"/>
+                        </div>
                         <newline />
         				<group>
         					<label for='id' class="h2" string='Allowed Groups'/>

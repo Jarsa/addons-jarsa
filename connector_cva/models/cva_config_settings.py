@@ -22,6 +22,10 @@ class CvaConfigSettings(models.TransientModel):
         'cva.group',
         related='company_id.cva_group', string='Allowed groups',
         default=lambda self: self.env.user.company_id.cva_group)
+    main_location = fields.Many2one(
+        'stock.location',
+        domain=[('location_id.name', '=', 'CVA')],
+        default=lambda self: self.env.user.company_id.cva_main_location)
 
     @api.multi
     def set_allowed_groups(self):
@@ -32,6 +36,11 @@ class CvaConfigSettings(models.TransientModel):
     def set_name(self):
         if self.name:
             self.company_id.write({'cva_user': self.name})
+
+    @api.multi
+    def set_main_location(self):
+        if self.main_location:
+            self.company_id.cva_main_location = self.main_location
 
     @api.multi
     def connect_cva(self, params):
@@ -111,12 +120,19 @@ class CvaConfigSettings(models.TransientModel):
     def update_product_qty(self, product_id, item):
         change_qty_wiz = self.env['stock.change.product.qty']
         location_obj = self.env['stock.location']
+        main_location = self.env.user.company_id.cva_main_location.name
         location_ids = location_obj.search([(
             'location_id', '=',
             self.env.ref('connector_cva.cva_main_location').id)])
         for location in location_ids:
             name = 'VENTAS_' + location.name
+            if location.name == main_location:
+                name = 'disponible'
+                print '*'*100, item.findtext(name)
             if item.findtext(name) != '0':
+                print name
+                print product_id
+                print self.env['product.product'].search([('id', '=', product_id)]).default_code
                 wizard = change_qty_wiz.create({
                     'product_id': product_id,
                     'new_quantity': float(item.findtext(name)),
