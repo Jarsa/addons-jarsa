@@ -70,6 +70,7 @@ class CvaConfigSettings(models.TransientModel):
     @api.multi
     def create_product(self, item):
         product_obj = self.env['product.product']
+        product_tempalte_obj = self.env['product.template']
         find = item.findtext
         if not find('imagen'):
             image = False
@@ -80,16 +81,17 @@ class CvaConfigSettings(models.TransientModel):
             {'name': find('descripcion'),
              'default_code': find('clave'),
              'standard_price': float(find('precio')),
-             'description': _('Group\n' + find('grupo') + '\n' +
-                              'Subgroup\n' + find('subgrupo') +
-                              '\n' + 'Ficha comercial\n' +
-                              find('ficha_comercial') +
-                              '\n' + 'Ficha tecnica\n' +
-                              find('ficha_tecnica')),
+             'description': _(
+                'Group\n%s\nSubgroup\n%s\nFicha Comercial\n%s\nFicha '
+                'Tecnica\n%s\n' % (find('grupo'), find('subgrupo'),
+                                   find('ficha_comercial'),
+                                   find('ficha_tecnica'))),
              'image_medium': image,
              'type': 'product'
              })
-        self.update_product_qty(product.id, item)
+        product_template_id = product_tempalte_obj.search([
+            ('default_code', '=', product.default_code)])
+        self.update_product_qty(product_template_id.id, item)
 
     @api.multi
     def update_product(self, product_list):
