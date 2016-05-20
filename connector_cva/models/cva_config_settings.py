@@ -105,16 +105,12 @@ class CvaConfigSettings(models.TransientModel):
             root = cva.connect_cva(params=params)
             if len(root) == 0:
                 pass
-            elif len(root) > 1:
+            elif len(root) >= 1:
                 for item in root:
                     if item.findtext('clave') == product.default_code:
                         cva.update_product_qty(product.id, item)
                         product.standard_price = float(
                             item.findtext('precio'))
-            else:
-                if root[0].findtext('clave') == product.default_code:
-                    product.standard_price = float(root[0].findtext('precio'))
-                    cva.update_product_qty(product.id, root[0])
 
     @api.multi
     def update_product_qty(self, template_id, item):
@@ -141,40 +137,33 @@ class CvaConfigSettings(models.TransientModel):
                 })
                 wizard.change_product_qty()
 
+    @api.model
     def update_product_cron(self):
+        user_id = self.env.user.company_id.cva_user
         product = self.env['product.product']
+        product_template = self.env['product.template']
         product_list = [x.default_code for x in product.search([])]
-        params = {
-            'cliente': self.name,
-            'depto': '1',
-            'dt': '1',
-            'dc': '1',
-            'subgpo': '1',
-            'MonedaPesos': '1',
-        }
-        root = self.connect_cva(params)
-        for item in root:
-            find = item.findtext
-            if find('clave') in product_list:
-                find = item.findtext
-                if not find('imagen'):
-                    image = False
-                else:
-                    image = base64.encodestring(
-                        requests.get(find('imagen')).content)
-                product.write({
-                    'name': find('descripcion'),
-                    'default_code': find('clave'),
-                    'standard_price': float(find('precio')),
-                    'description': _('Group\n' + find('grupo') + '\n' +
-                                     'Subgroup\n' + find('subgrupo') +
-                                     '\n' + 'Ficha comercial\n' +
-                                     find('ficha_comercial') +
-                                     '\n' + 'Ficha tecnica\n' +
-                                     find('ficha_tecnica')),
-                    'image_medium': image,
-                    'type': 'product'
-                })
+        group_list = self.env.user.company_id.cva_group
+        for group in group_list:
+            params = {
+                'cliente': user_id,
+                'grupo': group.name,
+                'sucursales': '1',
+                'MonedaPesos': '1',
+                }
+            root = self.connect_cva(params=params)
+            if len(root) == 0:
+                pass
+            elif len(root) >= 1:
+                for item in root:
+                    if item.findtext('clave') in product_list:
+                        product_template_id = product_template.search([
+                            ('default_code', '=', item.findtext('clave'))])
+                        product_id = product.search([
+                            ('default_code', '=', item.findtext('clave'))])
+                        product_id.standard_price = float(
+                            item.findtext('precio'))
+                        self.update_product_qty(product_template_id.id, item)
 
     @api.multi
     def get_products(self):
