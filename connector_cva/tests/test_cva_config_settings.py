@@ -21,6 +21,7 @@ class TestCvaConfigSettings(TransactionCase):
     def test_10_cva_config_settings_get_products(self):
         cva = self.cva.create({
             'name': '40762',
+            'main_location': self.env.ref('connector_cva.loc_torreon').id,
             'allowed_groups': [(0, 0, {'name': 'AIRE ACONDICIONADO'})],
         })
         cva.execute()
