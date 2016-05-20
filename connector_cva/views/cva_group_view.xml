@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
     <data>
-    	<!-- Form views -->
+        <!-- Form views -->
         <record model='ir.ui.view' id='cva_group_form'>
             <field name='name'>cva_group.form</field>
             <field name='model'>cva.group</field>
@@ -30,5 +30,4 @@
         <!-- Menus -->
         <menuitem id="cva_group_menu" name="CVA Groups" parent="connector_cva.cva_config_menu" action="action_cva_group"/>
     </data>
-</openerp>
-
+</odoo>

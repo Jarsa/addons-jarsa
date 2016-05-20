@@ -102,7 +102,6 @@ class CvaConfigSettings(models.TransientModel):
                 'MonedaPesos': '1',
                 'sucursales': '1',
             }
-            print product.default_code
             root = cva.connect_cva(params=params)
             if len(root) == 0:
                 pass
@@ -127,7 +126,6 @@ class CvaConfigSettings(models.TransientModel):
         template = product_template.search([('id', '=', template_id)])
         product = product_product.search(
             [('default_code', '=', template.default_code)])
-        print 'Product code %s ID %s Template code %s ID %s' % (product.default_code, product.id, template.default_code, template.id)
         location_ids = location_obj.search([(
             'location_id', '=',
             self.env.ref('connector_cva.cva_main_location').id)])
@@ -136,13 +134,11 @@ class CvaConfigSettings(models.TransientModel):
             if location.name == main_location:
                 name = 'disponible'
             if item.findtext(name) > '0':
-                print 'Product %s, Qty %s, Location %s' % (product.default_code, item.findtext(name), location.name)
                 wizard = change_qty_wiz.create({
                     'product_id': product.id,
                     'new_quantity': float(item.findtext(name)),
                     'location_id': location.id,
                 })
-                print 'Product %s, Qty %s, Location %s' % (wizard.product_tmpl_id.id, wizard.new_quantity, wizard.location_id.name)
                 wizard.change_product_qty()
 
     def update_product_cron(self):

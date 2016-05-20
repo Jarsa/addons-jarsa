@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<openerp>
+<odoo>
+    
     <data>
         <!-- Form views -->
         <record model='ir.ui.view' id='cva_config_settings_form'>
-        	<field name='name'>cva_config_settings</field>
-        	<field name='model'>cva.config.settings</field>
-        	<field name='arch' type='xml'>
-        		<form string='CVA Configuration' class="oe_form_configuration">
-        			<header>
+            <field name='name'>cva_config_settings</field>
+            <field name='model'>cva.config.settings</field>
+            <field name='arch' type='xml'>
+                <form string='CVA Configuration' class="oe_form_configuration">
+                    <header>
                         <button string="Apply" type="object" name="execute" class="oe_highlight"/>or
                         <button string="Cancel" type="object" name="cancel" class="oe_link"/>
                         <button string="Get groups" name="get_groups" type="object" icon="fa-group"/>
                         <button string="Get products" name="get_products" type="object" icon="fa-barcode"/>
-        			</header>
-        			<group>
+                    </header>
+                    <group>
                         <div>
                             <label for="id" string="Client number" />
                             <field class="oe_inline" name="name"/>
@@ -23,13 +24,13 @@
                             <field class="oe_inline" name="main_location"/>
                         </div>
                         <newline />
-        				<group>
-        					<label for='id' class="h2" string='Allowed Groups'/>
-        					<field name='allowed_groups' colspan='4' nolabel='1' widget='many2many_checkboxes'/> 
-        				</group>
-        			</group>
-        		</form>
-        	</field>
+                        <group>
+                            <label for='id' class="h2" string='Allowed Groups'/>
+                            <field name='allowed_groups' colspan='4' nolabel='1' widget='many2many_checkboxes'/> 
+                        </group>
+                    </group>
+                </form>
+            </field>
         </record>
         <!-- Actions -->
         <record id="action_cva_config_settings" model="ir.actions.act_window">
@@ -56,4 +57,4 @@
             <field name="args">()</field>
         </record>
     </data>
-</openerp>
+</odoo>
