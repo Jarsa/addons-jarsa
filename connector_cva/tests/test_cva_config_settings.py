@@ -38,4 +38,20 @@ class TestCvaConfigSettings(TransactionCase):
         cva.connect_cva = MagicMock()
         cva.connect_cva.return_value = etree.XML(self.xml)
         cva.get_groups()
+        group = self.env['cva.group']
+        group_list = [x.name for x in group.search([])]
+        self.assertEqual(
+            group_list,
+            ['BACK PACK (MOCHILA)'],
+            'Group is not create'
+        )
         cva.get_products()
+
+    def test_30_cva_config_settings_update_product_cron(self):
+        cva = self.cva.create({
+            'name': '40762',
+            'main_location': self.env.ref('connector_cva.loc_torreon').id})
+        cva.execute()
+        cva.connect_cva = MagicMock()
+        cva.connect_cva.return_value = etree.XML(self.xml)
+        cva.update_product_cron()
