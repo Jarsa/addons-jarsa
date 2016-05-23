@@ -20,6 +20,7 @@ class TestCvaConfigSettings(TransactionCase):
         self.cva = self.env['cva.config.settings']
         self.xml = requests.get('http://localhost:8069/connector_cva/static/'
                                 'src/xml/test.xml').content
+        self.obj_product = self.env['product.template']
 
     def test_10_cva_config_settings_get_products(self):
         cva = self.cva.create({
@@ -29,6 +30,13 @@ class TestCvaConfigSettings(TransactionCase):
         })
         cva.execute()
         cva.get_products()
+        product = self.obj_product.search([('default_code', '=', 'AA-63')])
+        product.write({
+            'standard_price': 0.00,
+            })
+        cva.update_product_cron()
+        self.assertEqual(product.standard_price, 16571.5,
+                         'Product is not Update')
 
     def test_20_cva_config_settings_get_groups(self):
         cva = self.cva.create({
@@ -46,12 +54,3 @@ class TestCvaConfigSettings(TransactionCase):
             'Group is not create'
         )
         cva.get_products()
-
-    def test_30_cva_config_settings_update_product_cron(self):
-        cva = self.cva.create({
-            'name': '40762',
-            'main_location': self.env.ref('connector_cva.loc_torreon').id})
-        cva.execute()
-        cva.connect_cva = MagicMock()
-        cva.connect_cva.return_value = etree.XML(self.xml)
-        cva.update_product_cron()

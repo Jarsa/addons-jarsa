@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+# © <2016> <Jarsa Sistemas, S.A. de C.V.>
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
+
+from openerp.tests.common import TransactionCase
+from lxml import etree
+import requests
+
+
+class TestProductTemplate(TransactionCase):
+    """
+    This will test model product.template
+    """
+    def setUp(self):
+        """
+        Define global variables
+        """
+        super(TestProductTemplate, self).setUp()
+        self.cva = self.env['cva.config.settings']
+        self.xml = requests.get('http://localhost:8069/connector_cva/static/'
+                                'src/xml/test.xml').content
+
+    def test_10_update_price_multi(self):
+        product_template = self.cva.create_product(etree.XML(self.xml)[0])
+        product = product_template.with_context(
+            {'active_ids': product_template.ids})
+        product.update_price_multi()

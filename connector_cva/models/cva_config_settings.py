@@ -92,6 +92,7 @@ class CvaConfigSettings(models.TransientModel):
         product_template_id = product_tempalte_obj.search([
             ('default_code', '=', product.default_code)])
         self.update_product_qty(product_template_id.id, item)
+        return product_template_id
 
     @api.multi
     def update_product(self, product_list):
