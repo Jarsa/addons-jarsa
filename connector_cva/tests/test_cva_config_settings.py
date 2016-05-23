@@ -14,7 +14,7 @@ class TestCvaConfigSettings(TransactionCase):
     """
     def setUp(self):
         """
-        Define global variables
+        Define global variables.
         """
         super(TestCvaConfigSettings, self).setUp()
         self.cva = self.env['cva.config.settings']
@@ -54,3 +54,10 @@ class TestCvaConfigSettings(TransactionCase):
             'Group is not create'
         )
         cva.get_products()
+
+    def test_30_cva_config_settings_update(self):
+        self.cva.update_product_cron()
+        product_template = self.cva.create_product(etree.XML(self.xml)[0])
+        product = product_template.with_context(
+            {'active_ids': product_template.ids})
+        product.update_price_multi()
