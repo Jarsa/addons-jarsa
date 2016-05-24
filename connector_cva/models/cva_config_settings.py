@@ -111,6 +111,8 @@ class CvaConfigSettings(models.TransientModel):
             name = 'VENTAS_' + location.name
             if location.name == main_location:
                 name = 'disponible'
+            if location.name == 'CEDIS':
+                name = 'disponibleCD'
             if item.findtext(name) > '0':
                 wizard = change_qty_wiz.create({
                     'product_id': product.id,
