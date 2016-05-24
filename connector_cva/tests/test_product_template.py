@@ -22,6 +22,14 @@ class TestProductTemplate(TransactionCase):
                                 'src/xml/test.xml').content
 
     def test_10_update_price_multi(self):
+        """
+            test for methos update_price_multi
+        """
+        product_tem = self.cva.create_product(etree.XML(self.xml)[1])
+        product = product_tem.with_context(
+            {'active_ids': product_tem.ids})
+        product.update_price_multi()
+
         product_template = self.cva.create_product(etree.XML(self.xml)[0])
         cva = self.cva.create({
             'name': '40762',
@@ -37,6 +45,3 @@ class TestProductTemplate(TransactionCase):
         product.update_price_multi()
         self.assertEqual(product.standard_price, 114.94,
                          'Product is not Update')
-        product1 = self.cva.create_product(etree.XML(self.xml)[1])
-        self.assertEqual(product1.image_medium, False,
-                         'Product with image')

@@ -23,6 +23,10 @@ class TestCvaConfigSettings(TransactionCase):
         self.obj_product = self.env['product.template']
 
     def test_10_cva_config_settings_get_products(self):
+        """
+            test for methods get_products, update_product_qty
+            and connect_cva.
+        """
         cva = self.cva.create({
             'name': '40762',
             'main_location': self.env.ref('connector_cva.loc_torreon').id,
@@ -31,14 +35,17 @@ class TestCvaConfigSettings(TransactionCase):
         cva.execute()
         cva.get_products()
         product = self.obj_product.search([('default_code', '=', 'AA-63')])
-        product.write({
-            'standard_price': 0.00,
-            })
-        cva.update_product_cron()
-        self.assertEqual(product.standard_price, 16571.5,
-                         'Product is not Update')
+        self.assertEqual(
+            product.name,
+            'AIRE ACONDICIONADO TRIPPLITE SRCOOL7KRM, '
+            'PARA INSTALAR EN RACK SMARTRACK 7,000 BTU 120V',
+            'Product is not create'
+        )
 
     def test_20_cva_config_settings_get_groups(self):
+        """
+            test for method get_groups
+        """
         cva = self.cva.create({
             'name': '40762',
             'main_location': self.env.ref('connector_cva.loc_torreon').id})
@@ -48,16 +55,40 @@ class TestCvaConfigSettings(TransactionCase):
         cva.get_groups()
         group = self.env['cva.group']
         group_list = [x.name for x in group.search([])]
-        self.assertEqual(
-            group_list,
-            ['BACK PACK (MOCHILA)'],
-            'Group is not create'
-        )
+        self.assertEqual(group_list, ['BACK PACK (MOCHILA)'],
+                         'Group is not create')
         cva.get_products()
 
-    def test_30_cva_config_settings_update(self):
-        self.cva.update_product_cron()
-        product_template = self.cva.create_product(etree.XML(self.xml)[0])
-        product = product_template.with_context(
-            {'active_ids': product_template.ids})
-        product.update_price_multi()
+    def test_30_cva_config_settings_update_product_cron(self):
+        """
+            test for method update_product_cron
+        """
+        cva = self.cva.create({
+            'name': '40762',
+            'main_location': self.env.ref('connector_cva.loc_torreon').id,
+            'allowed_groups': [(0, 0, {'name': 'BACK PACK (MOCHILA)'})],
+        })
+        cva.execute()
+        cva.connect_cva = MagicMock()
+        cva.connect_cva.return_value = etree.XML(self.xml)
+        cva.get_products()
+        product = self.obj_product.search([('default_code', '=', 'AC-3589')])
+        product.write({'standard_price': 0.00})
+        cva.update_product_cron()
+        self.assertEqual(product.standard_price, 114.94,
+                         'Product is not Update')
+        cva.connect_cva.return_value = ''
+        cva.update_product_cron()
+
+    def test_40_cva_config_settings_create_products(self):
+        """
+            test for method create_product. create product - image
+            and create product - not image
+        """
+        product_image = self.cva.create_product(etree.XML(self.xml)[0])
+        if product_image.image_medium is not False:
+            image = True
+            self.assertEqual(image, True, 'Product not with image')
+        product_not_image = self.cva.create_product(etree.XML(self.xml)[1])
+        self.assertEqual(product_not_image.image_medium, False,
+                         'Product with image')
