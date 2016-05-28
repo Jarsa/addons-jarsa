@@ -16,3 +16,8 @@ class AcquirerConekta(models.Model):
         providers = super(AcquirerConekta, self)._get_providers()
         providers.append(['conekta', 'Conekta'])
         return providers
+
+    @api.multi
+    def conekta_get_form_action_url(self):
+        self.ensure_one()
+        return '../../../payment/conekta/charge'

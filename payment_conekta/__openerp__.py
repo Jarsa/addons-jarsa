@@ -22,6 +22,7 @@
         "views/conekta.xml",
         "views/payment_acquirer_view.xml",
         "data/payment_acquirer_data.xml",
+        "views/assets_frontend.xml",
     ],
     "demo": [
         "demo/payment_acquirer_demo.xml",

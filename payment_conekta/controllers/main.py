@@ -2,9 +2,10 @@
 # © 2016 Jarsa Sistemas, S.A. de C.V.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 import logging
+import json
 
 from openerp import http, _
-from openerp.addons.website_sale.controllers.main import website_sale
+from openerp.http import request
 
 _logger = logging.getLogger(__name__)
 try:
@@ -13,27 +14,23 @@ except:
     _logger.debug('Cannot `import conekta`.')
 
 
-class ConektaController(website_sale):
+class ConektaController(http.Controller):
+    _return_url = '/payment/conekta/success/'
 
-    @http.route()
-    def payment(self):
-        payment = super(ConektaController, self).payment()
-        payment_acquirer = http.request.env['payment.acquirer']
-        conekta_acq = payment_acquirer.search([('provider', '=', 'conekta')])
-        values = payment.qcontext
-        values['conekta'] = conekta_acq
-        return http.request.render('website_sale.payment', values)
+    def conekta_validate_data(self, data):
+        res = False
+        env = request.env
+        tx_obj = env['payment.transaction']
+        res = tx_obj.sudo().form_feedback(data, 'conekta')
+        return res
 
-    @http.route('/conekta/charge', auth='public', website=True)
-    def charge_create(self, **kw):
-        payment_acquirer = http.request.env['payment.acquirer']
-        conekta_acq = payment_acquirer.search([('provider', '=', 'conekta')])
-        conekta.api_key = conekta_acq.conekta_private_key
-        token_id = http.request.params.copy()['token_id']
-        so_id = http.request.session['sale_order_id']
-        so = http.request.env['sale.order'].search([('id', '=', so_id)])
+    def create_params(self):
+        token_id = request.params.copy()['token_id']
+        so_id = request.session['sale_order_id']
+        so = request.env['sale.order'].sudo().search([('id', '=', so_id)])
         params = {}
-        params['description'] = so.name
+        params['description'] = _('%s Order %s' % (so.company_id.name,
+                                                   so.name))
         params['amount'] = int(so.amount_total * 100)
         params['currency'] = so.currency_id.name
         params['reference_id'] = so.name
@@ -43,7 +40,7 @@ class ConektaController(website_sale):
         details['phone'] = so.partner_id.phone
         details['email'] = so.partner_id.email
         customer = details['customer'] = {}
-        if http.request.session['uid'] is not None:
+        if request.session['uid'] is not None:
             # TODO: "offline_payments" and "score"
             customer['logged_in'] = True
             customer['successful_purchases'] = so.partner_id.sale_order_count
@@ -56,8 +53,7 @@ class ConektaController(website_sale):
             item = {}
             line_items.append(item)
             item['name'] = order_line.product_id.name
-            item['description'] = _('%s Order %s' % (so.company_id.name,
-                                                     so.name))
+            item['description'] = order_line.product_id.description_sale
             item['unit_price'] = order_line.price_unit
             item['quantity'] = order_line.product_uom_qty
             item['sku'] = order_line.product_id.default_code
@@ -74,6 +70,15 @@ class ConektaController(website_sale):
                                            so.partner_invoice_id.name)
         billing_address['phone'] = so.partner_invoice_id.phone
         billing_address['email'] = so.partner_invoice_id.email
-        test = conekta.Charge.create(params)
-        print test.status
-        return str(test.status)
+        return params
+
+    @http.route('/payment/conekta/charge', auth='public', website=True)
+    def charge_create(self, **kw):
+        payment_acquirer = request.env['payment.acquirer']
+        conekta_acq = payment_acquirer.sudo().search(
+            [('provider', '=', 'conekta')])
+        conekta.api_key = conekta_acq.conekta_private_key
+        params = self.create_params()
+        response = conekta.Charge.create(params)
+        self.conekta_validate_data(response)
+        return request.redirect('/shop/payment/validate')
