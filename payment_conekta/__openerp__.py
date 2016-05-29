@@ -19,10 +19,13 @@
         "website_sale",
     ],
     "data": [
+        "security/security.xml",
         "views/conekta.xml",
         "views/payment_acquirer_view.xml",
         "data/payment_acquirer_data.xml",
         "views/assets_frontend.xml",
+        "wizards/conekta_refund_wizard_view.xml",
+        "views/sale_order_view.xml",
     ],
     "demo": [
         "demo/payment_acquirer_demo.xml",
