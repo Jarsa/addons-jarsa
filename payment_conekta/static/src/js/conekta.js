@@ -4,6 +4,17 @@ $(document).ready(function() {
 
         var ajax = require('web.ajax');
         var $payment = $("#payment_method");
+        var $conekta_input = $("img[title='Conekta']").parent().children('input');
+
+        $("input[name='acquirer']").on("change", function (ev) {
+            if ($conekta_input.is(":focus")) {
+                $("#payment_method").children().last().removeClass("col-lg-3 col-sm-3").addClass("col-lg-7 col-sm-6");
+                $("#card-form").parent().parent().removeClass("pull-right").addClass("pull-left");
+            } else {
+                $("#payment_method").children().last().removeClass("col-lg-7 col-sm-6").addClass("col-lg-3 col-sm-3");
+            }
+        });
+
         $payment.on("click", 'button[name="conekta"]', function (ev) {
             ev.preventDefault();
             ev.stopPropagation();
