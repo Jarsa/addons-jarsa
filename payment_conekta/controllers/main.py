@@ -54,7 +54,7 @@ class ConektaController(http.Controller):
             line_items.append(item)
             item['name'] = order_line.product_id.name
             item['description'] = order_line.product_id.description_sale
-            item['unit_price'] = order_line.price_unit
+            item['unit_price'] = int(order_line.price_unit * 100)
             item['quantity'] = order_line.product_uom_qty
             item['sku'] = order_line.product_id.default_code
             item['category'] = order_line.product_id.categ_id.name
