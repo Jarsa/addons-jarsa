@@ -6,6 +6,7 @@
                 <script src="/payment_conekta/static/src/js/conekta.js" type="text/javascript"/>
                 <script src="/payment_conekta/static/src/js/jquery.card.js" type="text/javascript"/>
                 <script src="https://conektaapi.s3.amazonaws.com/v0.3.2/js/conekta.js" type="text/javascript"/>
+                <script type="text/javascript" src="/website_sale/static/src/js/website_sale_tour_buy.js"></script>
             </xpath>
         </template>
     </data>
