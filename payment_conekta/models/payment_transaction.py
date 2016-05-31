@@ -3,10 +3,10 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 import logging
-from openerp import api, fields, models
+from openerp import api, models
 from openerp.tools.translate import _
 from openerp.addons.payment.models.payment_acquirer import ValidationError
-
+import datetime
 _logger = logging.getLogger(__name__)
 
 
@@ -30,10 +30,11 @@ class PaymentTransaction(models.Model):
 
     @api.model
     def _conekta_form_validate(self, transaction, data):
+        date = datetime.datetime.fromtimestamp(
+            int(data['paid_at'])).strftime('%Y-%m-%d %H:%M:%S')
         data = {
             'acquirer_reference': data['id'],
-            'date_validate': fields.Datetime.now(),
-            # Poner que valide fecha bien
+            'date_validate': date,
             'state': 'done',
         }
         res = True
