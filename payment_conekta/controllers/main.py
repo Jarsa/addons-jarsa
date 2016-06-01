@@ -18,16 +18,8 @@ class ConektaController(http.Controller):
 
     def conekta_validate_data(self, data):
         res = False
-        env = request.env
-        tx_obj = env['payment.transaction']
-        acquirer_obj = env['payment.acquirer']
-        conekta = acquirer_obj.search([('provider', '=', 'sips')], limit=1)
-        if conekta is not None:
-            _logger.debug('Conekta: validated data')
-            res = tx_obj.sudo().form_feedback(data, 'conekta')
-        else:
-            res = False
-            _logger.warning('Conekta: data are corrupted')
+        tx_obj = request.env['payment.transaction']
+        res = tx_obj.sudo().form_feedback(data, 'conekta')
         return res
 
     def create_params(self):
@@ -85,8 +77,6 @@ class ConektaController(http.Controller):
             [('provider', '=', 'conekta')])
         conekta.api_key = conekta_acq.conekta_private_key
         params = self.create_params()
-        if params is not None:
-            response = conekta.Charge.create(params)
-            res = self.conekta_validate_data(response)
-            if res is not False:
-                return request.redirect('/shop/payment/validate')
+        response = conekta.Charge.create(params)
+        self.conekta_validate_data(response)
+        return request.redirect('/shop/payment/validate')

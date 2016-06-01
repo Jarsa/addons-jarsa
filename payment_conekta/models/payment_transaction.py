@@ -37,6 +37,4 @@ class PaymentTransaction(models.Model):
             'date_validate': date,
             'state': 'done',
         }
-        res = True
         transaction.write(data)
-        return res
