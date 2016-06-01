@@ -8,10 +8,14 @@ $(document).ready(function() {
 
         $("input[name='acquirer']").on("change", function (ev) {
             if ($conekta_input.is(":focus")) {
-                $("#payment_method").children().last().removeClass("col-lg-3 col-sm-3").addClass("col-lg-7 col-sm-6");
+                $('#payment_method div').first().removeClass("col-lg-5").addClass("col-lg-3");
+                $("#card-form").parent().parent().parent().removeClass("col-lg-3 col-sm-3").addClass("col-lg-5 col-sm-6");
                 $("#card-form").parent().parent().removeClass("pull-right").addClass("pull-left");
+                $("#card-wrapper").show();
             } else {
-                $("#payment_method").children().last().removeClass("col-lg-7 col-sm-6").addClass("col-lg-3 col-sm-3");
+                $('#payment_method div').first().removeClass("col-lg-3").addClass("col-lg-5");
+                $("#card-form").parent().parent().parent().removeClass("col-lg-5 col-sm-6").addClass("col-lg-3 col-sm-3");
+                $("#card-wrapper").hide();
             }
         });
 
@@ -41,6 +45,18 @@ $(document).ready(function() {
             $form.find("button").prop("disabled", false);
         };
 
+        $('#card-form').card({
+            container: '.card-wrapper',
+            width: 200,
+
+            formSelectors: {
+                numberInput: '#conekta-card-number',
+                expiryInput: '#exp_month, #exp_year',
+                cvcInput: '#cvc',
+                nameInput: '#cardholder_name'
+            },
+        });
+
         $('#conekta-card-number').on('keyup', function(){
             var card_number = this;
             var validation = Conekta.card.validateNumber(card_number.value);
@@ -50,28 +66,6 @@ $(document).ready(function() {
             } else {
                 $("#card-number-div").removeClass("has-success").addClass("has-error");
                 $("#card-form").find("button").prop("disabled", true);
-            }
-            var brand = Conekta.card.getBrand(card_number.value);
-            if (brand == "visa") {
-                $("#visa").show();
-                $("#mastercard").hide();
-                $("#amex").hide();
-                $("#all-cards").hide();
-            } else if (brand == "mastercard") {
-                $("#visa").hide();
-                $("#mastercard").show();
-                $("#amex").hide();
-                $("#all-cards").hide();
-            } else if (brand == "amex") {
-                $("#visa").hide();
-                $("#mastercard").hide();
-                $("#amex").show();
-                $("#all-cards").hide();
-            } else {
-                $("#visa").hide();
-                $("#mastercard").hide();
-                $("#amex").hide();
-                $("#all-cards").show();
             }
         });
 
