@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <button name="conekta" t-att-class="submit_class" width="100px" >
+                <button name="conekta" t-att-class="submit_class" width="100px" data-loading-text='&lt;i class="fa fa-circle-o-notch fa-spin"&gt;&lt;/i&gt; Processing Order'>
                     <img src="/payment_conekta/static/src/img/conekta_icon.png" t-if="not submit_txt"/>
                     <span t-if="submit_txt">
                         <t t-esc="submit_txt"/>

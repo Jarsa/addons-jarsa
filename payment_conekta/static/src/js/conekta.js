@@ -23,7 +23,7 @@ $(document).ready(function() {
             ev.preventDefault();
             ev.stopPropagation();
             var $form = $(ev.currentTarget).parents('form');
-            $form.find("button").prop("disabled", true);
+            $form.find("button").prop("disabled", true).button('loading');
             var acquirer_id = $(ev.currentTarget).parents('div.oe_sale_acquirer_button').first().data('id');
             if (! acquirer_id) {
                 return false;
@@ -36,7 +36,9 @@ $(document).ready(function() {
         var conektaSuccessResponseHandler = function(token) {
             var $form = $("#card-form");
             $form.append($("<input type='hidden' name='token_id'>").val(token.id));
-            $form.get(0).submit();
+            ajax.jsonRpc('/payment/conekta/charge', 'call', {'token': token.id}).then(function(result) {
+                $form.get(0).submit();
+            });
         };
 
         var conektaErrorResponseHandler = function(response) {

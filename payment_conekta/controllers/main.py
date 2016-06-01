@@ -23,7 +23,7 @@ class ConektaController(http.Controller):
         return res
 
     def create_params(self):
-        token_id = request.params.copy()['token_id']
+        token_id = request.session['conekta_token']
         so_id = request.session['sale_order_id']
         so = request.env['sale.order'].sudo().search([('id', '=', so_id)])
         params = {}
@@ -70,8 +70,10 @@ class ConektaController(http.Controller):
         billing_address['email'] = so.partner_invoice_id.email
         return params
 
-    @http.route('/payment/conekta/charge', auth='public', website=True)
-    def charge_create(self, **kw):
+    @http.route('/payment/conekta/charge', type='json',
+                auth='public', website=True)
+    def charge_create(self, token):
+        request.session['conekta_token'] = token
         payment_acquirer = request.env['payment.acquirer']
         conekta_acq = payment_acquirer.sudo().search(
             [('provider', '=', 'conekta')])
@@ -79,4 +81,3 @@ class ConektaController(http.Controller):
         params = self.create_params()
         response = conekta.Charge.create(params)
         self.conekta_validate_data(response)
-        return request.redirect('/shop/payment/validate')

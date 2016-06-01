@@ -20,4 +20,4 @@ class AcquirerConekta(models.Model):
     @api.multi
     def conekta_get_form_action_url(self):
         self.ensure_one()
-        return '../../../payment/conekta/charge'
+        return '/shop/payment/validate'
