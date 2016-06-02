@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="payment_conekta_oxxo.payment_acquirer_conekta_oxxo" model="payment.acquirer">
+            <field name="website_published">True</field>
+        </record>
+    </data>
+</odoo>

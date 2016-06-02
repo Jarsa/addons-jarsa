@@ -22,8 +22,7 @@ class ConektaController(http.Controller):
         res = tx_obj.sudo().form_feedback(data, 'conekta')
         return res
 
-    def create_params(self):
-        token_id = request.session['conekta_token']
+    def create_params(self, acquirer):
         so_id = request.session['sale_order_id']
         so = request.env['sale.order'].sudo().search([('id', '=', so_id)])
         params = {}
@@ -32,7 +31,11 @@ class ConektaController(http.Controller):
         params['amount'] = int(so.amount_total * 100)
         params['currency'] = so.currency_id.name
         params['reference_id'] = so.name
-        params['card'] = token_id
+        if acquirer == 'conekta':
+            params['card'] = request.session['conekta_token']
+        if acquirer == 'conekta_oxxo':
+            params['cash'] = {'type': 'oxxo'}
+            # TODO: ADD expires_at
         details = params['details'] = {}
         details['name'] = so.partner_id.name
         details['phone'] = so.partner_id.phone
@@ -41,15 +44,15 @@ class ConektaController(http.Controller):
         if request.session['uid'] is not None:
             # TODO: "offline_payments" and "score"
             create_at = so.partner_id.create_date
-            create_dat = mktime(datetime.strptime(
+            create_date = mktime(datetime.strptime(
                 create_at, '%Y-%m-%d %H:%M:%S').timetuple())
             write_at = so.partner_id.write_date
-            updated_dat = mktime(datetime.strptime(
+            updated_date = mktime(datetime.strptime(
                 write_at, '%Y-%m-%d %H:%M:%S').timetuple())
             customer['logged_in'] = True
             customer['successful_purchases'] = so.partner_id.sale_order_count
-            customer['created_at'] = str(create_dat)
-            customer['updated_at'] = str(updated_dat)
+            customer['created_at'] = str(create_date)
+            customer['updated_at'] = str(updated_date)
         else:
             customer['logged_in'] = False
         line_items = details['line_items'] = []
@@ -84,7 +87,7 @@ class ConektaController(http.Controller):
         conekta_acq = payment_acquirer.sudo().search(
             [('provider', '=', 'conekta')])
         conekta.api_key = conekta_acq.conekta_private_key
-        params = self.create_params()
+        params = self.create_params('conekta')
         try:
             response = conekta.Charge.create(params)
         except conekta.ConektaError as error:
