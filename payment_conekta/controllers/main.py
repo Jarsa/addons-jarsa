@@ -14,7 +14,6 @@ except:
 
 
 class ConektaController(http.Controller):
-    _return_url = '/payment/conekta/success/'
 
     def conekta_validate_data(self, data):
         res = False
