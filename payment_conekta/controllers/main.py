@@ -5,7 +5,8 @@ import logging
 
 from openerp import http, _
 from openerp.http import request
-
+from datetime import datetime
+from time import mktime
 _logger = logging.getLogger(__name__)
 try:
     import conekta
@@ -39,10 +40,16 @@ class ConektaController(http.Controller):
         customer = details['customer'] = {}
         if request.session['uid'] is not None:
             # TODO: "offline_payments" and "score"
+            create_at = so.partner_id.create_date
+            create_dat = mktime(datetime.strptime(
+                create_at, '%Y-%m-%d %H:%M:%S').timetuple())
+            write_at = so.partner_id.write_date
+            updated_dat = mktime(datetime.strptime(
+                write_at, '%Y-%m-%d %H:%M:%S').timetuple())
             customer['logged_in'] = True
             customer['successful_purchases'] = so.partner_id.sale_order_count
-            customer['created_at'] = so.partner_id.create_date
-            customer['updated_at'] = so.partner_id.write_date
+            customer['created_at'] = str(create_dat)
+            customer['updated_at'] = str(updated_dat)
         else:
             customer['logged_in'] = False
         line_items = details['line_items'] = []
