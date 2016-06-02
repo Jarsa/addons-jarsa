@@ -79,5 +79,9 @@ class ConektaController(http.Controller):
             [('provider', '=', 'conekta')])
         conekta.api_key = conekta_acq.conekta_private_key
         params = self.create_params()
-        response = conekta.Charge.create(params)
+        try:
+            response = conekta.Charge.create(params)
+        except conekta.ConektaError as error:
+            return error.message['message_to_purchaser']
         self.conekta_validate_data(response)
+        return True

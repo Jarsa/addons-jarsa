@@ -7,7 +7,6 @@
                     Conekta.setPublishableKey('<t t-esc="acquirer.conekta_public_key"/>');
                 </script>
                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                <span class="card-errors"/>
                 <div class="form-group form-field o_website_form_required">
                     <label class="col-md-3 col-sm-4">Cardholder Name</label>
                     <div class="col-md-7 col-sm-8">
@@ -38,6 +37,7 @@
                         </div>
                     </div>
                 </div>
+                <p class="card-errors"/>
                 <button name="conekta" t-att-class="submit_class" width="100px" data-loading-text='&lt;i class="fa fa-circle-o-notch fa-spin"&gt;&lt;/i&gt; Processing Order'>
                     <img src="/payment_conekta/static/src/img/conekta_icon.png" t-if="not submit_txt"/>
                     <span t-if="submit_txt">

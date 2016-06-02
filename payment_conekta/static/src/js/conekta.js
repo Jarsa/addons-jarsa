@@ -36,8 +36,13 @@ $(document).ready(function() {
         var conektaSuccessResponseHandler = function(token) {
             var $form = $("#card-form");
             $form.append($("<input type='hidden' name='token_id'>").val(token.id));
-            ajax.jsonRpc('/payment/conekta/charge', 'call', {'token': token.id}).then(function(result) {
-                $form.get(0).submit();
+            ajax.jsonRpc('/payment/conekta/charge', 'call', {'token': token.id}).then(function(response) {
+                if (response === true) {
+                    $form.get(0).submit();
+                } else {
+                    $form.find(".card-errors").text(response).addClass("alert alert-danger");
+                    $form.find("button").prop("disabled", false).button('reset');
+                }
             });
         };
 
