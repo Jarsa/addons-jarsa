@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <template id="sale_order_report_conekta_oxxo" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//div[@class='col-xs-5 col-xs-offset-1']" position="inside">
+                <span t-if="doc.payment_tx_id.conekta_oxxo_barcode" t-field="doc.payment_tx_id.conekta_oxxo_barcode" t-field-options="{&quot;widget&quot;: &quot;image&quot;}"/>
+                <p t-if="doc.payment_tx_id.conekta_oxxo_expire_date">
+                    This code is valid until: <t t-esc="doc.payment_tx_id.conekta_oxxo_expire_date"/>
+                </p>
+            </xpath>
+        </template>
+    </data>
+</odoo>

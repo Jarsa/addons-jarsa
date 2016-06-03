@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sale_order_conekta_form">
+            <field name="name">sale_order_conekta.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <field name="payment_term_id" position="after">
+                    <field name="payment_tx_status" attrs="{'invisible':True}"/>
+                </field>
+                <xpath expr="//header/button[@name='action_done']" positon="after">
+                    <button 
+                        string="Refund Payment" 
+                        name="%(payment_conekta.action_conekta_refund)d" 
+                        groups="payment_conekta.conekta_refund" 
+                        attrs="{'invisible':['|','&amp;', ('state', '=', 'draft'), ('state', '=', 'sent'), ('payment_tx_status', '=', False)]}" 
+                        type="action"  
+                        context="{'default_sale_order_id': active_id, 'default_amount': amount_total}"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

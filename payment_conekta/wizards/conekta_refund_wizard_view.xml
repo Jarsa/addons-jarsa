@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='conekta_refund_wizard'>
+            <field name='name'>conekta_refund_wizard.form</field>
+            <field name='model'>conekta.refund.wizard</field>
+            <field name='type'>form</field>
+            <field name='arch' type='xml'>
+                <form string='Motive of Refund'>
+                    <h1>
+                        <label string='Amount to refund'/>
+                    </h1>
+                    <group colspan='2'>
+                        <field name='amount'/>
+                    </group>
+                    <group colspan='4'>
+                        <field name='message'/>
+                    </group>
+                    <footer>
+                        <button string="REFUND" name="conekta_refund_card" type="object"/>
+                        <button string="CANCEL" class="btn-primary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id='action_conekta_refund' model='ir.actions.act_window'>
+            <field name='name'>Conekta refund wizard</field>
+            <field name='res_model'>conekta.refund.wizard</field>
+            <field name='view_type'>form</field>
+            <field name='target'>new</field>
+            <field name='view_mode'>form</field>
+        </record>
+    </data>
+</odoo>
