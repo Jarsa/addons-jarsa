@@ -70,6 +70,7 @@ class CvaConfigSettings(models.TransientModel):
     @api.multi
     def create_product(self, item):
         product_obj = self.env['product.product']
+        product_tempalte_obj = self.env['product.template']
         find = item.findtext
         if not find('imagen'):
             image = False
@@ -80,37 +81,18 @@ class CvaConfigSettings(models.TransientModel):
             {'name': find('descripcion'),
              'default_code': find('clave'),
              'standard_price': float(find('precio')),
-             'description': _('Group\n' + find('grupo') + '\n' +
-                              'Subgroup\n' + find('subgrupo') +
-                              '\n' + 'Ficha comercial\n' +
-                              find('ficha_comercial') +
-                              '\n' + 'Ficha tecnica\n' +
-                              find('ficha_tecnica')),
+             'description': _(
+                'Group\n%s\nSubgroup\n%s\nFicha Comercial\n%s\nFicha '
+                'Tecnica\n%s\n' % (find('grupo'), find('subgrupo'),
+                                   find('ficha_comercial'),
+                                   find('ficha_tecnica'))),
              'image_medium': image,
              'type': 'product'
              })
-        self.update_product_qty(product.id, item)
-
-    @api.multi
-    def update_product(self, product_list):
-        cva = self.env['cva.config.settings']
-        user_id = self.env.user.company_id.cva_user
-        for product in product_list:
-            params = {
-                'cliente': user_id,
-                'clave': product.default_code,
-                'MonedaPesos': '1',
-                'sucursales': '1',
-            }
-            root = cva.connect_cva(params=params)
-            if len(root) == 0:
-                pass
-            elif len(root) >= 1:
-                for item in root:
-                    if item.findtext('clave') == product.default_code:
-                        cva.update_product_qty(product.id, item)
-                        product.standard_price = float(
-                            item.findtext('precio'))
+        product_template_id = product_tempalte_obj.search([
+            ('default_code', '=', product.default_code)])
+        self.update_product_qty(product_template_id.id, item)
+        return product_template_id
 
     @api.multi
     def update_product_qty(self, template_id, item):

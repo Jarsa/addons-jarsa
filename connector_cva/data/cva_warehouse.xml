@@ -16,6 +16,11 @@
             <field name="usage">internal</field>
             <field name="location_id" ref="cva_main_location"/>
         </record>
+        <record id="loc_cediss" model="stock.location">
+            <field name="name">CEDIS</field>
+            <field name="usage">internal</field>
+            <field name="location_id" ref="cva_main_location"/>
+        </record>
         <record id="loc_chihuahua" model="stock.location">
             <field name="name">CHIHUAHUA</field>
             <field name="usage">internal</field>
