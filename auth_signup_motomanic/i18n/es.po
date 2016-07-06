@@ -1,21 +1,44 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* auth_signup_motomanic
-#
+# * auth_signup_motomanic
+# 
+# Translators:
+# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016
+# Sarai Osorio <sarai.osorio@jarsa.com.mx>, 2016
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 9.0e\n"
+"Project-Id-Version: addons-jarsa (9.0)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-16 03:02+0000\n"
-"PO-Revision-Date: 2015-12-15 21:03-0600\n"
-"Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>\n"
-"Language-Team: \n"
+"POT-Creation-Date: 2016-06-03 14:22+0000\n"
+"PO-Revision-Date: 2016-06-03 16:09+0000\n"
+"Last-Translator: Sarai Osorio <sarai.osorio@jarsa.com.mx>\n"
+"Language-Team: Spanish (http://www.transifex.com/jarsa/Jarsa-addons-jarsa-9-0/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: \n"
+"Content-Transfer-Encoding: \n"
 "Language: es\n"
-"X-Generator: Poedit 1.8.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_property_account_payable_id
+msgid "Account Payable"
+msgstr "Cuenta a Pagar"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_property_account_receivable_id
+msgid "Account Receivable"
+msgstr "Cuenta por Cobrar"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_model_active
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_model_brand_active
+msgid "Active"
+msgstr "Activo"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_bank_account_count
+msgid "Bank"
+msgstr "Banco"
 
 #. module: auth_signup_motomanic
 #: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
@@ -23,9 +46,25 @@ msgid "Brand"
 msgstr "Marca"
 
 #. module: auth_signup_motomanic
+#: model:ir.model,name:auth_signup_motomanic.model_fleet_vehicle_model_brand
+msgid "Brand model of the vehicle"
+msgstr "Modelo de la marca del vehículo "
+
+#. module: auth_signup_motomanic
 #: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
 msgid "Brand..."
 msgstr "Marca…"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_ref_company_ids
+msgid "Companies that refers to partner"
+msgstr "Compañías referentes al partner"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_contract_ids
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_contracts_count
+msgid "Contracts"
+msgstr "Contratos"
 
 #. module: auth_signup_motomanic
 #: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_create_uid
@@ -38,14 +77,45 @@ msgid "Created on"
 msgstr "Creado en"
 
 #. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_property_payment_term_id
+msgid "Customer Payment Term"
+msgstr "Términos de pago del cliente "
+
+#. module: auth_signup_motomanic
 #: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_display_name
 msgid "Display Name"
 msgstr "Nombre desplegado"
 
 #. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_property_account_position_id
+msgid "Fiscal Position"
+msgstr "Posición Físcal"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_has_unreconciled_entries
+msgid "Has unreconciled entries"
+msgstr "Tiene entradas sin conciliar "
+
+#. module: auth_signup_motomanic
 #: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_id
 msgid "ID"
 msgstr "ID"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_invoice_ids
+msgid "Invoices"
+msgstr "Facturas"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_issued_total
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_journal_item_count
+msgid "Journal Items"
+msgstr "Elementos del diario"
 
 #. module: auth_signup_motomanic
 #: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year___last_update
@@ -61,6 +131,19 @@ msgstr "Ultima actualizacion por"
 #: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_write_date
 msgid "Last Updated on"
 msgstr "Ultima actualización realizada"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_last_time_entries_checked
+msgid ""
+"Last time the invoices & payments matching was performed for this partner. "
+"It is set either if there's not at least an unreconciled debit and an "
+"unreconciled credit or if you click the \"Done\" button."
+msgstr ""
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_last_time_entries_checked
+msgid "Latest Invoices & Payments Matching Date"
+msgstr ""
 
 #. module: auth_signup_motomanic
 #: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
@@ -83,7 +166,7 @@ msgid "Model..."
 msgstr "Modelo…"
 
 #. module: auth_signup_motomanic
-#: code:addons/auth_signup_motomanic/models/res_users.py:23
+#: code:addons/auth_signup_motomanic/models/res_users.py:29
 #, python-format
 msgid "Not defined"
 msgstr "No definido"
@@ -99,9 +182,95 @@ msgid "Partner"
 msgstr "Empresa"
 
 #. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_debit_limit
+msgid "Payable Limit"
+msgstr "Limite de pagó"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_property_account_position_id
+msgid ""
+"The fiscal position will determine taxes and accounts used for the partner."
+msgstr "La posición fiscal determinará los impuestos y las cuentas utilizadas para el socio."
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_has_unreconciled_entries
+msgid ""
+"The partner has at least one unreconciled debit and credit since last time "
+"the invoices & payments matching was performed."
+msgstr ""
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_property_account_payable_id
+msgid ""
+"This account will be used instead of the default one as the payable account "
+"for the current partner"
+msgstr "Esta cuenta se utiliza en lugar de la opción por defecto como la cuenta por pagar por el partner actual "
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_property_account_receivable_id
+msgid ""
+"This account will be used instead of the default one as the receivable "
+"account for the current partner"
+msgstr "Esta cuenta se utiliza en lugar de la opción por defecto como la cuenta por cobrar por el partner actual"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_property_supplier_payment_term_id
+msgid ""
+"This payment term will be used instead of the default one for purchase "
+"orders and vendor bills"
+msgstr "Este plazo de pago será usado en lugar de la opción por defecto para las órdenes de compra y facturas de proveedores"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_property_payment_term_id
+msgid ""
+"This payment term will be used instead of the default one for sale orders "
+"and customer invoices"
+msgstr "Este plazo de pago será utilizado en lugar del que viene por defecto para las órdenes de venta y facturas de los clientes"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_total_invoiced
+msgid "Total Invoiced"
+msgstr "Total Facturado"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_debit
+msgid "Total Payable"
+msgstr "Total a Pagar"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_credit
+msgid "Total Receivable"
+msgstr "Total por Cobrar"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_credit
+msgid "Total amount this customer owes you."
+msgstr "La cantidad total que este cliente debe."
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_debit
+msgid "Total amount you have to pay to this vendor."
+msgstr "Cantidad total que tiene que pagar para este proveedor."
+
+#. module: auth_signup_motomanic
 #: model:ir.model,name:auth_signup_motomanic.model_res_users
 msgid "Users"
 msgstr "Usuarios"
+
+#. module: auth_signup_motomanic
+#: model:ir.model.fields,help:auth_signup_motomanic.field_res_users_currency_id
+msgid "Utility field to express amount currency"
+msgstr "Campo de utilidad para expresar cantidad de moneda"
+
+#. module: auth_signup_motomanic
+#: model:ir.actions.act_window,name:auth_signup_motomanic.action_fleet_vehicle_year
+msgid "Vehicle Year"
+msgstr "Año del vehículo "
+
+#. module: auth_signup_motomanic
+#: model:ir.ui.view,arch_db:auth_signup_motomanic.fleet_vehicle_year_tree
+msgid "Vehicle Years"
+msgstr "Años del vehículo"
 
 #. module: auth_signup_motomanic
 #: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_partner_vehicle_ids
@@ -110,8 +279,14 @@ msgid "Vehicles"
 msgstr "Vehículos"
 
 #. module: auth_signup_motomanic
+#: model:ir.model.fields,field_description:auth_signup_motomanic.field_res_users_property_supplier_payment_term_id
+msgid "Vendor Payment Term"
+msgstr "Términos de Pago del Vendedor "
+
+#. module: auth_signup_motomanic
 #: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_model_year_ids
 #: model:ir.model.fields,field_description:auth_signup_motomanic.field_fleet_vehicle_year_name
+#: model:ir.ui.menu,name:auth_signup_motomanic.fleet_vehicle_year_menu
 #: model:ir.ui.view,arch_db:auth_signup_motomanic.fields
 msgid "Year"
 msgstr "Año"

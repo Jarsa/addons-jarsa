@@ -1,0 +1,239 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * payment_conekta
+# 
+# Translators:
+# Luis Triana <luistriana.28@gmail.com>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: addons-jarsa (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-03 14:22+0000\n"
+"PO-Revision-Date: 2016-06-03 15:46+0000\n"
+"Last-Translator: Luis Triana <luistriana.28@gmail.com>\n"
+"Language-Team: Spanish (http://www.transifex.com/jarsa/Jarsa-addons-jarsa-9-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: payment_conekta
+#: code:addons/payment_conekta/controllers/main.py:29
+#, python-format
+msgid "%s Order %s"
+msgstr "%sOrden%s"
+
+#. module: payment_conekta
+#: code:addons/payment_conekta/models/payment_transaction.py:26
+#, python-format
+msgid "; multiple order found"
+msgstr "; varias ordenes encontradas"
+
+#. module: payment_conekta
+#: code:addons/payment_conekta/models/payment_transaction.py:24
+#, python-format
+msgid "; no order found"
+msgstr "; orden no encontrada"
+
+#. module: payment_conekta
+#: code:addons/payment_conekta/wizards/conekta_refund_wizard.py:38
+#, python-format
+msgid ""
+"<b>Payment refund complete.</b></br><ul><li><b>Transaction Status: "
+"</b>%s</li><li><b>Amount refunded: </b>%s %s</li><li><b>Message: "
+"</b>%s</li></ul><br/>"
+msgstr "<b>Reembolso completado</b></br><ul><li><b>Status de la transacción: </b>%s</li><li><b>Cantidad reembolsada: </b>%s %s</li><li><b>Mensaje: </b>%s</li></ul><br/>"
+
+#. module: payment_conekta
+#: model:payment.acquirer,cancel_msg:payment_conekta.payment_acquirer_conekta
+msgid "<span><i>Cancel,</i> Your payment has been cancelled.</span>"
+msgstr "<span><i>Cancelar,</i>Su pago ha sido cancelado.</span>"
+
+#. module: payment_conekta
+#: model:payment.acquirer,done_msg:payment_conekta.payment_acquirer_conekta
+msgid ""
+"<span><i>Done,</i> Your online payment has been successfully processed. "
+"Thank you for your order.</span>"
+msgstr "<span><i>Hecho,</i>Tu pago en linea ha sido correctamente procesado. Gracias por tu pago.</span>"
+
+#. module: payment_conekta
+#: model:payment.acquirer,error_msg:payment_conekta.payment_acquirer_conekta
+msgid ""
+"<span><i>Error,</i> Please be aware that an error occurred during the "
+"transaction. The order has been confirmed but won't be paid. Don't hesitate "
+"to contact us if you have any questions on the status of your order.</span>"
+msgstr "<span><i>Error,</i> Considere se ha experimentado un error durante su transaccion. La orden ha sido confirmada pero no pagada. No dude en contactarnos si tiene alguna duda con el status de su orden.</span>"
+
+#. module: payment_conekta
+#: model:payment.acquirer,pending_msg:payment_conekta.payment_acquirer_conekta
+msgid ""
+"<span><i>Pending,</i> Your online payment has been successfully processed. "
+"But your order is not validated yet.</span>"
+msgstr "<span><i>Pendiente,</i> Su pago en linea ha sido procesado correctamente. Pero su orden no ha sido validada aun.</span>"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard_amount
+#: model:ir.ui.view,arch_db:payment_conekta.conekta_refund_wizard
+msgid "Amount to refund"
+msgstr "Cantidad a reembolsar"
+
+#. module: payment_conekta
+#: model:ir.ui.view,arch_db:payment_conekta.conekta_refund_wizard
+msgid "CANCEL"
+msgstr "CANCELADO"
+
+#. module: payment_conekta
+#: model:ir.ui.view,arch_db:payment_conekta.conekta_acquirer_button
+msgid "CVC"
+msgstr "CVC"
+
+#. module: payment_conekta
+#: model:ir.ui.view,arch_db:payment_conekta.conekta_acquirer_button
+msgid "Card Number"
+msgstr "Número de Tarjeta"
+
+#. module: payment_conekta
+#: model:ir.ui.view,arch_db:payment_conekta.conekta_acquirer_button
+msgid "Cardholder Name"
+msgstr "Nombre del Titular"
+
+#. module: payment_conekta
+#: model:payment.acquirer,name:payment_conekta.payment_acquirer_conekta
+msgid "Conekta"
+msgstr "Conekta"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_payment_acquirer_conekta_private_key
+msgid "Conekta private key"
+msgstr "llave privada de Conekta"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_payment_acquirer_conekta_public_key
+msgid "Conekta public key"
+msgstr "llave publica de Conekta"
+
+#. module: payment_conekta
+#: model:ir.actions.act_window,name:payment_conekta.action_conekta_refund
+msgid "Conekta refund wizard"
+msgstr "Asistente de reembolsa Conekta"
+
+#. module: payment_conekta
+#: code:addons/payment_conekta/models/payment_transaction.py:21
+#, python-format
+msgid "Conekta: received data for reference %s"
+msgstr "Conekta: datos recibidos para referencia %s"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard_display_name
+msgid "Display Name"
+msgstr "Nombre desplegado"
+
+#. module: payment_conekta
+#: model:ir.ui.view,arch_db:payment_conekta.conekta_acquirer_button
+msgid "Expiration date (MM/YYYY)"
+msgstr "Fecha de Expiracion (MM/YYYY)"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard_id
+msgid "ID"
+msgstr "ID"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard___last_update
+msgid "Last Modified on"
+msgstr "Ultima modificacion realizada"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard_write_uid
+msgid "Last Updated by"
+msgstr "Ultima actualizacion por"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard_write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización realizada"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard_message
+msgid "Message"
+msgstr "Mensaje"
+
+#. module: payment_conekta
+#: model:ir.ui.view,arch_db:payment_conekta.conekta_refund_wizard
+msgid "Motive of Refund"
+msgstr "Motivo de Reembolso"
+
+#. module: payment_conekta
+#: code:addons/payment_conekta/wizards/conekta_refund_wizard.py:37
+#, python-format
+msgid "Partially Refunded"
+msgstr "Reembolso parcial"
+
+#. module: payment_conekta
+#: model:ir.model,name:payment_conekta.model_payment_acquirer
+msgid "Payment Acquirer"
+msgstr "Proveedor de Pago"
+
+#. module: payment_conekta
+#: model:ir.model,name:payment_conekta.model_payment_transaction
+msgid "Payment Transaction"
+msgstr "Transaccion de Pago"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_sale_order_payment_tx_status
+msgid "Payment tx status"
+msgstr "Status de la transaccion"
+
+#. module: payment_conekta
+#: model:ir.ui.view,arch_db:payment_conekta.conekta_refund_wizard
+msgid "REFUND"
+msgstr "Reembolsado"
+
+#. module: payment_conekta
+#: model:res.groups,name:payment_conekta.conekta_refund
+msgid "Refund Conekta payments"
+msgstr "Pagos Reembolsados Conekta"
+
+#. module: payment_conekta
+#: model:ir.ui.view,arch_db:payment_conekta.sale_order_conekta_form
+msgid "Refund Payment"
+msgstr "Pago Reembolsado"
+
+#. module: payment_conekta
+#: code:addons/payment_conekta/wizards/conekta_refund_wizard.py:35
+#, python-format
+msgid "Refunded"
+msgstr "Reembolsado"
+
+#. module: payment_conekta
+#: model:ir.model.fields,field_description:payment_conekta.field_conekta_refund_wizard_sale_order_id
+msgid "Sale order id"
+msgstr "ID Orden de Venta"
+
+#. module: payment_conekta
+#: model:ir.model,name:payment_conekta.model_sale_order
+msgid "Sales Order"
+msgstr "Orden de ventas"
+
+#. module: payment_conekta
+#: model:payment.acquirer,pre_msg:payment_conekta.payment_acquirer_conekta
+msgid ""
+"You will be redirected to the Conekta website after clicking on payment "
+"button."
+msgstr "Será redireccionado a la pagina web de Conekta despues de hacer click en el boton pagar."
+
+#. module: payment_conekta
+#: model:ir.model,name:payment_conekta.model_conekta_refund_wizard
+msgid "conekta.refund.wizard"
+msgstr "Asistente.Reembolso.Conekta"

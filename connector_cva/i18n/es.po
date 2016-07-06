@@ -1,0 +1,414 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * connector_cva
+# 
+# Translators:
+# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016
+# Sarai Osorio <sarai.osorio@jarsa.com.mx>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: addons-jarsa (9.0)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-06-03 14:22+0000\n"
+"PO-Revision-Date: 2016-06-03 15:49+0000\n"
+"Last-Translator: Sarai Osorio <sarai.osorio@jarsa.com.mx>\n"
+"Language-Team: Spanish (http://www.transifex.com/jarsa/Jarsa-addons-jarsa-9-0/language/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid "99 ANIOS"
+msgstr "99 AÑOS"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid "AC"
+msgstr "AC"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid "AC-3589"
+msgstr "AC-3589"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid "AC-3590"
+msgstr "AC-3590"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_aguascalientes
+msgid "AGUASCALIENTES"
+msgstr "AGUASCALIENTES"
+
+#. module: connector_cva
+#: model:ir.ui.view,arch_db:connector_cva.cva_config_settings_form
+msgid "Allowed Groups"
+msgstr "Grupos permitidos"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_allowed_groups
+msgid "Allowed groups"
+msgstr "Grupos permitidos"
+
+#. module: connector_cva
+#: model:ir.ui.view,arch_db:connector_cva.cva_config_settings_form
+msgid "Apply"
+msgstr "Aplicar"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid "BACK PACK (MOCHILA)"
+msgstr "BACK PACK (MOCHILA)"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid ""
+"BACKPACK MESSENGER VERTICAL ATENAS PARA TABLET DE HASTA 12 PULGADAS COLOR "
+"NEGRO"
+msgstr "BACKPACK MESSENGER VERTICAL ATENAS PARA TABLET DE HASTA 12 PULGADAS COLOR NEGRO"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_cancun
+msgid "CANCUN"
+msgstr "CANCUN"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_cediss
+msgid "CEDIS"
+msgstr "CEDIS"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_chihuahua
+msgid "CHIHUAHUA"
+msgstr "CHIHUAHUA"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_colima
+msgid "COLIMA"
+msgstr "COLIMA"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_culiacan
+msgid "CULIACAN"
+msgstr "CULIACAN"
+
+#. module: connector_cva
+#: model:ir.actions.act_window,name:connector_cva.action_cva_config_settings
+#: model:ir.module.category,name:connector_cva.cva_module_category
+#: model:ir.ui.menu,name:connector_cva.cva_config_menu
+#: model:stock.location,name:connector_cva.cva_main_location
+msgid "CVA"
+msgstr "CVA"
+
+#. module: connector_cva
+#: model:ir.ui.view,arch_db:connector_cva.cva_config_settings_form
+msgid "CVA Configuration"
+msgstr "Configuración de CVA"
+
+#. module: connector_cva
+#: model:ir.actions.act_window,name:connector_cva.action_cva_group
+#: model:ir.ui.view,arch_db:connector_cva.cva_group_form
+msgid "CVA Group"
+msgstr "Grupo de CVA"
+
+#. module: connector_cva
+#: model:ir.ui.menu,name:connector_cva.cva_group_menu
+msgid "CVA Groups"
+msgstr "Grupos de CVA"
+
+#. module: connector_cva
+#: model:ir.ui.view,arch_db:connector_cva.cva_config_settings_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_name
+#: model:ir.ui.view,arch_db:connector_cva.cva_config_settings_form
+msgid "Client number"
+msgstr "Número de cliente"
+
+#. module: connector_cva
+#: model:ir.model,name:connector_cva.model_res_company
+msgid "Companies"
+msgstr "Compañías"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_create_uid
+#: model:ir.model.fields,field_description:connector_cva.field_cva_group_create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_create_date
+#: model:ir.model.fields,field_description:connector_cva.field_cva_group_create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_res_company_cva_group
+msgid "Cva group"
+msgstr "Grupo CVA"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_res_company_cva_main_location
+msgid "Cva main location"
+msgstr "Sucursal CVA"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_res_company_cva_user
+msgid "Cva user"
+msgstr "Usuario CVA"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_durango
+msgid "DURANGO"
+msgstr "DURANGO"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_display_name
+#: model:ir.model.fields,field_description:connector_cva.field_cva_group_display_name
+msgid "Display Name"
+msgstr "Nombre desplegado"
+
+#. module: connector_cva
+#: model:ir.ui.view,arch_db:connector_cva.cva_config_settings_form
+msgid "Get groups"
+msgstr "Obtener grupos"
+
+#. module: connector_cva
+#: model:ir.ui.view,arch_db:connector_cva.cva_config_settings_form
+msgid "Get products"
+msgstr "Obtener productos"
+
+#. module: connector_cva
+#: code:addons/connector_cva/models/cva_config_settings.py:88
+#, python-format
+msgid ""
+"Group\n"
+"%s\n"
+"Subgroup\n"
+"%s\n"
+"Ficha Comercial\n"
+"%s\n"
+"Ficha Tecnica\n"
+"%s\n"
+msgstr "Grupo\n%s\nSubgrupo\n%s\nFicha Comercial\n%s\nFicha Tecnica\n%s\n"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_hermosillo
+msgid "HERMOSILLO"
+msgstr "HERMOSILLO"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_id
+#: model:ir.model.fields,field_description:connector_cva.field_cva_group_id
+msgid "ID"
+msgstr "ID"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_lapaz
+msgid "LA_PAZ"
+msgstr "LA_PAZ"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_leon
+msgid "LEON"
+msgstr "LEON"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings___last_update
+#: model:ir.model.fields,field_description:connector_cva.field_cva_group___last_update
+msgid "Last Modified on"
+msgstr "Ultima modificacion realizada"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_write_uid
+#: model:ir.model.fields,field_description:connector_cva.field_cva_group_write_uid
+msgid "Last Updated by"
+msgstr "Ultima actualizacion por"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_write_date
+#: model:ir.model.fields,field_description:connector_cva.field_cva_group_write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización realizada"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_merida
+msgid "MERIDA"
+msgstr "MERIDA"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_mexicoh
+msgid "MEXICO_HEROES"
+msgstr "MEXICO_HEROES"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_mexicot
+msgid "MEXICO_TALLER"
+msgstr "MEXICO_TALLER"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_monterrey
+msgid "MONTERREY"
+msgstr "MONTERREY"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_morelia
+msgid "MORELIA"
+msgstr "MORELIA"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_config_settings_main_location
+#: model:ir.ui.view,arch_db:connector_cva.cva_config_settings_form
+msgid "Main location"
+msgstr "Sucursal principal"
+
+#. module: connector_cva
+#: model:res.groups,name:connector_cva.cva_group_manager
+msgid "Manager"
+msgstr "Administrador"
+
+#. module: connector_cva
+#: model:ir.model.fields,field_description:connector_cva.field_cva_group_name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_oaxaca
+msgid "OAXACA"
+msgstr "OAXACA"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_guadalajara
+msgid "PLAZA_DE_LA_COMPUTACION_GDL"
+msgstr "PLAZA_DE_LA_COMPUTACION_GDL"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_puebla
+msgid "PUEBLA"
+msgstr "PUEBLA"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid "Pesos"
+msgstr "Pesos"
+
+#. module: connector_cva
+#: model:ir.model,name:connector_cva.model_product_template
+msgid "Product Template"
+msgstr "Plantilla de producto"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_queretaro
+msgid "QUERETARO"
+msgstr "QUERETARO"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_potosi
+msgid "SAN_LUIS_POTOSI"
+msgstr "SAN_LUIS_POTOSI"
+
+#. module: connector_cva
+#: model:ir.ui.menu,name:connector_cva.cva_config_settings_menu
+msgid "Settings"
+msgstr "Configuración"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid "TECH ZONE"
+msgstr "TECH ZONE"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_tijuana
+msgid "TIJUANA"
+msgstr "TIJUANA"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_toluca
+msgid "TOLUCA"
+msgstr "TOLUCA"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_torreon
+msgid "TORREON"
+msgstr "TORREON"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_tuxtla
+msgid "TUXTLA"
+msgstr "TUXTLA"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid "TZ13ATE-MS01"
+msgstr "TZ13ATE-MS01"
+
+#. module: connector_cva
+#: model:ir.actions.server,name:connector_cva.action_update_price
+msgid "Update Price"
+msgstr "Actualizar Precio"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_veracruz
+msgid "VERACRUZ"
+msgstr "VERACRUZ"
+
+#. module: connector_cva
+#: model:stock.location,name:connector_cva.loc_villahermosa
+msgid "VILLAHERMOSA"
+msgstr "VILLAHERMOSA"
+
+#. module: connector_cva
+#: model:ir.model,name:connector_cva.model_cva_config_settings
+msgid "cva.config.settings"
+msgstr "cva.config.settings"
+
+#. module: connector_cva
+#: model:ir.model,name:connector_cva.model_cva_group
+msgid "group of CVA"
+msgstr "Grupo de CVA"
+
+#. module: connector_cva
+#. openerp-web
+#: code:addons/connector_cva/static/src/xml/test.xml:1
+#, python-format
+msgid "http://www.grupocva.com/detalle_articulo/imagen_art.php?fProd=9488634"
+msgstr "http://www.grupocva.com/detalle_articulo/imagen_art.php?fProd=9488634"
+
+#. module: connector_cva
+#: model:ir.ui.view,arch_db:connector_cva.cva_config_settings_form
+msgid "or"
+msgstr "o"
+
+#. module: connector_cva
+#: model:ir.model,name:connector_cva.model_stock_config_settings
+msgid "stock.config.settings"
+msgstr "stock.config.settings"
