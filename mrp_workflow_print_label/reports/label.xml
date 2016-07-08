@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="label_cut">
+            <t t-call="report.html_container">
+                <t t-as="doc" t-foreach="docs">
+                    <div class="page">
+                        <table border="2px" class="table table-striped">
+                            <tr>
+                                <th>Printing Lot</th>
+                                <td>
+                                    <span t-field="doc.print_lot"/>
+                                </td>
+                                <th>Quantity</th>
+                            </tr>
+                            <tr>
+                                <th>Cut Lot</th>
+                                <td>
+                                    <span t-esc="doc.move_created_ids2.lot_ids.name"/>
+                                </td>
+                                <td rowspan="2">
+                                    <span t-esc="doc.container_qty"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Description</th>
+                                <td>
+                                    <span t-esc="doc.product_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Part Number</th>
+                                <td>
+                                    <span t-esc="doc.product_id.default_code"/>
+                                </td>
+                                <td rowspan="4">
+                                    <img style="max-height: 45px;" t-att-src="'data:image/png;base64,%s' % res_company.logo" t-if="res_company.logo"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Auditor/Inspector</th>
+                                <td>
+                                    <span t-esc="user.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Responsable</th>
+                                <td>
+                                    <span t-esc="doc.user_id.name"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <img style="aling:center;" t-att-src="'/report/barcode/?type=Code128&amp;width=300&amp;height=50&amp;humanreadable=1&amp;value=%s' % doc.print_lot"/>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <template id="label_cloth">
+            <t t-call="report.html_container">
+                <t t-as="doc" t-foreach="docs">
+                    <div class="page">
+                        <table border="2px" class="table table-striped">
+                            <tr>
+                                <td rowspan="4">
+                                    <img style="width:150px;height:150px" t-att-src="'data:image/png;base64,%s' % res_company.logo" t-if="res_company.logo"/>
+                                </td>
+                                <th>Part Number: </th>
+                                <td>
+                                    <span t-esc="doc.product_id.default_code"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Description:</th>
+                                <td>
+                                    <span t-esc="doc.product_id.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Cut Lot:</th>
+                                <td>
+                                    <span t-esc="doc.move_created_ids2.lot_ids.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Printing Lot:</th>
+                                <td>
+                                    <span t-field="doc.print_lot"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Components Number:</th>
+                                <td colspan="2"/>
+                            </tr>
+                            <tr>
+                                <th>Components Pieces:</th>
+                                <td colspan="2"/>
+                            </tr>
+                            <tr>
+                                <th>Pieces Total:</th>
+                                <td colspan="2"/>
+                            </tr>
+                            <tr>
+                                <th>Quantity: </th>
+                                <td colspan="2">
+                                    <span t-esc="doc.container_qty"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Auditor/Inspector: </th>
+                                <td colspan="2">
+                                    <span t-esc="user.name"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <img style="aling:center;" t-att-src="'/report/barcode/?type=Code128&amp;width=300&amp;height=50&amp;humanreadable=1&amp;value=%s' % doc.print_lot"/>
+                    </div>
+                </t>
+            </t>
+        </template>        
+        <template id="label_cut_translate">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'mrp_workflow_print_label.label_cut')"/>
+                </t>
+            </t>
+        </template>
+        <template id="label_cloth_translate">
+            <t t-call="report.html_container">
+                <t t-foreach="doc_ids" t-as="doc_id">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'mrp_workflow_print_label.label_cloth')"/>
+                </t>
+            </t>
+        </template>
+        <report 
+            file="mrp_workflow_print_label.label_cut"
+            id="print_label_cut"
+            model="mrp.production"
+            name="mrp_workflow_print_label.label_cut"
+            report_type="qweb-pdf"
+            string="Label Cut"/>
+        <report 
+            file="mrp_workflow_print_label.label_cloth"
+            id="print_label_cloth"
+            model="mrp.production"
+            name="mrp_workflow_print_label.label_cloth"
+            report_type="qweb-pdf"
+            string="Label Cloth"/>
+    </data>
+</openerp>

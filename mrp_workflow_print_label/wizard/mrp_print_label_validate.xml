@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!--Print Label -->
+        <record id="view_mrp_print_label_validate_wizard" model="ir.ui.view">
+            <field name="name">MRP Workflow Print Label Validate Wizard</field>
+            <field name="model">mrp.print.label.validate</field>
+            <field name="arch" type="xml">
+                <form string="Label">
+                    <group string="Label">
+                        <field name="order_id" invisible="1"/>
+                        <field name="pin"/>
+                    </group>
+                    <footer>
+                        <button name="validate" type="object" string="Confirm" class="oe_highlight" />
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="mrp_print_label_validate_wizard" model="ir.actions.act_window">
+            <field name="name">MRP Workflow Print Label Validate Wizard</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">mrp.print.label.validate</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp> 

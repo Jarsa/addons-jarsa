@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model='ir.ui.view' id='mrp_print_reason_tree'>
+            <field name='name'>mrp_print.tree</field>
+            <field name='model'>mrp.print.reason</field>
+            <field name='arch' type='xml'>
+                <tree string='RePrint Reason' editable="top">
+                    <field name='name'/>
+                </tree>
+            </field>
+        </record>
+        <record id='action_mrp_print_reason' model='ir.actions.act_window'>
+                <field name='name'>Reason</field>
+                <field name='res_model'>mrp.print.reason</field>
+                <field name='view_type'>form</field>
+                <field name='view_mode'>tree</field>
+        </record>
+
+        <menuitem
+            id="menu_mrp_print_reason"
+            name="Re-Print Reason"
+            parent="mrp.menu_mrp_configuration"
+            action="action_mrp_print_reason"
+            sequence="60"/>
+    </data>
+</openerp>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data>
+        <record model="ir.ui.view" id="mrp_boom_cloth_form">
+            <field name="name">mrp_boom_cloth.form</field>
+            <field name="model">mrp.bom</field>
+            <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+            <field name="arch" type="xml">
+                <field name="type" position="after">
+                    <field name="cloth"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</openerp>
