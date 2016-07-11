@@ -10,6 +10,10 @@
                     <group string="Lots">
                         <field name="print_lot" />
                         <field name="order_id" invisible="1"/>
+                        <field name="bom_cloth" invisible="1"/>
+                        <field name="components_number" attrs="{'invisible' :[('bom_cloth', '=', False)]}"/>
+                        <field name="components_pieces" attrs="{'invisible' :[('bom_cloth', '=', False)]}"/>
+                        <field name="total_pieces" invisible="1"/>
                     </group>
                     <group string="Information">
                         <field name="container_qty"/>

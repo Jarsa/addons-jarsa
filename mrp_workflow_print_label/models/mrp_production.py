@@ -18,6 +18,10 @@ class MrpProduction(models.Model):
         ('done', 'Done')])
     print_lot = fields.Char(string="Printing Lot", readonly=True)
     container_qty = fields.Integer(string='Quantity per Lot', readonly=True)
+    components_number = fields.Integer(string="Components Number")
+    components_pieces = fields.Integer(string="Components Pieces")
+    cloth_rolls = fields.Char(string="Cloth Rolls")
+    total_pieces = fields.Integer(readonly=True)
 
     @api.multi
     def action_state_print_label(self):

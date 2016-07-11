@@ -12,10 +12,18 @@ class MrpPrintLabel(models.TransientModel):
     container_qty = fields.Integer(string='Quantity per Container')
     order_id = fields.Many2one(
         'mrp.production', string="Order", readonly=True)
+    cloth_rolls = fields.Char(string="Cloth Rolls")
+    bom_cloth = fields.Boolean(related='order_id.bom_id.cloth')
+    components_number = fields.Integer(string="Components Number")
+    components_pieces = fields.Integer(string="Components Pieces")
+    total_pieces = fields.Integer(readonly=True)
 
     @api.multi
     def print_report(self):
         self.order_id.write({
+            'components_number': self.components_number,
+            'components_pieces': self.components_pieces,
+            'total_pieces': self.components_pieces * self.components_number,
             'container_qty': self.container_qty,
             'print_lot': self.print_lot,
             })
