@@ -50,7 +50,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <img style="aling:center;" t-att-src="'/report/barcode/?type=Code128&amp;width=300&amp;height=50&amp;humanreadable=1&amp;value=%s' % doc.print_lot"/>
+                        <img style="aling:center;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
                     </div>
                 </t>
             </t>
@@ -114,7 +114,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <img style="aling:center;" t-att-src="'/report/barcode/?type=Code128&amp;width=300&amp;height=50&amp;humanreadable=1&amp;value=%s' % doc.print_lot"/>
+                        <img style="aling:center;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
                     </div>
                 </t>
             </t>

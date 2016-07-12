@@ -11,8 +11,8 @@ class MrpPrintLabelValidate(models.TransientModel):
 
     pin = fields.Char(string='PIN')
     order_id = fields.Many2one('mrp.production')
-    reason = fields.Many2one(
-        'mrp.print.reason', string='Reason for Re-Printing',)
+    reason_id = fields.Many2one(
+        'mrp.print.reason', string='Reason for Re-Printing', required=True)
 
     @api.multi
     def validate(self):
@@ -23,7 +23,7 @@ class MrpPrintLabelValidate(models.TransientModel):
         else:
             self.order_id.message_post(body=_(
                 "Re-Print Authorized by: %s <br> Re-Printed Reason: %s") % (
-                user.name, self.reason.name))
+                user.name, self.reason_id.name))
             context = dict(
                 self.env.context or {},
                 active_ids=[self.order_id.id],

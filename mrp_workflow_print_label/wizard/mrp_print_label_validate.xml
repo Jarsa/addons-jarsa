@@ -10,7 +10,7 @@
                     <group string="Label">
                         <field name="order_id" invisible="1"/>
                         <field name="pin"/>
-                        <field name="reason"/>
+                        <field name="reason_id"/>
                     </group>
                     <footer>
                         <button name="validate" type="object" string="Confirm" class="oe_highlight" />
