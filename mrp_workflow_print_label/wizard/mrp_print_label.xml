@@ -8,7 +8,7 @@
             <field name="arch" type="xml">
                 <form string="Label">
                     <group string="Lots">
-                        <field name="print_lot" />
+                        <field name="print_lot" attrs="{'invisible' :[('bom_cloth', '=', True)]}"/>
                         <field name="order_id" invisible="1"/>
                         <field name="bom_cloth" invisible="1"/>
                         <field name="components_number" attrs="{'invisible' :[('bom_cloth', '=', False)]}"/>
