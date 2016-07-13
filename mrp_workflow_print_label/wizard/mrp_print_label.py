@@ -13,7 +13,6 @@ class MrpPrintLabel(models.TransientModel):
     container_qty = fields.Integer(string='Quantity per Container')
     order_id = fields.Many2one(
         'mrp.production', string="Order", readonly=True)
-    cloth_rolls = fields.Char(string="Cloth Rolls")
     bom_cloth = fields.Boolean(related='order_id.bom_id.cloth')
     components_number = fields.Integer(string="Components Number")
     components_pieces = fields.Integer(string="Components Pieces")
@@ -21,9 +20,16 @@ class MrpPrintLabel(models.TransientModel):
 
     @api.multi
     def print_report(self):
-        image = self.env['report'].barcode(
-            'Code128', self.print_lot, width=300, height=50, humanreadable=1)
-        image_b64 = base64.encodestring(image)
+        if self.order_id.bom_id.cloth:
+            image = self.env['report'].barcode(
+                'Code128', self.order_id.move_created_ids2.lot_ids.name,
+                width=300, height=50, humanreadable=1)
+            image_b64 = base64.encodestring(image)
+        else:
+            image = self.env['report'].barcode(
+                'Code128', self.print_lot,
+                width=300, height=50, humanreadable=1)
+            image_b64 = base64.encodestring(image)
         self.order_id.write({
             'components_number': self.components_number,
             'components_pieces': self.components_pieces,
