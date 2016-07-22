@@ -1,0 +1,76 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * sale_order_report_ticket
+# 
+# Translators:
+# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016
+# Sarai Osorio <sarai.osorio@jarsa.com.mx>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-22 12:30+0000\n"
+"PO-Revision-Date: 2016-07-22 12:30+0000\n"
+"Last-Translator: Sarai Osorio <sarai.osorio@jarsa.com.mx>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/jarsa/teams/62171/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.sale_order_ticket_report
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.sale_order_ticket_report
+msgid "Disc.(%)"
+msgstr "Desct.(%)"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.info
+msgid "INFORMATION:"
+msgstr "INFORMACIÓN:"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.sale_order_ticket_report
+msgid "Price"
+msgstr "Precio"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.sale_order_ticket_report
+msgid "Quantity"
+msgstr "Cantidad"
+
+#. module: sale_order_report_ticket
+#: model:ir.actions.report.xml,name:sale_order_report_ticket.sale_order_ticket
+msgid "Sale Order Ticket"
+msgstr "Ticket de Pedido de Venta"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.info
+#: view:website:sale_order_report_ticket.sale_order_ticket_report
+msgid "Taxes"
+msgstr "Impuestos"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.info
+msgid "Total"
+msgstr "Total"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.info
+msgid "Total Without Taxes"
+msgstr "Total sin Impuestos"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.sale_order_ticket_report
+msgid "Unit Price"
+msgstr "Precio Unitario"
+
+#. module: sale_order_report_ticket
+#: view:website:sale_order_report_ticket.sale_order_ticket_report
+msgid "formatLang(l.product_uom_qty, digit=0)"
+msgstr "formatLang(l.product_uom_qty, digit=0)"

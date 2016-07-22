@@ -1,0 +1,149 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# * pos_order_report
+# 
+# Translators:
+# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016
+# Sarai Osorio <sarai.osorio@jarsa.com.mx>, 2016
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 8.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-07-22 12:30+0000\n"
+"PO-Revision-Date: 2016-07-22 12:30+0000\n"
+"Last-Translator: Sarai Osorio <sarai.osorio@jarsa.com.mx>, 2016\n"
+"Language-Team: Spanish (https://www.transifex.com/jarsa/teams/62171/es/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: pos_order_report
+#: view:pos.order.wizard:pos_order_report.pos_order_wizard_view
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: pos_order_report
+#: view:website:pos_order_report.report_pos_order_by_date
+msgid "Card"
+msgstr "Tarjeta"
+
+#. module: pos_order_report
+#: view:website:pos_order_report.report_pos_order_by_date
+msgid "Cash"
+msgstr "Efectivo"
+
+#. module: pos_order_report
+#: field:pos.order.wizard,create_uid:0
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: pos_order_report
+#: field:pos.order.wizard,create_date:0
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: pos_order_report
+#: view:website:pos_order_report.report_pos_order_by_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: pos_order_report
+#: field:pos.order.wizard,date_end:0
+msgid "Date end"
+msgstr "Fecha de finalización"
+
+#. module: pos_order_report
+#: field:pos.order.wizard,date_start:0
+msgid "Date start"
+msgstr "Fecha de inicio"
+
+#. module: pos_order_report
+#: field:pos.order.wizard,display_name:0
+#: field:report.pos_order_report.report_pos_order_by_date,display_name:0
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: pos_order_report
+#: field:pos.order.wizard,id:0
+#: field:report.pos_order_report.report_pos_order_by_date,id:0
+msgid "ID"
+msgstr "ID"
+
+#. module: pos_order_report
+#: field:pos.order.wizard,__last_update:0
+#: field:report.pos_order_report.report_pos_order_by_date,__last_update:0
+msgid "Last Modified on"
+msgstr "Modificada por última vez"
+
+#. module: pos_order_report
+#: field:pos.order.wizard,write_uid:0
+msgid "Last Updated by"
+msgstr "Última actualización realizada por"
+
+#. module: pos_order_report
+#: field:pos.order.wizard,write_date:0
+msgid "Last Updated on"
+msgstr "Última actualización en"
+
+#. module: pos_order_report
+#: view:website:pos_order_report.report_pos_order_by_date
+msgid "POS Order by Date Report"
+msgstr "Reporte de Ordenes de TPV por Fecha"
+
+#. module: pos_order_report
+#: view:website:pos_order_report.report_pos_order_by_date
+msgid "POS Terminal:"
+msgstr ""
+
+#. module: pos_order_report
+#: model:ir.actions.report.xml,name:pos_order_report.pos_order_by_date_report
+msgid "POS sales by date"
+msgstr ""
+
+#. module: pos_order_report
+#: field:pos.order.wizard,pos_config_id:0
+msgid "Point of Sale"
+msgstr "Punto de Venta"
+
+#. module: pos_order_report
+#: view:pos.order.wizard:pos_order_report.pos_order_wizard_view
+msgid "Print"
+msgstr "Imprimir"
+
+#. module: pos_order_report
+#: model:ir.actions.act_window,name:pos_order_report.action_pos_order_wizard
+#: model:ir.ui.menu,name:pos_order_report.menu_sales_by_date
+msgid "Sales by date"
+msgstr "Ventas por fecha"
+
+#. module: pos_order_report
+#: view:pos.order.wizard:pos_order_report.pos_order_wizard_view
+msgid "Select Period"
+msgstr "Seleccione el período"
+
+#. module: pos_order_report
+#: view:website:pos_order_report.report_pos_order_by_date
+msgid "Subtotal"
+msgstr "Total parcial"
+
+#. module: pos_order_report
+#: view:website:pos_order_report.report_pos_order_by_date
+msgid "Tax"
+msgstr "Impuesto"
+
+#. module: pos_order_report
+#: view:website:pos_order_report.report_pos_order_by_date
+msgid "Total"
+msgstr "Total"
+
+#. module: pos_order_report
+#: view:website:pos_order_report.report_pos_order_by_date
+msgid "Totals"
+msgstr "Totales"
+
+#. module: pos_order_report
+#: view:pos.order.wizard:pos_order_report.pos_order_wizard_view
+msgid "or"
+msgstr "o"
