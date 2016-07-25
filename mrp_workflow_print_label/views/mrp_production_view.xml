@@ -11,8 +11,11 @@
                 </field>
                 <button name="button_produce" position="after">
                     <button name="%(mrp_print_label_wizard)d" type="action" states="print_label" string="Print Report" context="{'default_order_id': active_id}"/>
-                    <button name="%(mrp_print_label_validate_wizard)d" type="action" states="done" string="Reprint Report" context="{'default_order_id': active_id}"/>
+                    <button name="%(mrp_print_label_validate_wizard)d" type="action" string="Reprint Report" attrs="{'invisible' :['|',('state', '!=', 'done'),('cloth_type','not in',['cover','cloth'])]}" context="{'default_order_id': active_id}"/>
                 </button>
+                <field name="product_id" position="after">
+                    <field name="cloth_type" invisible="1"/>
+                </field>
             </field>
         </record>
     </data>

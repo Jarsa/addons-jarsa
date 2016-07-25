@@ -8,4 +8,7 @@ from openerp import fields, models
 class MrpBom(models.Model):
     _inherit = 'mrp.bom'
 
-    cloth = fields.Boolean()
+    cloth_type = fields.Selection([
+        ('cloth', 'Cloth'),
+        ('cover', 'Cover'),
+        ])

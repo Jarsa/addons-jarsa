@@ -25,8 +25,12 @@ class MrpProduction(models.Model):
     cloth_rolls = fields.Char(string="Cloth Rolls", readonly=True)
     total_pieces = fields.Integer(readonly=True)
     print_lot_barcode = fields.Binary(readonly=True)
+    cloth_type = fields.Selection(related='bom_id.cloth_type')
 
     @api.multi
     def action_state_print_label(self):
         for rec in self:
-            rec.state = 'print_label'
+            if self.bom_id.cloth_type in ['cover', 'cloth']:
+                rec.state = 'print_label'
+            else:
+                self.action_production_end()

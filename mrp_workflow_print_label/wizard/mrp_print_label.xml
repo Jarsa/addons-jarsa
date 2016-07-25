@@ -11,12 +11,10 @@
                         <field name="print_lot" attrs="{'invisible' :[('bom_cloth', '=', True)]}"/>
                         <field name="order_id" invisible="1"/>
                         <field name="bom_cloth" invisible="1"/>
-                        <field name="components_number" attrs="{'invisible' :[('bom_cloth', '=', False)]}"/>
-                        <field name="components_pieces" attrs="{'invisible' :[('bom_cloth', '=', False)]}"/>
+                        <field name="components_number" attrs="{'invisible' :[('bom_cloth', '=', 'cover')]}"/>
+                        <field name="components_pieces" attrs="{'invisible' :[('bom_cloth', '=', 'cover')]}"/>
                         <field name="total_pieces" invisible="1"/>
-                    </group>
-                    <group string="Information">
-                        <field name="container_qty"/>
+                        <field name="container_qty" attrs="{'invisible' :[('bom_cloth', '=', 'cloth')]}"/>
                     </group>
                     <footer>
                         <button name="print_report" type="object" string="Print" class="oe_highlight" icon="gtk-print"/>
