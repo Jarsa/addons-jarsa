@@ -11,8 +11,19 @@ class MrpPrintLabelValidate(models.TransientModel):
 
     pin = fields.Char(string='PIN')
     order_id = fields.Many2one('mrp.production')
+    container_qty = fields.Integer(string='Quantity per Lot')
+    bom_cloth = fields.Selection(related='order_id.bom_id.cloth_type')
     reason_id = fields.Many2one(
         'mrp.print.reason', string='Reason for Re-Printing', required=True)
+
+    @api.model
+    def default_get(self, field):
+        production_obj = self.env['mrp.production']
+        record_id = self.env.context['active_id']
+        production = production_obj.search([('id', '=', record_id)])
+        res = super(MrpPrintLabelValidate, self).default_get(field)
+        res.update({'container_qty': production.container_qty})
+        return res
 
     @api.multi
     def validate(self):
@@ -21,9 +32,14 @@ class MrpPrintLabelValidate(models.TransientModel):
         if len(user) == 0 or self.pin is False:
             raise UserError(_('Invalid PIN'))
         else:
-            self.order_id.message_post(body=_(
-                "Re-Print Authorized by: %s <br> Re-Printed Reason: %s") % (
-                user.name, self.reason_id.name))
+            self.order_id.write({'container_qty': self.container_qty})
+            message = _(
+                "Re-Print Authorized by: %s <br/> Re-Printed Reason: %s") % (
+                user.name, self.reason_id.name)
+            if self.bom_cloth == 'cover':
+                message = message + _(
+                    '<br/> Container Quantity: %s' % self.container_qty)
+            self.order_id.message_post(body=message)
             context = dict(
                 self.env.context or {},
                 active_ids=[self.order_id.id],
