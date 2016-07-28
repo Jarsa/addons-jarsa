@@ -4,14 +4,13 @@
 # 
 # Translators:
 # Jarsa Sistemas <info@jarsa.com.mx>, 2016
-# Luis Triana <luistriana.28@gmail.com>, 2016
 # Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-25 22:27+0000\n"
-"PO-Revision-Date: 2016-07-25 22:27+0000\n"
+"POT-Creation-Date: 2016-07-28 15:14+0000\n"
+"PO-Revision-Date: 2016-07-28 15:14+0000\n"
 "Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/jarsa/teams/62171/es/)\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +23,18 @@ msgstr ""
 #: field:res.users,sale_order_count:0
 msgid "# of Sales Order"
 msgstr "# de Pedidos de Venta"
+
+#. module: mrp_workflow_print_label
+#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:40
+#, python-format
+msgid "<br/> Container Quantity: %s"
+msgstr "<br/> Cantidad por Contenedor: %s"
+
+#. module: mrp_workflow_print_label
+#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:30
+#, python-format
+msgid "<br/>Container Quantity: %s"
+msgstr "<br/>Cantidad por Contenedor: %s"
 
 #. module: mrp_workflow_print_label
 #: field:res.users,property_account_payable:0
@@ -77,6 +88,7 @@ msgstr "Rollos de tela"
 
 #. module: mrp_workflow_print_label
 #: field:mrp.bom,cloth_type:0 field:mrp.print.label,bom_cloth:0
+#: field:mrp.print.label.validate,bom_cloth:0
 #: field:mrp.production,cloth_type:0
 msgid "Cloth type"
 msgstr "Tipo Tela"
@@ -216,7 +228,7 @@ msgid "ID"
 msgstr "ID"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:22
+#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:33
 #, python-format
 msgid "Invalid PIN"
 msgstr "PIN Inválido"
@@ -359,7 +371,7 @@ msgid "Print lot barcode"
 msgstr "Imprimir codigo de lote"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:42
+#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:23
 #, python-format
 msgid "Printed by: %s"
 msgstr "Impreso por: %s"
@@ -381,15 +393,16 @@ msgid "Quantity per Container"
 msgstr "Cantidad por Contenedor"
 
 #. module: mrp_workflow_print_label
+#: field:mrp.print.label.validate,container_qty:0
 #: field:mrp.production,container_qty:0
 msgid "Quantity per Lot"
 msgstr "Cantidad por Lote"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:24
+#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:36
 #, python-format
-msgid "Re-Print Authorized by: %s <br> Re-Printed Reason: %s"
-msgstr "Reimpresión Autorizada por: %s <br> Motivo de Reimpresión: %s"
+msgid "Re-Print Authorized by: %s <br/> Re-Printed Reason: %s"
+msgstr "Re-Impresión Autorizada por: %s <br/> Razón de Re-Impresión: %s"
 
 #. module: mrp_workflow_print_label
 #: model:ir.ui.menu,name:mrp_workflow_print_label.menu_mrp_print_reason
