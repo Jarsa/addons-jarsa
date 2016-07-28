@@ -3,16 +3,16 @@
 # * mrp_workflow_print_label
 # 
 # Translators:
-# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016
+# Jarsa Sistemas <info@jarsa.com.mx>, 2016
 # Luis Triana <luistriana.28@gmail.com>, 2016
-# Sarai Osorio <sarai.osorio@jarsa.com.mx>, 2016
+# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-22 12:30+0000\n"
-"PO-Revision-Date: 2016-07-22 12:30+0000\n"
-"Last-Translator: Sarai Osorio <sarai.osorio@jarsa.com.mx>, 2016\n"
+"POT-Creation-Date: 2016-07-25 22:27+0000\n"
+"PO-Revision-Date: 2016-07-25 22:27+0000\n"
+"Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/jarsa/teams/62171/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,7 @@ msgstr ""
 "declaración legal de IVA."
 
 #. module: mrp_workflow_print_label
-#: field:mrp.bom,cloth:0 field:mrp.print.label,bom_cloth:0
+#: selection:mrp.bom,cloth_type:0
 msgid "Cloth"
 msgstr "Tela"
 
@@ -74,6 +74,12 @@ msgstr "Tela"
 #: field:mrp.production,cloth_rolls:0
 msgid "Cloth Rolls"
 msgstr "Rollos de tela"
+
+#. module: mrp_workflow_print_label
+#: field:mrp.bom,cloth_type:0 field:mrp.print.label,bom_cloth:0
+#: field:mrp.production,cloth_type:0
+msgid "Cloth type"
+msgstr "Tipo Tela"
 
 #. module: mrp_workflow_print_label
 #: field:res.users,ref_companies:0
@@ -113,6 +119,11 @@ msgid "Contracts"
 msgstr "Contratos"
 
 #. module: mrp_workflow_print_label
+#: selection:mrp.bom,cloth_type:0
+msgid "Cover"
+msgstr "Cover"
+
+#. module: mrp_workflow_print_label
 #: field:mrp.print.label,create_uid:0
 #: field:mrp.print.label.validate,create_uid:0
 #: field:mrp.print.reason,create_uid:0
@@ -124,7 +135,7 @@ msgstr "Creado por"
 #: field:mrp.print.label.validate,create_date:0
 #: field:mrp.print.reason,create_date:0
 msgid "Created on"
-msgstr "Creado en"
+msgstr "Creado el"
 
 #. module: mrp_workflow_print_label
 #: field:res.users,property_stock_customer:0
@@ -184,6 +195,16 @@ msgid "Display Name"
 msgstr "Nombre para mostrar"
 
 #. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.label_cloth
+msgid "FOR-PRO-17"
+msgstr "FOR-PRO-17"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.label_cut
+msgid "FOR-PRO-18"
+msgstr "FOR-PRO-18"
+
+#. module: mrp_workflow_print_label
 #: field:res.users,property_account_position:0
 msgid "Fiscal Position"
 msgstr "Posición Físcal"
@@ -193,11 +214,6 @@ msgstr "Posición Físcal"
 #: field:mrp.print.reason,id:0
 msgid "ID"
 msgstr "ID"
-
-#. module: mrp_workflow_print_label
-#: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
-msgid "Information"
-msgstr "Información"
 
 #. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:22
@@ -229,7 +245,7 @@ msgstr "Etiqueta de Telas"
 #. module: mrp_workflow_print_label
 #: model:ir.actions.report.xml,name:mrp_workflow_print_label.print_label_cut
 msgid "Label Cut"
-msgstr "Etiqueta de Corte"
+msgstr "Etiqueta de Pintura"
 
 #. module: mrp_workflow_print_label
 #: field:mrp.print.label,__last_update:0
@@ -340,7 +356,7 @@ msgstr "Imprimir Reporte"
 #. module: mrp_workflow_print_label
 #: field:mrp.production,print_lot_barcode:0
 msgid "Print lot barcode"
-msgstr "Imprimir barcode lote"
+msgstr "Imprimir codigo de lote"
 
 #. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:42
@@ -368,11 +384,6 @@ msgstr "Cantidad por Contenedor"
 #: field:mrp.production,container_qty:0
 msgid "Quantity per Lot"
 msgstr "Cantidad por Lote"
-
-#. module: mrp_workflow_print_label
-#: view:website:mrp_workflow_print_label.label_cloth
-msgid "Quantity:"
-msgstr "Cantidad:"
 
 #. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:24
@@ -418,7 +429,7 @@ msgstr "Responsable"
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cloth
 msgid "Roll Lot:"
-msgstr "Rollo de lote:"
+msgstr "Lote de Rollo:"
 
 #. module: mrp_workflow_print_label
 #: field:res.users,sale_order_ids:0
@@ -543,6 +554,12 @@ msgstr "Usuarios"
 #: field:res.users,vat_subjected:0
 msgid "VAT Legal Statement"
 msgstr "Declaración Legal IVA"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.label_cloth
+#: view:website:mrp_workflow_print_label.label_cut
+msgid "Ver.01"
+msgstr "Ver.01"
 
 #. module: mrp_workflow_print_label
 #: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
