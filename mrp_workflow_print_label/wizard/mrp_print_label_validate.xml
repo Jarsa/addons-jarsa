@@ -12,7 +12,7 @@
                         <field name="pin"/>
                         <field name="reason_id"/>
                         <field name="bom_cloth" invisible="1"/>
-                        <field name="container_qty" readonly="False" attrs="{'invisible' :[('bom_cloth', '=', 'cloth')]}"/>
+                        <field name="container_qty" attrs="{'invisible' :[('bom_cloth', '=', 'cloth')]}"/>
                     </group>
                     <footer>
                         <button name="validate" type="object" string="Confirm" class="oe_highlight" />
