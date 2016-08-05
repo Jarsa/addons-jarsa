@@ -4,14 +4,14 @@
 # 
 # Translators:
 # Jarsa Sistemas <info@jarsa.com.mx>, 2016
-# Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016
+# Luis Triana <luistriana.28@gmail.com>, 2016
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-07-28 15:14+0000\n"
-"PO-Revision-Date: 2016-07-28 15:14+0000\n"
-"Last-Translator: Jesús Alan Ramos Rodríguez <alan.ramos@jarsa.com.mx>, 2016\n"
+"POT-Creation-Date: 2016-07-28 16:11+0000\n"
+"PO-Revision-Date: 2016-07-28 16:11+0000\n"
+"Last-Translator: Luis Triana <luistriana.28@gmail.com>, 2016\n"
 "Language-Team: Spanish (https://www.transifex.com/jarsa/teams/62171/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -442,7 +442,7 @@ msgstr "Responsable"
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cloth
 msgid "Roll Lot:"
-msgstr "Lote de Rollo:"
+msgstr "Lote del Rollo:"
 
 #. module: mrp_workflow_print_label
 #: field:res.users,sale_order_ids:0
