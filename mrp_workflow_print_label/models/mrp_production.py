@@ -2,7 +2,7 @@
 # © 2016 Jarsa Sistemas, S.A. de C.V.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-from openerp import models, fields, api
+from openerp import models, fields, api, _
 
 
 class MrpProduction(models.Model):
@@ -14,7 +14,7 @@ class MrpProduction(models.Model):
         ('confirmed', 'Awaiting Raw Materials'),
         ('ready', 'Ready to Produce'),
         ('in_production', 'Production Started'),
-        ('print_label', 'Print Label'),
+        ('print_label', _('Print Label')),
         ('done', 'Done')])
     print_lot = fields.Char(string="Printing Lot", readonly=True)
     container_qty = fields.Integer(string='Quantity per Lot', readonly=True)

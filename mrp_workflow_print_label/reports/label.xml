@@ -5,7 +5,7 @@
             <t t-call="report.html_container">
                 <t t-as="doc" t-foreach="docs">
                     <div class="page">
-                        <table border="2px" class="table table-striped">
+                        <table border="2px" class="table table-condensed table-striped">
                             <tr>
                                 <th>Printing Lot</th>
                                 <td>
@@ -19,7 +19,7 @@
                                     <span t-esc="doc.move_created_ids2.lot_ids.name"/>
                                 </td>
                                 <td rowspan="2">
-                                    <span t-esc="doc.container_qty"/>
+                                    <span t-esc="doc.container_qty" style="font-size:25px;font-weight:bold"/>
                                 </td>
                             </tr>
                             <tr>
@@ -53,8 +53,8 @@
                         <img style="aling:center;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
                         <br/>
                         <div>
-                            <span style="float:left;">FOR-PRO-18</span>
-                            <span style="float:right;">Ver.01</span>                            
+                            <span style="float:left;font-size:11px">FOR-PRO-18</span>
+                            <span style="float:right;font-size:11px">Ver.01</span>                            
                         </div>
                     </div>
                 </t>
@@ -64,7 +64,7 @@
             <t t-call="report.html_container">
                 <t t-as="doc" t-foreach="docs">
                     <div class="page">
-                        <table style="font-size:12px;" border="2px" class="table table-condensed table-striped">
+                        <table style="font-size:11px;" border="2px" class="table table-condensed table-striped">
                             <tr>
                                 <td rowspan="4">
                                     <img style="height:100px" t-att-src="'data:image/png;base64,%s' % res_company.logo" t-if="res_company.logo"/>
@@ -116,8 +116,8 @@
                         <img style="aling:center;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
                         <br/>
                        <div>
-                            <span style="float:left;">FOR-PRO-17</span>
-                            <span style="float:right;">Ver.01</span>                            
+                            <span style="float:left;font-size:11px">FOR-PRO-17</span>
+                            <span style="float:right;font-size:11px">Ver.01</span>                            
                         </div>
                     </div>
                 </t>
