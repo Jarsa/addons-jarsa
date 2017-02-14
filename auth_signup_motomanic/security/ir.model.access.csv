@@ -1,6 +1,0 @@
-id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
-auth_signup_motomanic_brand,auth_signup_motomanic_brand,fleet.model_fleet_vehicle_model_brand,base.group_public,1,0,0,0
-auth_signup_motomanic_model,auth_signup_motomanic_model,fleet.model_fleet_vehicle_model,base.group_public,1,0,0,0
-auth_signup_motomanic_year,auth_signup_motomanic_year,model_fleet_vehicle_year,base.group_public,1,0,0,0
-auth_signup_motomanic_vehicle,auth_signup_motomanic_vehicle,fleet.model_fleet_vehicle,base.group_public,1,0,0,0
-auth_signup__motomanic_fleet_manager_year,auth_signup__motomanic_fleet_manager_year,model_fleet_vehicle_year,fleet.group_fleet_manager,1,1,1,1
