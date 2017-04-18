@@ -23,11 +23,30 @@ class AccountPartialReconcileCashBasis(models.Model):
                 ref = (rec.credit_move_id.move_id.ref or
                        rec.credit_move_id.move_id.name)
                 partner_id = rec.credit_move_id.move_id.partner_id
+
+        tax_accounts = []
+        taxes = self.env['account.tax'].search(
+            [('use_cash_basis', '=', True)])
+        lines_to_unlink = []
+        for tax in taxes:
+            tax_accounts.append(tax.cash_basis_account)
+            tax_accounts.append(tax.account_id)
+            tax_accounts.append(tax.refund_account_id)
         for index in range(len(lines)):
             vals = lines[index][2]
-            vals['partner_id'] = partner_id.id if partner_id else False
-            vals['name'] = ref
-            lines[index] = (0, 0, vals)
+            line_account_id = self.env['account.account'].browse(
+                vals['account_id'])
+            # We check if the account is not a tax account
+            if line_account_id not in list(set(tax_accounts)):
+                lines_to_unlink.append(lines[index])
+            else:
+                vals['partner_id'] = partner_id.id if partner_id else False
+                vals['name'] = ref
+                lines[index] = (0, 0, vals)
+
+        # We remove the trash moves because we only need the tax moves
+        for index in range(len(lines_to_unlink)):
+            lines.remove(lines_to_unlink[index])
         return lines, move_date
 
     def create_tax_cash_basis_entry(self, value_before_reconciliation):
