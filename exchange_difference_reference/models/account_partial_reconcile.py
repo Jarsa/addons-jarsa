@@ -26,7 +26,7 @@ class AccountPartialReconcileCashBasis(models.Model):
                 # account
                 exchange_difference = exchange_move_id.amount
                 exchange_account_id = exchange_move_id.dummy_account_id
-
+                balance = 0.0
                 for tax_line in tax_payment_lines:
                     # Get the tax rate and the base rate for the compute
                     tax_rate = tax_line.tax_line_id.amount / 100
@@ -46,23 +46,29 @@ class AccountPartialReconcileCashBasis(models.Model):
                                 tax_line.credit - tax_difference if
                                 tax_line.credit > 0.0 else 0.0),
                         }))
-                    # Create a counterpart with the corresponding currency
-                    # exchange ccount
-                    move_lines.append(
-                        (0, 0, {
-                            'account_id': exchange_account_id.id,
-                            'debit': (
-                                tax_difference if
-                                tax_line.debit > 0.0 else 0.0),
-                            'credit': (
-                                tax_difference if
-                                tax_line.credit > 0.0 else 0.0),
-                            'journal_id': tax_payment_lines[0].journal_id.id,
-                            'partner_id': tax_payment_lines[0].partner_id.id,
-                            'name': _(
-                                ('Exchange Currency %s') % (
-                                    tax_line.tax_line_id.name)),
-                        }))
+                    if tax_rate < 0.0:
+                        balance -= tax_difference
+                    else:
+                        balance += tax_difference
+                # # Create a counterpart with the corresponding currency
+                # # exchange account
+                move_lines.append(
+                    (0, 0, {
+                        'account_id': exchange_account_id.id,
+                        'debit': (
+                            balance if
+                            exchange_move_id.journal_id.
+                            default_credit_account_id == exchange_account_id
+                            else 0.0),
+                        'credit': (
+                            balance if
+                            exchange_move_id.journal_id.
+                            default_debit_account_id == exchange_account_id
+                            else 0.0),
+                        'journal_id': tax_payment_lines[0].journal_id.id,
+                        'partner_id': tax_payment_lines[0].partner_id.id,
+                        'name': _('Exchange Difference'),
+                    }))
                 move_tax.button_cancel()
                 move_tax.write({
                     'line_ids': [x for x in move_lines],
@@ -74,7 +80,7 @@ class AccountPartialReconcileCashBasis(models.Model):
                 reference = (
                     res.debit_move_id.move_id.name if
                     res.debit_move_id.move_id.journal_id.type == 'sale' else
-                    res.debit_move_id.move_id.name)
+                    res.credit.move_id.name)
                 exchange_move_id.button_cancel()
                 exchange_move_id.write({
                     'ref': reference,
