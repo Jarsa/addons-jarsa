@@ -8,7 +8,7 @@
     "category": "Accounting",
     "author": "Jarsa Sistemas",
     "website": "https://www.jarsa.com.mx",
-    "depends": ["account"],
+    "depends": ["account_tax_cash_basis"],
     "summary": (
         "This module add the name of the invoice name"
         " to the exchange reference journal entry"),
