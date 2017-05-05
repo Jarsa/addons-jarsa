@@ -80,7 +80,7 @@ class AccountPartialReconcileCashBasis(models.Model):
                 reference = (
                     res.debit_move_id.move_id.name if
                     res.debit_move_id.move_id.journal_id.type == 'sale' else
-                    res.credit.move_id.name)
+                    res.credit_move_id.name)
                 exchange_move_id.button_cancel()
                 exchange_move_id.write({
                     'ref': reference,
