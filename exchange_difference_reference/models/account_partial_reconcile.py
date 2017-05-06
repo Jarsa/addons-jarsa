@@ -15,53 +15,64 @@ class AccountPartialReconcileCashBasis(models.Model):
             [('tax_cash_basis_rec_id', '=', res.id)])
         if move_tax:
             # Get the tax payment lines
-            tax_payment_lines = move_tax.line_ids.filtered(
-                lambda x: x.tax_line_id)
+            tax_payment_lines = move_tax.line_ids.filtered(lambda x: x.tax_line_id)
             move_lines = []
+            # Find the invoice move.
+            if res.debit_move_id.journal_id.type in ['sale', 'purchase']:
+                invoice_move = res.debit_move_id.move_id
+            else:
+                invoice_move = res.credit_move_id.move_id
             # Get the exchange difference move
             exchange_move_id = self.env['account.move'].search(
                 [('rate_diff_partial_rec_id', '=', res.id)])
             if exchange_move_id:
-                # Get the axchange difference and the exchange difference
-                # account
-                exchange_difference = exchange_move_id.amount
+                # Get the exchange difference account
                 exchange_account_id = exchange_move_id.dummy_account_id
                 balance = 0.0
                 for tax_line in tax_payment_lines:
-                    # Get the tax rate and the base rate for the compute
-                    tax_rate = tax_line.tax_line_id.amount / 100
-                    if tax_rate < 0.0:
-                        base = tax_line.tax_line_id.amount / 100 - 1.0
-                    else:
-                        base = tax_line.tax_line_id.amount / 100 + 1.0
-                    # Compute the tax difference
-                    tax_difference = (exchange_difference / base) * tax_rate
+                    # Find the move line of the tax from the invoice
+                    invoice_tax_line = self.env['account.move.line'].search([
+                        ('move_id', '=', invoice_move.id),
+                        ('debit', '=', tax_line.debit),
+                        ('credit', '=', tax_line.credit),
+                        ('tax_line_id', '=', tax_line.tax_line_id.id)])[0]
+                    # Get info needed to compute currency rate.
+                    amount_currency = invoice_tax_line.amount_currency
+                    currency = invoice_tax_line.currency_id
+                    company_currency = self.env.user.company_id.currency_id
+                    currency = currency.with_context(date=move_tax.date)
+                    # Compute the new tax amount.
+                    tax_amount = abs(currency.compute(
+                        amount_currency, company_currency))
                     # Edit the original tax payment line with the real amount
                     move_lines.append(
                         (1, tax_line.id, {
                             'debit': (
-                                tax_line.debit - tax_difference if
+                                tax_amount if
                                 tax_line.debit > 0.0 else 0.0),
                             'credit': (
-                                tax_line.credit - tax_difference if
+                                tax_amount if
                                 tax_line.credit > 0.0 else 0.0),
                         }))
-                    if tax_rate < 0.0:
-                        balance -= tax_difference
-                    else:
+                    # Compute the tax difference
+                    if tax_line.debit > 0.0:
+                        tax_difference = tax_line.debit - tax_amount
                         balance += tax_difference
-                # # Create a counterpart with the corresponding currency
-                # # exchange account
+                    else:
+                        tax_difference = tax_line.credit - tax_amount
+                        balance -= tax_difference
+                # Create a counterpart with the corresponding currency
+                # exchange account
                 move_lines.append(
                     (0, 0, {
                         'account_id': exchange_account_id.id,
                         'debit': (
-                            balance if
+                            abs(balance) if
                             exchange_move_id.journal_id.
                             default_credit_account_id == exchange_account_id
                             else 0.0),
                         'credit': (
-                            balance if
+                            abs(balance) if
                             exchange_move_id.journal_id.
                             default_debit_account_id == exchange_account_id
                             else 0.0),
