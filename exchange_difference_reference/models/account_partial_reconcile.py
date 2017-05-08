@@ -11,11 +11,14 @@ class AccountPartialReconcileCashBasis(models.Model):
     @api.model
     def create(self, vals):
         res = super(AccountPartialReconcileCashBasis, self).create(vals)
+        if res.currency_id == self.env.user.company_id.currency_id:
+            return res
         move_tax = self.env['account.move'].search(
             [('tax_cash_basis_rec_id', '=', res.id)])
         if move_tax:
             # Get the tax payment lines
-            tax_payment_lines = move_tax.line_ids.filtered(lambda x: x.tax_line_id)
+            tax_payment_lines = move_tax.line_ids.filtered(
+                lambda x: x.tax_line_id)
             move_lines = []
             # Find the invoice move.
             if res.debit_move_id.journal_id.type in ['sale', 'purchase']:
@@ -44,7 +47,8 @@ class AccountPartialReconcileCashBasis(models.Model):
                     # Compute the new tax amount.
                     tax_amount = abs(currency.compute(
                         amount_currency, company_currency))
-                    # Edit the original tax payment line with the real amount
+                    # Edit the original tax payment line with the
+                    # real amount
                     move_lines.append(
                         (1, tax_line.id, {
                             'debit': (
@@ -90,8 +94,8 @@ class AccountPartialReconcileCashBasis(models.Model):
                 # difference journal entry
                 reference = (
                     res.debit_move_id.move_id.name if
-                    res.debit_move_id.move_id.journal_id.type == 'sale' else
-                    res.credit_move_id.name)
+                    res.debit_move_id.move_id.journal_id.type == 'sale'
+                    else res.credit_move_id.move_id.name)
                 exchange_move_id.button_cancel()
                 exchange_move_id.write({
                     'ref': reference,
