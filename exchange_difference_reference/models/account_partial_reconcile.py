@@ -16,6 +16,7 @@ class AccountPartialReconcileCashBasis(models.Model):
         move_tax = self.env['account.move'].search(
             [('tax_cash_basis_rec_id', '=', res.id)])
         if move_tax:
+            company_currency = self.env.user.company_id.currency_id
             # Get the tax payment lines
             tax_payment_lines = move_tax.line_ids.filtered(
                 lambda x: x.tax_line_id)
@@ -23,8 +24,13 @@ class AccountPartialReconcileCashBasis(models.Model):
             # Find the invoice move.
             if res.debit_move_id.journal_id.type in ['sale', 'purchase']:
                 invoice_move = res.debit_move_id.move_id
+                bank_move = res.credit_move_id.move_id
             else:
                 invoice_move = res.credit_move_id.move_id
+                bank_move = res.credit_move_id.move_id
+            import ipdb; ipdb.set_trace()
+            if bank_move.currency_id == company_currency:
+                return res
             # Get the exchange difference move
             exchange_move_id = self.env['account.move'].search(
                 [('rate_diff_partial_rec_id', '=', res.id)])
@@ -42,7 +48,6 @@ class AccountPartialReconcileCashBasis(models.Model):
                     # Get info needed to compute currency rate.
                     amount_currency = invoice_tax_line.amount_currency
                     currency = invoice_tax_line.currency_id
-                    company_currency = self.env.user.company_id.currency_id
                     currency = currency.with_context(date=move_tax.date)
                     # Compute the new tax amount.
                     tax_amount = abs(currency.compute(
@@ -100,4 +105,5 @@ class AccountPartialReconcileCashBasis(models.Model):
                 exchange_move_id.write({
                     'ref': reference,
                     })
+                exchange_move_id.post()
         return res
