@@ -11,8 +11,6 @@ class AccountPartialReconcileCashBasis(models.Model):
     @api.model
     def create(self, vals):
         res = super(AccountPartialReconcileCashBasis, self).create(vals)
-        if res.currency_id == self.env.user.company_id.currency_id:
-            return res
         move_tax = self.env['account.move'].search(
             [('tax_cash_basis_rec_id', '=', res.id)])
         if move_tax:
@@ -28,7 +26,7 @@ class AccountPartialReconcileCashBasis(models.Model):
             else:
                 invoice_move = res.credit_move_id.move_id
                 bank_move = res.credit_move_id.move_id
-            import ipdb; ipdb.set_trace()
+            # If the currency is MXN we don't do anything
             if bank_move.currency_id == company_currency:
                 return res
             # Get the exchange difference move
