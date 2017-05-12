@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="view_account_invoice_fix_tree" model="ir.ui.view">
+            <field name="name">view.account.invoice.fix.tree</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="number" position="replace">
+                    <field name="fix_number"/>
+                </field>
+            </field>
+        </record>
+        <record id="view_account_invoice_fix_search" model="ir.ui.view">
+            <field name="name">view.account.invoice.fix.search</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <field name="number" position="replace">
+                    <field filter_domain="['|','|','|', ('fix_number','ilike',self), ('origin','ilike',self), ('reference', 'ilike', self), ('partner_id', 'child_of', self)]" name="fix_number" string="Invoice"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
