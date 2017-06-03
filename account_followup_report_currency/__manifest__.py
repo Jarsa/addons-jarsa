@@ -3,15 +3,13 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 {
-    "name": "Accounting - Exchange Difference Reference Assignation",
-    "version": "9.0.0.1.0",
+    "name": "Accounting - Account Followup Report Currency",
+    "version": "10.0.0.1.0",
     "category": "Accounting",
     "author": "Jarsa Sistemas",
     "website": "https://www.jarsa.com.mx",
-    "depends": ["account_tax_cash_basis"],
-    "summary": (
-        "This module add the name of the invoice name"
-        " to the exchange reference journal entry"),
+    "depends": ["account_reports"],
+    "summary": "This module add the currency to the follow up report",
     "license": "AGPL-3",
     "data": [],
     "application": False,
