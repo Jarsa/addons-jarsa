@@ -20,5 +20,5 @@ class AccountInvoice(models.Model):
     def name_get(self):
         result = []
         for inv in self:
-            result.append((inv.id, "%s" % (inv.fix_number)))
+            result.append((inv.id, "%s (%s)" % (inv.fix_number, inv.name)))
         return result
