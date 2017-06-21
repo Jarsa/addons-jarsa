@@ -7,7 +7,7 @@
             <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
                 <button name="button_produce" position="after">
-                    <button name="%(mrp_print_label_wizard)d" type="action" states="in_production" string="Print Report" context="{'default_order_id': active_id}"/>
+                    <button name="%(mrp_print_label_wizard)d" type="action" states="done,in_production" string="Print Report" context="{'default_order_id': active_id}"/>
                     <button name="%(mrp_print_label_validate_wizard)d" type="action" string="Reprint Report" attrs="{'invisible' :['|',('state', '!=', 'done'),('cloth_type','not in',['cover','cloth'])]}" context="{'default_order_id': active_id}"/>
                 </button>
                 <field name="product_id" position="after">

@@ -3,6 +3,7 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import _, api, fields, models
+from openerp.exceptions import ValidationError
 import base64
 
 
@@ -68,6 +69,11 @@ class MrpPrintLabel(models.TransientModel):
         active_id = self._context['active_id']
         active_model = self._context['active_model']
         order = self.env[active_model].search([('id', '=', active_id)])
+        if not order.bom_id.cloth_type:
+            raise ValidationError(
+                _("The Bill of Material doesn't have a cloth"
+                  " type. Please check your data."))
         res['components_number'] = order.move_created_ids.product_qty
         res['components_pieces'] = len(order.bom_id.bom_line_ids)
+
         return res
