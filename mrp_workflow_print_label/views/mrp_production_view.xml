@@ -6,11 +6,8 @@
             <field name="model">mrp.production</field>
             <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
             <field name="arch" type="xml">
-                <field name="state" position='replace'>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,ready,in_production,print_label,done" statusbar_colors='{"confirmed":"blue"}'/>
-                </field>
                 <button name="button_produce" position="after">
-                    <button name="%(mrp_print_label_wizard)d" type="action" states="print_label" string="Print Report" context="{'default_order_id': active_id}"/>
+                    <button name="%(mrp_print_label_wizard)d" type="action" states="in_production" string="Print Report" context="{'default_order_id': active_id}"/>
                     <button name="%(mrp_print_label_validate_wizard)d" type="action" string="Reprint Report" attrs="{'invisible' :['|',('state', '!=', 'done'),('cloth_type','not in',['cover','cloth'])]}" context="{'default_order_id': active_id}"/>
                 </button>
                 <field name="product_id" position="after">

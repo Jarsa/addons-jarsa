@@ -14,7 +14,6 @@ class MrpProduction(models.Model):
         ('confirmed', 'Awaiting Raw Materials'),
         ('ready', 'Ready to Produce'),
         ('in_production', 'Production Started'),
-        ('print_label', _('Print Label')),
         ('done', 'Done')])
     print_lot = fields.Char(string="Printing Lot", readonly=True)
     container_qty = fields.Integer(string='Quantity per Lot', readonly=True)
@@ -26,11 +25,3 @@ class MrpProduction(models.Model):
     total_pieces = fields.Integer(readonly=True)
     print_lot_barcode = fields.Binary(readonly=True)
     cloth_type = fields.Selection(related='bom_id.cloth_type')
-
-    @api.multi
-    def action_state_print_label(self):
-        for rec in self:
-            if self.bom_id.cloth_type in ['cover', 'cloth']:
-                rec.state = 'print_label'
-            else:
-                self.action_production_end()

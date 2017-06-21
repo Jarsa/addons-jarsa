@@ -20,7 +20,6 @@
         'wizard/mrp_print_label_validate.xml',
         'views/mrp_production_view.xml',
         'views/mrp_print_reason_view.xml',
-        'views/mrp_workflow.xml',
         'views/res_users_view.xml',
         'views/mrp_bom_view.xml',
         'reports/label.xml',
