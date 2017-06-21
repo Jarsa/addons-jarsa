@@ -8,19 +8,25 @@
             <field name="arch" type="xml">
                 <form string="Label">
                     <group string="Lots">
-                        <field name="print_lot" attrs="{'invisible' :[('bom_cloth', '=', True)]}"/>
-                        <field name="order_id" invisible="1"/>
-                        <field name="bom_cloth" invisible="1"/>
-                        <field name="components_number" attrs="{'invisible' :[('bom_cloth', '=', 'cover')]}"/>
-                        <field name="components_pieces" attrs="{'invisible' :[('bom_cloth', '=', 'cover')]}"/>
-                        <field name="total_pieces" invisible="1"/>
-                        <field name="container_qty" attrs="{'invisible' :[('bom_cloth', '=', 'cloth')]}"/>
+                        <group col="4">
+                            <label attrs="{'invisible': [('bom_cloth', '=', 'cloth')]}" col="2" for="print_lot" string="adios"/>
+                            <label attrs="{'invisible': [('bom_cloth', '=', 'cover')]}" col="2" for="print_lot" string="hola"/>
+                            <field attrs="{'invisible' :[('bom_cloth', '=', True)]}" col="2" colspan="2" name="print_lot" nolabel="1"/>
+                        </group><br/>
+                        <group>
+                            <field invisible="1" name="order_id"/>
+                            <field invisible="1" name="bom_cloth"/>
+                            <field attrs="{'invisible' :[('bom_cloth', '=', 'cover')]}" name="components_number"/>
+                            <field attrs="{'invisible' :[('bom_cloth', '=', 'cover')]}" name="components_pieces"/>
+                            <field invisible="1" name="total_pieces"/>
+                            <field attrs="{'invisible' :[('bom_cloth', '=', 'cloth')]}" name="container_qty"/>
+                        </group>
                     </group>
                     <footer>
-                        <button name="print_report" type="object" string="Print" class="oe_highlight" icon="gtk-print"/>
-                        or
-                        <button string="Cancel" class="oe_link" special="cancel" />
-                    </footer>
+                        <button class="oe_highlight" icon="gtk-print" name="print_report" string="Print" type="object"/>or
+                        
+                        
+                        <button class="oe_link" special="cancel" string="Cancel"/></footer>
                 </form>
             </field>
         </record>
@@ -33,4 +39,4 @@
             <field name="target">new</field>
         </record>
     </data>
-</openerp>    
+</openerp>
