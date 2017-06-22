@@ -1,28 +1,29 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# * mrp_workflow_print_label
-# 
-# Translators:
-# Jarsa Sistemas <info@jarsa.com.mx>, 2016
-# Luis Triana <luis.triana@jarsa.com.mx>, 2016
+#	* mrp_workflow_print_label
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-06 00:41+0000\n"
-"PO-Revision-Date: 2016-08-06 00:41+0000\n"
-"Last-Translator: Luis Triana <luis.triana@jarsa.com.mx>, 2016\n"
-"Language-Team: Spanish (https://www.transifex.com/jarsa/teams/62171/es/)\n"
+"POT-Creation-Date: 2017-06-22 16:19+0000\n"
+"PO-Revision-Date: 2017-06-22 16:19+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
-"Language: es\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: \n"
 
 #. module: mrp_workflow_print_label
-#: field:res.users,sale_order_count:0
-msgid "# of Sales Order"
-msgstr "# de Pedidos de Venta"
+#: field:res.users,issue_count:0
+msgid "# Issues"
+msgstr "# Incidencias"
+
+#. module: mrp_workflow_print_label
+#: field:res.users,task_count:0
+msgid "# Tasks"
+msgstr "# Tareas"
 
 #. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:40
@@ -31,7 +32,7 @@ msgid "<br/> Container Quantity: %s"
 msgstr "<br/> Cantidad por Contenedor: %s"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:30
+#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:31
 #, python-format
 msgid "<br/>Container Quantity: %s"
 msgstr "<br/>Cantidad por Contenedor: %s"
@@ -69,12 +70,8 @@ msgstr "Cancelar"
 
 #. module: mrp_workflow_print_label
 #: help:res.users,vat_subjected:0
-msgid ""
-"Check this box if the partner is subjected to the VAT. It will be used for "
-"the VAT legal statement."
-msgstr ""
-"Marque esta casilla si la empresa se somete al IVA. Será utilizado para la "
-"declaración legal de IVA."
+msgid "Check this box if the partner is subjected to the VAT. It will be used for the VAT legal statement."
+msgstr "Marque esta casilla si la empresa se somete al IVA. Será utilizado para la declaración legal de IVA."
 
 #. module: mrp_workflow_print_label
 #: selection:mrp.bom,cloth_type:0
@@ -87,7 +84,8 @@ msgid "Cloth Rolls"
 msgstr "Rollos de tela"
 
 #. module: mrp_workflow_print_label
-#: field:mrp.bom,cloth_type:0 field:mrp.print.label,bom_cloth:0
+#: field:mrp.bom,cloth_type:0
+#: field:mrp.print.label,bom_cloth:0
 #: field:mrp.print.label.validate,bom_cloth:0
 #: field:mrp.production,cloth_type:0
 msgid "Cloth type"
@@ -126,7 +124,8 @@ msgid "Confirm"
 msgstr "Confirmar"
 
 #. module: mrp_workflow_print_label
-#: field:res.users,contract_ids:0 field:res.users,contracts_count:0
+#: field:res.users,contract_ids:0
+#: field:res.users,contracts_count:0
 msgid "Contracts"
 msgstr "Contratos"
 
@@ -160,6 +159,7 @@ msgid "Customer Payment Term"
 msgstr "Término de pago del cliente"
 
 #. module: mrp_workflow_print_label
+#: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
 #: view:website:mrp_workflow_print_label.label_cut
 msgid "Cut Lot"
 msgstr "Lote de Corte"
@@ -171,23 +171,8 @@ msgstr "Lote de Corte:"
 
 #. module: mrp_workflow_print_label
 #: help:res.users,last_reconciliation_date:0
-msgid ""
-"Date on which the partner accounting entries were fully reconciled last "
-"time. It differs from the last date where a reconciliation has been made for"
-" this partner, as here we depict the fact that nothing more was to be "
-"reconciled at this date. This can be achieved in 2 different ways: either "
-"the last unreconciled debit/credit entry of this partner was reconciled, "
-"either the user pressed the button \"Nothing more to reconcile\" during the "
-"manual reconciliation process."
-msgstr ""
-"Fecha en la que los asientos contables de la empresa se reconciliaron "
-"totalmente por última vez . Se diferencia de la última fecha en que la "
-"conciliación se ha hecho para esta empresa, ya que aquí representamos el "
-"hecho de que nada más iba a ser reconciliada en esta fecha . Esto se puede "
-"conseguir de 2 formas diferentes : o bien el último asiento de débito / "
-"crédito sin conciliar de esta empresa se reconcilió , ya sea que el usuario "
-"pulsa el botón de \" No hay nada más para conciliar \" durante el proceso de"
-" conciliación manual."
+msgid "Date on which the partner accounting entries were fully reconciled last time. It differs from the last date where a reconciliation has been made for this partner, as here we depict the fact that nothing more was to be reconciled at this date. This can be achieved in 2 different ways: either the last unreconciled debit/credit entry of this partner was reconciled, either the user pressed the button \"Nothing more to reconcile\" during the manual reconciliation process."
+msgstr "Fecha en la que los asientos contables de la empresa se reconciliaron totalmente por última vez . Se diferencia de la última fecha en que la conciliación se ha hecho para esta empresa, ya que aquí representamos el hecho de que nada más iba a ser reconciliada en esta fecha . Esto se puede conseguir de 2 formas diferentes : o bien el último asiento de débito / crédito sin conciliar de esta empresa se reconcilió , ya sea que el usuario pulsa el botón de \" No hay nada más para conciliar \" durante el proceso de conciliación manual."
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cut
@@ -222,7 +207,8 @@ msgid "Fiscal Position"
 msgstr "Posición Físcal"
 
 #. module: mrp_workflow_print_label
-#: field:mrp.print.label,id:0 field:mrp.print.label.validate,id:0
+#: field:mrp.print.label,id:0
+#: field:mrp.print.label.validate,id:0
 #: field:mrp.print.reason,id:0
 msgid "ID"
 msgstr "ID"
@@ -321,7 +307,8 @@ msgid "Order id"
 msgstr "Order id"
 
 #. module: mrp_workflow_print_label
-#: field:mrp.print.label.validate,pin:0 field:res.users,mrp_pin:0
+#: field:mrp.print.label.validate,pin:0
+#: field:res.users,mrp_pin:0
 msgid "PIN"
 msgstr "PIN"
 
@@ -356,10 +343,9 @@ msgid "Print"
 msgstr "Imprimir"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/models/mrp_production.py:17
-#, python-format
-msgid "Print Label"
-msgstr "Impresión Etiqueta"
+#: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
+msgid "Print Lot"
+msgstr "Lote de Impresión"
 
 #. module: mrp_workflow_print_label
 #: model:res.groups,name:mrp_workflow_print_label.mrp_print_reason_group_manager
@@ -377,13 +363,14 @@ msgid "Print lot barcode"
 msgstr "Imprimir codigo de lote"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:23
+#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:24
 #, python-format
 msgid "Printed by: %s"
 msgstr "Impreso por: %s"
 
 #. module: mrp_workflow_print_label
-#: field:mrp.print.label,print_lot:0 field:mrp.production,print_lot:0
+#: field:mrp.print.label,print_lot:0
+#: field:mrp.production,print_lot:0
 #: view:website:mrp_workflow_print_label.label_cut
 msgid "Printing Lot"
 msgstr "Lote de Impresión"
@@ -451,11 +438,6 @@ msgid "Roll Lot:"
 msgstr "Lote del Rollo:"
 
 #. module: mrp_workflow_print_label
-#: field:res.users,sale_order_ids:0
-msgid "Sales Order"
-msgstr "Órdenes de venta"
-
-#. module: mrp_workflow_print_label
 #: field:res.users,property_stock_supplier:0
 msgid "Supplier Location"
 msgstr "Localización de Proveedores"
@@ -466,6 +448,17 @@ msgid "Supplier Payment Term"
 msgstr "Término de pago del Proveedor"
 
 #. module: mrp_workflow_print_label
+#: field:res.users,task_ids:0
+msgid "Tasks"
+msgstr "Tareas"
+
+#. module: mrp_workflow_print_label
+#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:74
+#, python-format
+msgid "The Bill of Material doesn't have a cloth type. Please check your data."
+msgstr "La lista de materiales no tiene un tipo de tela. Compruebe sus datos."
+
+#. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/models/res_users.py:17
 #: sql_constraint:res.users:0
 #, python-format
@@ -474,65 +467,38 @@ msgstr "El PIN debe ser único"
 
 #. module: mrp_workflow_print_label
 #: help:res.users,property_account_position:0
-msgid ""
-"The fiscal position will determine taxes and accounts used for the partner."
-msgstr ""
-"La posición fiscal determinará los impuestos y las cuentas utilizadas para "
-"la empresa."
+msgid "The fiscal position will determine taxes and accounts used for the partner."
+msgstr "La posición fiscal determinará los impuestos y las cuentas utilizadas para la empresa."
 
 #. module: mrp_workflow_print_label
 #: help:res.users,property_account_payable:0
-msgid ""
-"This account will be used instead of the default one as the payable account "
-"for the current partner"
-msgstr ""
-"Esta cuenta se utiliza en lugar de la opción por defecto como la cuenta por "
-"pagar por la actual empresa."
+msgid "This account will be used instead of the default one as the payable account for the current partner"
+msgstr "Esta cuenta se utiliza en lugar de la opción por defecto como la cuenta por pagar por la actual empresa."
 
 #. module: mrp_workflow_print_label
 #: help:res.users,property_account_receivable:0
-msgid ""
-"This account will be used instead of the default one as the receivable "
-"account for the current partner"
-msgstr ""
-"Esta cuenta se utiliza en lugar de la opción por defecto como la cuenta por "
-"cobrar por la empresa actual"
+msgid "This account will be used instead of the default one as the receivable account for the current partner"
+msgstr "Esta cuenta se utiliza en lugar de la opción por defecto como la cuenta por cobrar por la empresa actual"
 
 #. module: mrp_workflow_print_label
 #: help:res.users,property_supplier_payment_term:0
-msgid ""
-"This payment term will be used instead of the default one for purchase "
-"orders and supplier invoices"
-msgstr ""
-"Este plazo de pago será usada en lugar de la opción por defecto para las "
-"órdenes de compra y las facturas de los proveedores"
+msgid "This payment term will be used instead of the default one for purchase orders and supplier invoices"
+msgstr "Este plazo de pago será usada en lugar de la opción por defecto para las órdenes de compra y las facturas de los proveedores"
 
 #. module: mrp_workflow_print_label
 #: help:res.users,property_payment_term:0
-msgid ""
-"This payment term will be used instead of the default one for sale orders "
-"and customer invoices"
-msgstr ""
-"Este plazo de pago será utilizado en lugar del que viene por defecto para "
-"las órdenes de venta y facturas de los clientes"
+msgid "This payment term will be used instead of the default one for sale orders and customer invoices"
+msgstr "Este plazo de pago será utilizado en lugar del que viene por defecto para las órdenes de venta y facturas de los clientes"
 
 #. module: mrp_workflow_print_label
 #: help:res.users,property_stock_customer:0
-msgid ""
-"This stock location will be used, instead of the default one, as the "
-"destination location for goods you send to this partner"
-msgstr ""
-"Se utilizará esta ubicación stock , en lugar de la opción por defecto , como"
-" la ubicación de destino de los bienes que enviar a este socio."
+msgid "This stock location will be used, instead of the default one, as the destination location for goods you send to this partner"
+msgstr "Se utilizará esta ubicación stock , en lugar de la opción por defecto , como la ubicación de destino de los bienes que enviar a este socio."
 
 #. module: mrp_workflow_print_label
 #: help:res.users,property_stock_supplier:0
-msgid ""
-"This stock location will be used, instead of the default one, as the source "
-"location for goods you receive from the current partner"
-msgstr ""
-"Se utilizará esta ubicación stock , en lugar de la opción por defecto , como"
-" la ubicación de origen de los bienes que reciben de la empresa actual"
+msgid "This stock location will be used, instead of the default one, as the source location for goods you receive from the current partner"
+msgstr "Se utilizará esta ubicación stock , en lugar de la opción por defecto , como la ubicación de origen de los bienes que reciben de la empresa actual"
 
 #. module: mrp_workflow_print_label
 #: field:res.users,total_invoiced:0
@@ -560,7 +526,8 @@ msgid "Total amount you have to pay to this supplier."
 msgstr "Cantidad total a pagar a este proveedor"
 
 #. module: mrp_workflow_print_label
-#: field:mrp.print.label,total_pieces:0 field:mrp.production,total_pieces:0
+#: field:mrp.print.label,total_pieces:0
+#: field:mrp.production,total_pieces:0
 msgid "Total pieces"
 msgstr "Total de Piezas"
 

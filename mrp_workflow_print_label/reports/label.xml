@@ -16,7 +16,8 @@
                             <tr>
                                 <th>Cut Lot</th>
                                 <td>
-                                    <span t-esc="doc.move_created_ids.lot_ids.name"/>
+                                    <span t-esc="doc.move_created_ids2[-1].lot_ids.name
+"/>
                                 </td>
                                 <td rowspan="2">
                                     <span t-esc="doc.container_qty" style="font-size:25px;font-weight:bold"/>
@@ -83,7 +84,8 @@
                             <tr>
                                 <th>Cut Lot:</th>
                                 <td>
-                                    <span t-esc="doc.move_created_ids.lot_ids.name"/>
+                                    <span t-esc="doc.move_created_ids2[-1].lot_ids.name
+"/>
                                 </td>
                             </tr>
                             <tr>

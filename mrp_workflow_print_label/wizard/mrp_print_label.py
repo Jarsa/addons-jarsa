@@ -73,7 +73,7 @@ class MrpPrintLabel(models.TransientModel):
             raise ValidationError(
                 _("The Bill of Material doesn't have a cloth"
                   " type. Please check your data."))
-        res['components_number'] = order.move_created_ids.product_qty
+        res['components_number'] = order.move_created_ids2[-1].product_qty
         res['components_pieces'] = len(order.bom_id.bom_line_ids)
-
+        res['container_qty'] = order.move_created_ids2[-1].product_qty
         return res
