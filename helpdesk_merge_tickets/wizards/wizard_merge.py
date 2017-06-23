@@ -42,6 +42,14 @@ class WizardMerge(models.TransientModel):
             main = self.env['helpdesk.ticket'].search(
                 [('id', '=', int(rec.incident.encode('utf-8')))])
             for line in rec.incident_ids:
+                attachments = self.env['ir.attachment'].search([
+                    ('res_model', '=', 'helpdesk.ticket'),
+                    ('res_id', '=', line.id)])
+                for attachment in attachments:
+                    attachment.write({
+                        'res_id': main.id,
+                        'res_name': main.name,
+                    })
                 for msg in line.message_ids:
                     msg.write({
                         'res_id': main.id,
