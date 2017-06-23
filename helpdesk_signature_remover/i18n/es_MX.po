@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* signature_remover
+#	* helpdesk_signature_remover
 #
 msgid ""
 msgstr ""
@@ -15,71 +15,71 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: signature_remover
-#: model:ir.ui.view,arch_db:signature_remover.view_helpdesk_signature_form
+#. module: helpdesk_signature_remover
+#: model:ir.ui.view,arch_db:helpdesk_signature_remover.view_helpdesk_signature_form
 msgid "Clean signatures"
 msgstr "Borrar firmas"
 
-#. module: signature_remover
-#: model:ir.model.fields,field_description:signature_remover.field_signature_remover_create_uid
+#. module: helpdesk_signature_remover
+#: model:ir.model.fields,field_description:helpdesk_signature_remover.field_helpdesk_signature_remover_create_uid
 msgid "Created by"
 msgstr "Creado por"
 
-#. module: signature_remover
-#: model:ir.model.fields,field_description:signature_remover.field_signature_remover_create_date
+#. module: helpdesk_signature_remover
+#: model:ir.model.fields,field_description:helpdesk_signature_remover.field_helpdesk_signature_remover_create_date
 msgid "Created on"
 msgstr "Creado el"
 
-#. module: signature_remover
-#: model:ir.model.fields,field_description:signature_remover.field_signature_remover_display_name
+#. module: helpdesk_signature_remover
+#: model:ir.model.fields,field_description:helpdesk_signature_remover.field_helpdesk_signature_remover_display_name
 msgid "Display Name"
 msgstr "Nombre a mostrar"
 
-#. module: signature_remover
-#: model:ir.model.fields,field_description:signature_remover.field_signature_remover_id
+#. module: helpdesk_signature_remover
+#: model:ir.model.fields,field_description:helpdesk_signature_remover.field_helpdesk_signature_remover_id
 msgid "ID"
 msgstr "ID"
 
-#. module: signature_remover
-#: model:ir.model.fields,field_description:signature_remover.field_signature_remover___last_update
+#. module: helpdesk_signature_remover
+#: model:ir.model.fields,field_description:helpdesk_signature_remover.field_helpdesk_signature_remover___last_update
 msgid "Last Modified on"
 msgstr "Última modificación en"
 
-#. module: signature_remover
-#: model:ir.model.fields,field_description:signature_remover.field_signature_remover_write_uid
+#. module: helpdesk_signature_remover
+#: model:ir.model.fields,field_description:helpdesk_signature_remover.field_helpdesk_signature_remover_write_uid
 msgid "Last Updated by"
 msgstr "Última actualización por"
 
-#. module: signature_remover
-#: model:ir.model.fields,field_description:signature_remover.field_signature_remover_write_date
+#. module: helpdesk_signature_remover
+#: model:ir.model.fields,field_description:helpdesk_signature_remover.field_helpdesk_signature_remover_write_date
 msgid "Last Updated on"
 msgstr "Última actualización el"
 
-#. module: signature_remover
-#: model:ir.model.fields,field_description:signature_remover.field_signature_remover_name
+#. module: helpdesk_signature_remover
+#: model:ir.model.fields,field_description:helpdesk_signature_remover.field_helpdesk_signature_remover_name
 msgid "Name"
 msgstr "Nombre"
 
-#. module: signature_remover
-#: model:ir.actions.act_window,name:signature_remover.action_signature
-#: model:ir.model.fields,field_description:signature_remover.field_signature_remover_signature
-#: model:ir.ui.menu,name:signature_remover.helpdesk_signature
-#: model:ir.ui.view,arch_db:signature_remover.signature_remover_form
+#. module: helpdesk_signature_remover
+#: model:ir.actions.act_window,name:helpdesk_signature_remover.action_signature
+#: model:ir.model.fields,field_description:helpdesk_signature_remover.field_helpdesk_signature_remover_signature
+#: model:ir.ui.menu,name:helpdesk_signature_remover.helpdesk_signature
+#: model:ir.ui.view,arch_db:helpdesk_signature_remover.helpdesk_signature_remover_form
 msgid "Signature"
 msgstr "Firma"
 
-#. module: signature_remover
-#: model:ir.ui.view,arch_db:signature_remover.signature_remover_tree
+#. module: helpdesk_signature_remover
+#: model:ir.ui.view,arch_db:helpdesk_signature_remover.helpdesk_signature_remover_tree
 msgid "Signatures"
 msgstr "Firmas"
 
-#. module: signature_remover
-#: model:ir.model,name:signature_remover.model_helpdesk_ticket
+#. module: helpdesk_signature_remover
+#: model:ir.model,name:helpdesk_signature_remover.model_helpdesk_ticket
 msgid "Ticket"
 msgstr "Tiquet"
 
-#. module: signature_remover
-#: model:ir.model,name:signature_remover.model_signature_remover
+#. module: helpdesk_signature_remover
+#: model:ir.model,name:helpdesk_signature_remover.model_helpdesk_signature_remover
 msgid "signature.remover"
 msgstr "signature.remover"
 
