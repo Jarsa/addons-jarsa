@@ -28,7 +28,7 @@ class AccountPartialReconcileCashBasis(models.Model):
                 rec.credit_move_id.journal_id.type == 'purchase' else
                 rec.credit_move_id)
             # We loop the tax lines of the invoice move to get the tax rate
-            for tax_line in invoice_move.move_id.line_ids.filtered(
+            for tax in invoice_move.move_id.line_ids.filtered(
                     lambda r: r.tax_line_id.use_cash_basis):
                 lines = []
                 # We check if the move will be a amount_currency fix
