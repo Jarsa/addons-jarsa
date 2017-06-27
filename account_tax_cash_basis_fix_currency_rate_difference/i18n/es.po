@@ -1,6 +1,6 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-#	* exchange_difference_reference
+#	* account_tax_cash_basis_fix_currency_rate_difference
 #
 msgid ""
 msgstr ""
@@ -15,14 +15,14 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: exchange_difference_reference
-#: code:addons/exchange_difference_reference/models/account_partial_reconcile.py:70
+#. module: account_tax_cash_basis_fix_currency_rate_difference
+#: code:addons/account_tax_cash_basis_fix_currency_rate_difference/models/account_partial_reconcile.py:70
 #, python-format
 msgid "Exchange Difference"
 msgstr "Fluctuación Cambiaria"
 
-#. module: exchange_difference_reference
-#: model:ir.model,name:exchange_difference_reference.model_account_partial_reconcile
+#. module: account_tax_cash_basis_fix_currency_rate_difference
+#: model:ir.model,name:account_tax_cash_basis_fix_currency_rate_difference.model_account_partial_reconcile
 msgid "Partial Reconcile"
 msgstr "Conciliación Parcial"
 
