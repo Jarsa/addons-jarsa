@@ -35,7 +35,7 @@ class AccountPartialReconcileCashBasis(models.Model):
                 # We check if the move will be a amount_currency fix
                 # if this is True we compute the currency amount
                 # to the correspinding currency.
-                if diff_in_currency != 0:
+                if diff_in_currency != 0 and amount_diff == 0:
                     amount_diff = (
                         currency.with_context(date=bank_move.date).compute(
                             diff_in_currency, rec.company_currency_id))
