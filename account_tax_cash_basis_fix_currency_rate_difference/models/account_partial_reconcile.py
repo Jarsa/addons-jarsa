@@ -46,9 +46,9 @@ class AccountPartialReconcileCashBasis(models.Model):
                     )
                 # We create the tax counterpart
                 lines.append((0, 0, {
-                    'name': (_(
+                    'name': _(
                         'Currency exchange rate difference for: ' +
-                        tax.name)),
+                        tax.name),
                     'debit': (
                         tax_amount_diff < 0 and -tax_amount_diff or 0.0),
                     'credit': (
@@ -60,9 +60,9 @@ class AccountPartialReconcileCashBasis(models.Model):
                 }))
                 # We create the gain / loss counterpart
                 lines.append((0, 0, {
-                    'name': (_(
+                    'name': _(
                         'Currency exchange rate difference for: ' +
-                        tax.name)),
+                        tax.name),
                     'debit': (
                         tax_amount_diff > 0 and tax_amount_diff or 0.0),
                     'credit': (
