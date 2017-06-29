@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 9.0e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-04 23:34+0000\n"
-"PO-Revision-Date: 2017-05-04 23:34+0000\n"
+"POT-Creation-Date: 2017-06-29 22:12+0000\n"
+"PO-Revision-Date: 2017-06-29 22:12+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,13 +16,14 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: account_tax_cash_basis_fix_currency_rate_difference
-#: code:addons/account_tax_cash_basis_fix_currency_rate_difference/models/account_partial_reconcile.py:70
+#: code:addons/account_tax_cash_basis_fix_currency_rate_difference/models/account_partial_reconcile.py:49
+#: code:addons/account_tax_cash_basis_fix_currency_rate_difference/models/account_partial_reconcile.py:63
 #, python-format
-msgid "Exchange Difference"
-msgstr "Fluctuación Cambiaria"
+msgid "Currency exchange rate difference for: "
+msgstr "Diferencia en tasa de cambio de divisa: "
 
 #. module: account_tax_cash_basis_fix_currency_rate_difference
 #: model:ir.model,name:account_tax_cash_basis_fix_currency_rate_difference.model_account_partial_reconcile
 msgid "Partial Reconcile"
-msgstr "Conciliación Parcial"
+msgstr "Conciliación parcial"
 
