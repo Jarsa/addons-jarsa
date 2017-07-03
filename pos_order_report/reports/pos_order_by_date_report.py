@@ -1,11 +1,18 @@
 # coding: utf-8` or `# -*- coding: utf-8 -*-
-from openerp import api, models
-from openerp.tools.misc import DEFAULT_SERVER_DATETIME_FORMAT as DT
-from openerp.tools.misc import DEFAULT_SERVER_DATE_FORMAT as DF
+import logging
 from datetime import datetime, timedelta
+
 import pytz
-from pandas import date_range
-from pandas.tseries.offsets import CDay
+from openerp import api, models
+from openerp.tools.misc import DEFAULT_SERVER_DATE_FORMAT as DF
+from openerp.tools.misc import DEFAULT_SERVER_DATETIME_FORMAT as DT
+
+_logger = logging.getLogger(__name__)
+try:
+    from pandas import date_range
+    from pandas.tseries.offsets import CDay
+except (ImportError, IOError) as err:
+    _logger.debug(err)
 
 
 class PosOrderByDateReport(models.AbstractModel):
