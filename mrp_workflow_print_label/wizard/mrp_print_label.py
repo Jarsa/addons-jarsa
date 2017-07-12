@@ -48,6 +48,8 @@ class MrpPrintLabel(models.TransientModel):
             self.env.context or {},
             active_ids=[self.order_id.id],
             active_model='mrp.production')
+        if not self.order_id.move_created_ids.product_qty:
+            self.order_id.action_production_end()
         if self.order_id.bom_id.cloth_type == 'cloth':
             return {
                 'type': 'ir.actions.report.xml',
@@ -63,16 +65,13 @@ class MrpPrintLabel(models.TransientModel):
                 'docs': self.order_id.id
             }
 
+
     @api.model
     def default_get(self, fields):
         res = super(MrpPrintLabel, self).default_get(fields)
         active_id = self._context['active_id']
         active_model = self._context['active_model']
         order = self.env[active_model].search([('id', '=', active_id)])
-        if not order.bom_id.cloth_type:
-            raise ValidationError(
-                _("The Bill of Material doesn't have a cloth"
-                  " type. Please check your data."))
         res['components_number'] = order.move_created_ids2[-1].product_qty
         res['components_pieces'] = len(order.bom_id.bom_line_ids)
         res['container_qty'] = order.move_created_ids2[-1].product_qty
