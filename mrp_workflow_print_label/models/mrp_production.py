@@ -26,6 +26,11 @@ class MrpProduction(models.Model):
     total_pieces = fields.Integer(readonly=True)
     print_lot_barcode = fields.Binary(readonly=True)
     cloth_type = fields.Selection(related='bom_id.cloth_type')
+    produce_button = fields.Boolean(
+        string='Button Produce',
+        compute="_get_produce_button",
+        store=True,
+    )
 
     @api.multi
     def action_state_print_label(self):
@@ -34,3 +39,13 @@ class MrpProduction(models.Model):
                 rec.state = 'print_label'
             else:
                 self.action_production_end()
+
+    @api.depends('move_lines', 'state')
+    def _get_produce_button(self):
+        for rec in self:
+            if (not rec.move_lines or
+                    rec.state not in
+                    ['print_label', 'ready', 'in_production']):
+                rec.produce_button = True
+            else:
+                rec.produce_button = False
