@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="mrp.prod_act_done" model="workflow.activity">
+            <field name="action">action_state_print_label()</field>
+        </record>
+        <record id="mrp_act_print" model="workflow.activity">
+            <field name="wkf_id" ref="mrp.wkf_prod"/>
+            <field name="name">Print</field>
+            <field name="flow_stop">True</field>
+            <field name="kind">function</field>
+            <field name="action">mrp.action_production_end()</field>
+        </record>
+        <record id="prod_trans_product_print" model="workflow.transition">
+            <field name="act_from" ref="mrp.prod_act_done"/>
+            <field name="act_to" ref="mrp_act_print"/>
+            <field name="signal">button_wizard</field>
+            <field name="condition">True</field>
+        </record>
+    </data>
+</openerp>

@@ -3,7 +3,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from openerp import _, api, fields, models
-from openerp.exceptions import ValidationError
 import base64
 
 
@@ -21,6 +20,7 @@ class MrpPrintLabel(models.TransientModel):
 
     @api.multi
     def print_report(self):
+        self.order_id.state = "print_label"
         message = _("Printed by: %s") % self.order_id.user_id.name
         if self.order_id.bom_id.cloth_type == 'cloth':
             image = self.env['report'].barcode(
@@ -48,6 +48,8 @@ class MrpPrintLabel(models.TransientModel):
             self.env.context or {},
             active_ids=[self.order_id.id],
             active_model='mrp.production')
+        if not self.order_id.move_created_ids.product_qty:
+            self.order_id.action_production_end()
         if self.order_id.bom_id.cloth_type == 'cloth':
             return {
                 'type': 'ir.actions.report.xml',
@@ -69,10 +71,6 @@ class MrpPrintLabel(models.TransientModel):
         active_id = self._context['active_id']
         active_model = self._context['active_model']
         order = self.env[active_model].search([('id', '=', active_id)])
-        if not order.bom_id.cloth_type:
-            raise ValidationError(
-                _("The Bill of Material doesn't have a cloth"
-                  " type. Please check your data."))
         res['components_number'] = order.move_created_ids2[-1].product_qty
         res['components_pieces'] = len(order.bom_id.bom_line_ids)
         res['container_qty'] = order.move_created_ids2[-1].product_qty
