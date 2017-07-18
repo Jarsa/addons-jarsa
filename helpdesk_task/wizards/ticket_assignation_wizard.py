@@ -4,6 +4,7 @@
 
 from odoo import _, api, fields, models
 
+
 TICKET_PRIORITY = [
     ('0', 'All'),
     ('1', 'Low priority'),
@@ -54,9 +55,9 @@ class TicketAssignationWizard(models.TransientModel):
             self.project_id = self.task_id.project_id.id
 
     @api.model
-    def default_get(self, fields):
+    def default_get(self, values):
         res = super(TicketAssignationWizard, self).default_get(
-            fields)
+            values)
         helpdesk_obj = self.env['helpdesk.ticket']
         active_ids = self.env.context['active_ids'] or []
         active_model = self.env.context['active_model']

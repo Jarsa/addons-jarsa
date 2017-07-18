@@ -2,9 +2,7 @@
 # © <2017> <Jarsa Sistemas, S.A. de C.V.>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
-
-from openerp import _, api, fields, models
-from openerp.exceptions import ValidationError
+from odoo import api, fields, models
 
 
 class WizardMerge(models.TransientModel):
@@ -30,8 +28,8 @@ class WizardMerge(models.TransientModel):
         return selection_incident
 
     @api.model
-    def default_get(self, fields):
-        res = super(WizardMerge, self).default_get(fields)
+    def default_get(self, values):
+        res = super(WizardMerge, self).default_get(values)
         active_ids = self.env.context['active_ids'] or []
         res['incident_ids'] = active_ids
         return res
