@@ -14,7 +14,8 @@ class MailMessage(models.Model):
         if active_model == 'helpdesk.ticket':
             ticket = self.env[active_model].browse(vals['res_id'])
             if (ticket.stage_id.is_close and
-                    vals['message_type'] != 'notification'):
+                    vals['author_id'] !=
+                    self.env.user.partner_id.id):
                 stage = self.env['helpdesk.stage'].search(
                     [('team_ids', 'in', ticket.team_id.id)],
                     order='sequence', limit=1)
