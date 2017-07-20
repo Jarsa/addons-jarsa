@@ -28,12 +28,12 @@ class MrpProduction(models.Model):
     cloth_type = fields.Selection(related='bom_id.cloth_type')
     produce_button = fields.Boolean(
         string='Button Produce',
-        compute="_get_produce_button",
+        compute="_compute_produce_button",
         store=True,
     )
     print_button = fields.Boolean(
         string='Print Button',
-        compute="_get_print_button",
+        compute="_compute_print_button",
         store=True,
     )
 
@@ -46,7 +46,7 @@ class MrpProduction(models.Model):
                 self.action_production_end()
 
     @api.depends('move_lines', 'state')
-    def _get_produce_button(self):
+    def _compute_produce_button(self):
         for rec in self:
             if (not rec.move_lines or
                     rec.state not in
@@ -56,10 +56,11 @@ class MrpProduction(models.Model):
                 rec.produce_button = False
 
     @api.depends('move_lines2', 'state', 'cloth_type')
-    def _get_print_button(self):
+    def _compute_print_button(self):
         for rec in self:
-            import ipdb; ipdb.set_trace()
-            if not rec.cloth_type or rec.state not in ['print_label', 'in_production'] or not rec.move_lines2:
+            if (not rec.cloth_type or
+                    rec.state not in ['print_label', 'in_production'] or
+                    not rec.move_lines2):
                 rec.print_button = False
             else:
                 rec.print_button = True
