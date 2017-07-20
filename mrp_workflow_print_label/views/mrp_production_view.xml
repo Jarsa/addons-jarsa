@@ -14,7 +14,8 @@
                     <button name="%(mrp.act_mrp_product_produce)d" string="Produce" type="action" class="oe_highlight" attrs="{'invisible': [('produce_button', '=', True)]}"/>
                 </button>
                 <button name="button_produce" position="after">
-                    <button name="%(mrp_print_label_wizard)d" type="action" string="Print Report" context="{'default_order_id': active_id}" attrs="{'invisible': ['|', ('cloth_type', '=', False),('state', 'not in', ['print_label', 'in_production'])]}"/>
+                    <field name="print_button" invisible="1"/>
+                    <button name="%(mrp_print_label_wizard)d" type="action" string="Print Report" context="{'default_order_id': active_id}" attrs="{'invisible': [('print_button', '=', False)]}"/>
                     <button name="%(mrp_print_label_validate_wizard)d" type="action" string="Reprint Report" attrs="{'invisible' :['|', '|', ('state', '!=', 'done'),('cloth_type','in ',['cover','cloth']),('cloth_type', '=', False)]}" context="{'default_order_id': active_id}"/>
                 </button>
                 <field name="product_id" position="after">
