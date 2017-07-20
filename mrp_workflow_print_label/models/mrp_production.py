@@ -31,6 +31,11 @@ class MrpProduction(models.Model):
         compute="_get_produce_button",
         store=True,
     )
+    print_button = fields.Boolean(
+        string='Print Button',
+        compute="_get_print_button",
+        store=True,
+    )
 
     @api.multi
     def action_state_print_label(self):
@@ -49,3 +54,12 @@ class MrpProduction(models.Model):
                 rec.produce_button = True
             else:
                 rec.produce_button = False
+
+    @api.depends('move_lines2', 'state', 'cloth_type')
+    def _get_print_button(self):
+        for rec in self:
+            import ipdb; ipdb.set_trace()
+            if not rec.cloth_type or rec.state not in ['print_label', 'in_production'] or not rec.move_lines2:
+                rec.print_button = False
+            else:
+                rec.print_button = True
