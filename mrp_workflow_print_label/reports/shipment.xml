@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="shipment">
+            <t t-call="report.html_container">
+                <t t-as="doc" t-foreach="docs">
+                    <div class="page">
+                        <div class="row">
+                            <div class="col-xs-6" style="">
+                                <img style="max-height:100px; max-width:300px;" t-att-src="'data:image/png;base64,%s' % doc.partner_id.image" t-if="doc.partner_id.image"/>
+                            </div>
+                            <div class="col-xs-6 text-right">
+                                <strong style="font-size:12px;">
+                                    <span t-esc="doc.partner_id.name"/>
+                                    <br/>
+                                    <span t-esc="doc.partner_id.street"/>
+                                    <span t-esc="doc.partner_id.street2"/>
+                                    <span t-esc="doc.partner_id.zip"/>
+                                    <span t-esc="doc.partner_id.city"/><br/>
+                                    <span t-esc="doc.partner_id.state_id.name"/>
+                                    <span t-esc="doc.partner_id.country_id.name"/>
+                                    Tel: 
+                                    <span t-esc="doc.partner_id.phone"/>
+                                    FAX. 
+                                    <span t-esc="doc.partner_id.fax"/></strong>
+                            </div>
+                            <div class="row zero_min_height">
+                                <div class="col-xs-12">
+                                    <div style="border-bottom: 1px solid black;"/>
+                                </div>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-xs-9">
+                                <strong style="font-size:12px;">
+                                    <span t-esc="doc.company_id.partner_id.name"/>
+                                    <br/>
+                                    <span t-esc="doc.company_id.partner_id.street"/>
+                                    <span t-esc="doc.company_id.partner_id.street2"/>
+                                    <span t-esc="doc.company_id.partner_id.zip"/>
+                                    <span t-esc="doc.company_id.partner_id.city"/><br/>
+                                    <span t-esc="doc.company_id.partner_id.state_id.name"/>
+                                    <span t-esc="doc.company_id.partner_id.country_id.name"/>
+                                    Tel: 
+                                    <span t-esc="doc.company_id.partner_id.phone"/>
+                                    FAX. 
+                                    <span t-esc="doc.company_id.partner_id.fax"/></strong>
+                            </div>
+                            <div class="col-xs-3">
+                                Código : Ver 02<br/>
+                                FOR-ADM-03
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <div class="col-xs-12">
+                            <h2 style="margin-top: -2px;">
+                                <span>Shipment #</span>
+                                <span t-field="doc.origin"/>
+                                <br/>
+                            </h2>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <span>Date Shipment</span><br/>
+                                <span t-esc="doc.date"></span>
+                            </div>
+                            <div class="col-xs-3">
+                                <span>Comercial:</span><br/>
+                            </div>
+                            <div class="col-xs-6">
+                                <span t-esc="doc.sale_id.user_id.name"/>
+                            </div>
+                            
+                        </div>
+                        <br/>
+                        <div>
+                            <t t-set="lines" t-value="doc._get_data()"/>
+                            <t t-if="len(lines[0]) > 0">
+                                <h4>Cloth Products</h4>
+                                <table class="table">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Cloth Rolls</th>
+                                        <th>Cut Lot</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                    <t t-as="line" t-foreach="lines[0]">
+                                        <td>
+                                            <span t-esc="line['product']"></span>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['cloth_rolls']"></span>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['cut_lot']"></span>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['quantity']"></span>
+                                        </td>
+                                    </t>
+                                </table>
+                            </t>
+                            <t t-if="len(lines[1]) > 0">
+                                <h4>Cover Products</h4>
+                                 <table class="table">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Cut Rolls</th>
+                                        <th>Print Lot</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                    <t t-as="line" t-foreach="lines[1]">
+                                        <td>
+                                            <span t-esc="line['product']"></span>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['cut_rolls']"></span>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['print_lot']"></span>
+                                        </td>
+                                        <td>
+                                            <span t-esc="line['quantity']"></span>
+                                        </td>
+                                    </t>
+                                </table>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+            </t>
+        </template>
+        <template id="shipment_translate">
+            <t t-call="report.html_container">
+                <t t-as="doc_id" t-foreach="doc_ids">
+                    <t t-raw="translate_doc(doc_id, doc_model, 'partner_id.lang', 'mrp_workflow_print_label.shipment')"/>
+                </t>
+            </t>
+        </template>
+        <record id="paperformat_shipment" model="report.paperformat">
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="header_spacing">35</field>
+            <field name="margin_top">10</field>
+            <field name="margin_right">7</field>
+            <field name="margin_bottom">25</field>
+            <field name="margin_left">7</field>
+            <field eval="False" name="header_line"/>
+            <field name="name">US Letter sale order</field>
+            <field name="orientation">Portrait</field>
+            <field name="dpi">90</field>
+            <field eval="True" name="default"/>
+            <field name="format">Letter</field>
+        </record>
+        <report file="mrp_workflow_print_label.shipment" id="print_shipment" model="stock.picking" name="mrp_workflow_print_label.shipment" report_type="qweb-pdf" string="Departure Boarding"/>
+        <record id="print_shipment" model="ir.actions.report.xml">
+            <field name="paperformat_id" ref="paperformat_shipment"/>
+        </record>
+    </data>
+</openerp>

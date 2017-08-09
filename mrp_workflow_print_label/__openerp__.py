@@ -27,5 +27,7 @@
         'reports/label.xml',
         "security/security.xml",
         "security/ir.model.access.csv",
+        "reports/shipment.xml",
+        'views/stock_picking_view.xml',
     ],
 }

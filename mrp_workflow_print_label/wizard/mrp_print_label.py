@@ -20,6 +20,7 @@ class MrpPrintLabel(models.TransientModel):
 
     @api.multi
     def print_report(self):
+        import ipdb; ipdb.set_trace()
         self.order_id.state = "print_label"
         message = _("Printed by: %s") % self.order_id.user_id.name
         if self.order_id.bom_id.cloth_type == 'cloth':
