@@ -38,13 +38,13 @@ class StockPicking(models.Model):
                         'product': line.product_id.name,
                         'cloth_rolls': ','.join(list(set(lots))),
                         'cut_lot': production_order.print_lot,
-                        'quantity': str(line.product_qty),
+                        'quantity': line.product_qty,
                     })
                 elif production_order.cloth_type == 'cover':
                     lines[1].append({
                         'product': line.product_id.name,
                         'cut_rolls': ','.join(lots),
                         'print_lot': production_order.print_lot,
-                        'quantity': str(line.product_qty),
+                        'quantity': line.product_qty,
                     })
         return lines
