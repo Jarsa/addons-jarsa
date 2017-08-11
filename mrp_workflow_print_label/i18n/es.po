@@ -87,7 +87,7 @@ msgstr "Tela"
 #: field:mrp.production,cloth_rolls:0
 #: view:website:mrp_workflow_print_label.shipment
 msgid "Cloth Rolls"
-msgstr "Rollos de tela"
+msgstr "Lote de Rollo"
 
 #. module: mrp_workflow_print_label
 #: field:mrp.bom,cloth_type:0

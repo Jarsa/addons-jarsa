@@ -35,6 +35,7 @@ class StockPicking(models.Model):
                     lots.append(mrp_line.restrict_lot_id.name)
                 if production_order.cloth_type == 'cloth':
                     lines[0].append({
+                        'code': line.product_id.default_code,
                         'product': line.product_id.name,
                         'cloth_rolls': ','.join(list(set(lots))),
                         'cut_lot': production_order.print_lot,
@@ -42,6 +43,7 @@ class StockPicking(models.Model):
                     })
                 elif production_order.cloth_type == 'cover':
                     lines[1].append({
+                        'code': line.product_id.default_code,
                         'product': line.product_id.name,
                         'cut_rolls': ','.join(lots),
                         'print_lot': production_order.print_lot,

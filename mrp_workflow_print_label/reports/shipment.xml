@@ -6,27 +6,27 @@
                 <t t-as="doc" t-foreach="docs">
                     <div class="page">
                         <div class="row">
-                            <div class="col-xs-6" style="">
-                                <img style="max-height:100px; max-width:300px;" t-att-src="'data:image/png;base64,%s' % doc.partner_id.image" t-if="doc.partner_id.image"/>
+                            <div class="col-xs-3">
+                                <img style="max-height:100px; max-width:100px;" t-att-src="'data:image/png;base64,%s' % doc.sale_id.company_id.logo" t-if="doc.sale_id.company_id.logo"/>
                             </div>
-                            <div class="col-xs-6 text-right">
+                            <div class="col-xs-8 col-xs-offset-1">
                                 <strong style="font-size:12px;">
-                                    <span t-esc="doc.partner_id.name"/>
+                                    <span t-esc="doc.sale_id.company_id.partner_id.name"/>
                                     <br/>
-                                    <span t-esc="doc.partner_id.street"/>
-                                    <span t-esc="doc.partner_id.street2"/>
-                                    <span t-esc="doc.partner_id.zip"/>
-                                    <span t-esc="doc.partner_id.city"/>
+                                    <span t-esc="doc.sale_id.company_id.partner_id.street"/>
+                                    <span t-esc="doc.sale_id.company_id.partner_id.street2"/>
+                                    <span t-esc="doc.sale_id.company_id.partner_id.zip"/>
+                                    <span t-esc="doc.sale_id.company_id.partner_id.city"/>
                                     <br/>
-                                    <span t-esc="doc.partner_id.state_id.name"/>
-                                    <span t-esc="doc.partner_id.country_id.name"/>Tel: 
+                                    <span t-esc="doc.sale_id.company_id.partner_id.state_id.name"/>
+                                    <span t-esc="doc.sale_id.company_id.partner_id.country_id.name"/>Tel: 
                                     
                                     
-                                    <span t-esc="doc.partner_id.phone"/>
+                                    <span t-esc="doc.sale_id.company_id.partner_id.phone"/>
                                     FAX. 
                                     
                                     
-                                    <span t-esc="doc.partner_id.fax"/></strong>
+                                    <span t-esc="doc.sale_id.company_id.partner_id.fax"/></strong>
                             </div>
                             <div class="row zero_min_height">
                                 <div class="col-xs-12">
@@ -38,22 +38,8 @@
                         <div class="row">
                             <div class="col-xs-9">
                                 <strong style="font-size:12px;">
-                                    <span t-esc="doc.company_id.partner_id.name"/>
-                                    <br/>
-                                    <span t-esc="doc.company_id.partner_id.street"/>
-                                    <span t-esc="doc.company_id.partner_id.street2"/>
-                                    <span t-esc="doc.company_id.partner_id.zip"/>
-                                    <span t-esc="doc.company_id.partner_id.city"/>
-                                    <br/>
-                                    <span t-esc="doc.company_id.partner_id.state_id.name"/>
-                                    <span t-esc="doc.company_id.partner_id.country_id.name"/>Tel: 
-                                    
-                                    
-                                    <span t-esc="doc.company_id.partner_id.phone"/>
-                                    FAX. 
-                                    
-                                    
-                                    <span t-esc="doc.company_id.partner_id.fax"/></strong>
+                                    <span t-esc="doc.partner_id.name"/>
+                                </strong>
                             </div>
                             <div class="col-xs-3 text-right">Código : Ver 02
                                 
@@ -65,7 +51,7 @@
                         <div class="col-xs-12">
                             <h2 style="margin-top: -2px;">
                                 <span>Shipment #</span>
-                                <span t-field="doc.origin"/>
+                                <span t-field="doc.sale_id.name"/>
                                 <br/>
                             </h2>
                         </div>
@@ -78,9 +64,9 @@
                             <div class="col-xs-3">
                                 <span>Comercial:</span>
                                 <br/>
+                                <span t-esc="doc.sale_id.user_id.name"/>
                             </div>
                             <div class="col-xs-6">
-                                <span t-esc="doc.sale_id.user_id.name"/>
                             </div>
                         </div>
                         <br/>
@@ -91,6 +77,7 @@
                                 <h4>Cloth Products</h4>
                                 <table class="table">
                                     <tr>
+                                        <th>Code</th>
                                         <th>Product</th>
                                         <th>Cloth Rolls</th>
                                         <th>Cut Lot</th>
@@ -98,6 +85,7 @@
                                     </tr>
                                     <t t-as="line" t-foreach="lines[0]">
                                         <t t-set="count" t-value="count+line['quantity']"/>
+                                        <td><span t-esc="line['code']"></span></td>
                                         <td>
                                             <span t-esc="line['product']"/>
                                         </td>
@@ -117,6 +105,7 @@
                                 <h4>Cover Products</h4>
                                 <table class="table">
                                     <tr>
+                                        <th>Code</th>
                                         <th>Product</th>
                                         <th>Cut Rolls</th>
                                         <th>Print Lot</th>
@@ -124,6 +113,7 @@
                                     </tr>
                                     <t t-as="line" t-foreach="lines[1]">
                                         <t t-set="count" t-value="count+line['quantity']"/>
+                                        <td><span t-esc="line['code']"></span></td>
                                         <td>
                                             <span t-esc="line['product']"/>
                                         </td>
@@ -155,27 +145,69 @@
                             </div>
                         </div>
                         <br/>
-                        <br/>
-                        <br/>
-                        <br/>
                         <div class="row">
+                            <div class="col-xs-6">
+                                <table style="width:60px;">
+                                <tr>
+                                    <th>
+                                        <span>CHOFER:</span>
+                                    </th>
+                                    <td>
+                                       ________________________________
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span>TRACTOR:</span>
+                                    </th>
+                                    <td>
+                                       ________________________________
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span>ECONOMICO:</span>
+                                    </th>
+                                    <td>
+                                       ________________________________
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <span>PLACAS</span>
+                                    </th>
+                                    <td>
+                                       ________________________________
+                                    </td>
+                                </tr>
+                            </table>
+                            </div>
+                            <div class="col-xs-6">
+                                
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <div class="row text-center">
                             <div class="col-xs-1"/>
-                            <div class="col-xs-4">
+                            <div class="col-xs-4 text-center">
                                 <div style="border-bottom: 1px solid black;"/>
-                                <span>Salesperson: </span><span t-esc="doc.sale_id.user_id.name"/>
+                                <span>ENTREGO</span>
                             </div>
                             <div class="col-xs-2"/>
-                            <div class="col-xs-4">
+                            <div class="col-xs-4 text-center">
                                 <div style="border-bottom: 1px solid black;"/>
-                                <span></span>
+                                <span>RECIBO</span>
                             </div>
                             <div class="col-xs-1"/>
                         </div>
-                                                <br/>
                         <br/>
                         <br/>
-                        <br/>
-                        <div>
+                        <div class="row text-center">
                             <strong style="font-size:12px;">
                                 <span t-esc="doc.partner_id.name"/>
                                 <br/>
