@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-11 15:13+0000\n"
-"PO-Revision-Date: 2017-08-11 15:13+0000\n"
+"POT-Creation-Date: 2017-08-14 14:33+0000\n"
+"PO-Revision-Date: 2017-08-14 14:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Lista de Materiales"
 #. module: mrp_workflow_print_label
 #: field:mrp.production,produce_button:0
 msgid "Button Produce"
-msgstr "Button Produce"
+msgstr "Producir"
 
 #. module: mrp_workflow_print_label
 #: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
@@ -87,7 +87,7 @@ msgstr "Tela"
 #: field:mrp.production,cloth_rolls:0
 #: view:website:mrp_workflow_print_label.shipment
 msgid "Cloth Rolls"
-msgstr "Lote de Rollo"
+msgstr "Rollos de tela"
 
 #. module: mrp_workflow_print_label
 #: field:mrp.bom,cloth_type:0
@@ -96,6 +96,11 @@ msgstr "Lote de Rollo"
 #: field:mrp.production,cloth_type:0
 msgid "Cloth type"
 msgstr "Tipo Tela"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Code"
+msgstr "No.Parte"
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.shipment
@@ -198,6 +203,16 @@ msgstr "Código : Ver 02"
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.shipment
+msgid "DELIVERED"
+msgstr "ENTREGADO"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "DRIVER:"
+msgstr "CHOFER:"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
 msgid "Date Shipment"
 msgstr "Fecha de Embarque"
 
@@ -227,6 +242,11 @@ msgstr "Descripción:"
 #: field:mrp.print.reason,display_name:0
 msgid "Display Name"
 msgstr "Nombre para mostrar"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "ECONOMICAL:"
+msgstr "ECONOMICO:"
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.shipment
@@ -365,6 +385,11 @@ msgid "PIN FOR MRP RE-PRINT"
 msgstr "PIN PARA REIMPRIMIR MRP"
 
 #. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "PLATES"
+msgstr "PLACAS"
+
+#. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cut
 msgid "Part Number"
 msgstr "Número de Parte"
@@ -468,6 +493,11 @@ msgid "Quantity per Lot"
 msgstr "Cantidad por Lote"
 
 #. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "RECEIPT"
+msgstr "RECIBO"
+
+#. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:36
 #, python-format
 msgid "Re-Print Authorized by: %s <br/> Re-Printed Reason: %s"
@@ -520,11 +550,6 @@ msgstr "Sales Order"
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.shipment
-msgid "Salesperson:"
-msgstr "Comercial:"
-
-#. module: mrp_workflow_print_label
-#: view:website:mrp_workflow_print_label.shipment
 msgid "Shipment #"
 msgstr "EMBARQUE #"
 
@@ -542,6 +567,11 @@ msgstr "Localización de Proveedores"
 #: field:res.users,property_supplier_payment_term:0
 msgid "Supplier Payment Term"
 msgstr "Término de pago del Proveedor"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "TRACTOR:"
+msgstr "TRACTOR:"
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.shipment
@@ -641,6 +671,11 @@ msgstr "Declaración Legal IVA"
 #: view:website:mrp_workflow_print_label.label_cut
 msgid "Ver.01"
 msgstr "Ver.01"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "________________________________"
+msgstr "________________________________"
 
 #. module: mrp_workflow_print_label
 #: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard

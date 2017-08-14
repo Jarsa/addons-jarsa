@@ -150,7 +150,7 @@
                                 <table style="width:60px;">
                                 <tr>
                                     <th>
-                                        <span>CHOFER:</span>
+                                        <span>DRIVER:</span>
                                     </th>
                                     <td>
                                        ________________________________
@@ -166,7 +166,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        <span>ECONOMICO:</span>
+                                        <span>ECONOMICAL:</span>
                                     </th>
                                     <td>
                                        ________________________________
@@ -174,7 +174,7 @@
                                 </tr>
                                 <tr>
                                     <th>
-                                        <span>PLACAS</span>
+                                        <span>PLATES</span>
                                     </th>
                                     <td>
                                        ________________________________
@@ -196,12 +196,12 @@
                             <div class="col-xs-1"/>
                             <div class="col-xs-4 text-center">
                                 <div style="border-bottom: 1px solid black;"/>
-                                <span>ENTREGO</span>
+                                <span>DELIVERED</span>
                             </div>
                             <div class="col-xs-2"/>
                             <div class="col-xs-4 text-center">
                                 <div style="border-bottom: 1px solid black;"/>
-                                <span>RECIBO</span>
+                                <span>RECEIPT</span>
                             </div>
                             <div class="col-xs-1"/>
                         </div>
