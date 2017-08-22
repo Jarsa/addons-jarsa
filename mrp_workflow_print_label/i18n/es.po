@@ -194,7 +194,7 @@ msgstr "Lote de Corte:"
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.shipment
 msgid "Cut Rolls"
-msgstr "Rollos de Corte"
+msgstr "Lote de Corte"
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.shipment

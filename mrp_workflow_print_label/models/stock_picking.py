@@ -22,6 +22,19 @@ class StockPicking(models.Model):
             }
 
     @api.model
+    def _get_type(self):
+        for rec in self:
+            list_type = []
+            for line in rec.pack_operation_ids:
+                stock_move = self.env['stock.move'].search(
+                    [('restrict_lot_id', '=', line.lot_id.id),
+                     ('production_id', '!=', False)], limit=1)
+                production_order = stock_move.production_id
+                list_type.append(production_order.cloth_type)
+            str_list_type = list(set(list_type))
+            return str_list_type[0]
+
+    @api.model
     def _get_data(self):
         for rec in self:
             lines = [[], []]

@@ -22,8 +22,10 @@
                                     <span t-esc="doc.sale_id.company_id.partner_id.country_id.name"/>Tel: 
                                     
                                     
+                                    
                                     <span t-esc="doc.sale_id.company_id.partner_id.phone"/>
                                     FAX. 
+                                    
                                     
                                     
                                     <span t-esc="doc.sale_id.company_id.partner_id.fax"/></strong>
@@ -39,12 +41,36 @@
                             <div class="col-xs-9">
                                 <strong style="font-size:12px;">
                                     <span t-esc="doc.partner_id.name"/>
-                                </strong>
-                            </div>
-                            <div class="col-xs-3 text-right">Código : Ver 02
+                                    <br/>
+                                    <span t-esc="doc.partner_id.street"/>
+                                    <span t-esc="doc.partner_id.street2"/>
+                                    <span t-esc="doc.partner_id.zip"/>
+                                    <span t-esc="doc.partner_id.city"/>
+                                    <br/>
+                                    <span t-esc="doc.partner_id.state_id.name"/>
+                                    <span t-esc="doc.partner_id.country_id.name"/>Tel: 
+                                    
+                                    
                                 
-                                <br/>
-                                FOR-ADM-03</div>
+                                    <span t-esc="doc.partner_id.phone"/>
+                                    FAX. 
+                                    
+                                    
+                                
+                                    <span t-esc="doc.partner_id.fax"/></strong>
+                            </div>
+                            <div class="col-xs-3 text-right">
+                                <t t-if="doc._get_type() == 'cloth'">
+                                    <span>FOR-ADM-03 (A) 
+                                        <br/>
+                                        Ver.02</span>
+                                </t>
+                                <t t-if="doc._get_type() == 'cover'">
+                                    <span>FOR-ADM-03 (B) 
+                                        <br/>
+                                        Ver.02</span>
+                                </t>
+                            </div>
                         </div>
                         <br/>
                         <br/>
@@ -66,8 +92,7 @@
                                 <br/>
                                 <span t-esc="doc.sale_id.user_id.name"/>
                             </div>
-                            <div class="col-xs-6">
-                            </div>
+                            <div class="col-xs-6"/>
                         </div>
                         <br/>
                         <div class="row">
@@ -85,7 +110,9 @@
                                     </tr>
                                     <t t-as="line" t-foreach="lines[0]">
                                         <t t-set="count" t-value="count+line['quantity']"/>
-                                        <td><span t-esc="line['code']"></span></td>
+                                        <td>
+                                            <span t-esc="line['code']"/>
+                                        </td>
                                         <td>
                                             <span t-esc="line['product']"/>
                                         </td>
@@ -113,7 +140,9 @@
                                     </tr>
                                     <t t-as="line" t-foreach="lines[1]">
                                         <t t-set="count" t-value="count+line['quantity']"/>
-                                        <td><span t-esc="line['code']"></span></td>
+                                        <td>
+                                            <span t-esc="line['code']"/>
+                                        </td>
                                         <td>
                                             <span t-esc="line['product']"/>
                                         </td>
@@ -148,43 +177,37 @@
                         <div class="row">
                             <div class="col-xs-6">
                                 <table style="width:60px;">
-                                <tr>
-                                    <th>
-                                        <span>DRIVER:</span>
-                                    </th>
-                                    <td>
-                                       ________________________________
+                                    <tr>
+                                        <th>
+                                            <span>DRIVER:</span>
+                                        </th>
+                                        <td>________________________________
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <span>TRACTOR:</span>
-                                    </th>
-                                    <td>
-                                       ________________________________
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span>TRACTOR:</span>
+                                        </th>
+                                        <td>________________________________
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <span>ECONOMICAL:</span>
-                                    </th>
-                                    <td>
-                                       ________________________________
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span>ECONOMICAL:</span>
+                                        </th>
+                                        <td>________________________________
                                     </td>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <span>PLATES</span>
-                                    </th>
-                                    <td>
-                                       ________________________________
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            <span>PLATES</span>
+                                        </th>
+                                        <td>________________________________
                                     </td>
-                                </tr>
-                            </table>
+                                    </tr>
+                                </table>
                             </div>
-                            <div class="col-xs-6">
-                                
-                            </div>
+                            <div class="col-xs-6"/>
                         </div>
                         <br/>
                         <br/>
@@ -207,25 +230,6 @@
                         </div>
                         <br/>
                         <br/>
-                        <div class="row text-center">
-                            <strong style="font-size:12px;">
-                                <span t-esc="doc.partner_id.name"/>
-                                <br/>
-                                <span t-esc="doc.partner_id.street"/>
-                                <span t-esc="doc.partner_id.street2"/>
-                                <span t-esc="doc.partner_id.zip"/>
-                                <span t-esc="doc.partner_id.city"/>
-                                <br/>
-                                <span t-esc="doc.partner_id.state_id.name"/>
-                                <span t-esc="doc.partner_id.country_id.name"/>Tel: 
-                                    
-                                    
-                                <span t-esc="doc.partner_id.phone"/>
-                                FAX. 
-                                    
-                                    
-                                <span t-esc="doc.partner_id.fax"/></strong>
-                        </div>
                     </div>
                 </t>
             </t>
