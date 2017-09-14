@@ -2,7 +2,7 @@
 # Copyright 2017, Jarsa Sistemas, S.A. de C.V.
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
-from openerp import _, api, models
+from openerp import api, models
 
 
 class StockPicking(models.Model):
@@ -15,11 +15,10 @@ class StockPicking(models.Model):
             active_ids=[self.id],
             active_model='stock.picking')
         return {
-                'type': 'ir.actions.report.xml',
-                'report_name': 'mrp_workflow_print_label.shipment',
-                'context': context,
-                'docs': self.id
-            }
+            'type': 'ir.actions.report.xml',
+            'report_name': 'mrp_workflow_print_label.shipment',
+            'context': context,
+            'docs': self.id}
 
     @api.model
     def _get_type(self):
