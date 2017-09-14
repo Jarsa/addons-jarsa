@@ -2,14 +2,14 @@
 <openerp>
     <data>
         <record model="ir.ui.view" id="stock_picking_report_form">
-        	<field name="name">stock.picking.report.form</field>
-        	<field name="model">stock.picking</field>
-        	<field name="inherit_id" ref="stock.view_picking_form"/>
-        	<field name="arch" type="xml">
-        		<xpath expr="//header/button[@name='action_confirm']" position="after">
-        			<button name="print_report" type="object" string="Print Report" states="done"/>
-        		</xpath>
-        	</field>
+            <field name="name">stock.picking.report.form</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header/button[@name='action_confirm']" position="after">
+                    <button name="print_report" type="object" string="Print Report" states="done"/>
+                </xpath>
+            </field>
         </record>
     </data>
 </openerp>

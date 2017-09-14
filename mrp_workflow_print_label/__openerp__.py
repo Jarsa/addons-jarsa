@@ -8,8 +8,8 @@
     "version": "8.0.1.0.0",
     "category": "Manufacture",
     "website": "https://www.jarsa.com.mx/",
-    "description": "Module to print labels",
-    "author": "JARSA Sistemas, S.A. de C.V.",
+    "author": "JARSA Sistemas, S.A. de C.V., "
+              "Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,
     "installable": True,
