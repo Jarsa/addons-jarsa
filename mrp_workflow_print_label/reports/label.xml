@@ -16,8 +16,9 @@
                             <tr>
                                 <th>Cut Lot</th>
                                 <td>
-                                    <span t-esc="doc.move_created_ids2[-1].lot_ids.name
-"/>
+                                    <t t-as="lot" t-foreach="doc.move_lines2">
+                                        <span t-esc="','.join([x.name for x in lot.restrict_lot_id])"/>,
+                                    </t>
                                 </td>
                                 <td rowspan="2">
                                     <span t-esc="doc.container_qty" style="font-size:25px;font-weight:bold"/>
@@ -84,16 +85,15 @@
                             <tr>
                                 <th>Cut Lot:</th>
                                 <td>
-                                    <span t-esc="doc.move_created_ids2[-1].lot_ids.name
-"/>
+                                    <span t-esc="doc.print_lot"/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Roll Lot:</th>
                                 <td>
-                                    <span t-foreach="doc.move_lines2" t-as="o">
-                                        <span t-esc="o.lot_ids.name"/>,
-                                    </span>
+                                    <t t-as="lot" t-foreach="doc.move_lines2">
+                                        <span t-esc="','.join([x.name for x in lot.restrict_lot_id])"/>
+                                    </t>
                                 </td>
                             </tr>
                             <tr>

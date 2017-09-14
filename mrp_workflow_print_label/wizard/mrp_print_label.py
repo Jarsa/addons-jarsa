@@ -24,7 +24,7 @@ class MrpPrintLabel(models.TransientModel):
         message = _("Printed by: %s") % self.order_id.user_id.name
         if self.order_id.bom_id.cloth_type == 'cloth':
             image = self.env['report'].barcode(
-                'Code128', self.order_id.move_created_ids.lot_ids.name,
+                'Code128', self.print_lot,
                 width=300, height=50, humanreadable=1)
             image_b64 = base64.encodestring(image)
         else:

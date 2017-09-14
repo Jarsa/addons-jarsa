@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-06-22 16:19+0000\n"
-"PO-Revision-Date: 2017-06-22 16:19+0000\n"
+"POT-Creation-Date: 2017-08-14 14:33+0000\n"
+"PO-Revision-Date: 2017-08-14 14:33+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,14 +16,9 @@ msgstr ""
 "Plural-Forms: \n"
 
 #. module: mrp_workflow_print_label
-#: field:res.users,issue_count:0
-msgid "# Issues"
-msgstr "# Incidencias"
-
-#. module: mrp_workflow_print_label
-#: field:res.users,task_count:0
-msgid "# Tasks"
-msgstr "# Tareas"
+#: field:res.users,sale_order_count:0
+msgid "# of Sales Order"
+msgstr "# de Pedido de Venta"
 
 #. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:40
@@ -63,6 +58,11 @@ msgid "Bill of Material"
 msgstr "Lista de Materiales"
 
 #. module: mrp_workflow_print_label
+#: field:mrp.production,produce_button:0
+msgid "Button Produce"
+msgstr "Producir"
+
+#. module: mrp_workflow_print_label
 #: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
 #: view:mrp.print.label.validate:mrp_workflow_print_label.view_mrp_print_label_validate_wizard
 msgid "Cancel"
@@ -79,7 +79,13 @@ msgid "Cloth"
 msgstr "Tela"
 
 #. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Cloth Products"
+msgstr "Tela"
+
+#. module: mrp_workflow_print_label
 #: field:mrp.production,cloth_rolls:0
+#: view:website:mrp_workflow_print_label.shipment
 msgid "Cloth Rolls"
 msgstr "Rollos de tela"
 
@@ -90,6 +96,16 @@ msgstr "Rollos de tela"
 #: field:mrp.production,cloth_type:0
 msgid "Cloth type"
 msgstr "Tipo Tela"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Code"
+msgstr "No.Parte"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Comercial:"
+msgstr "Comercial:"
 
 #. module: mrp_workflow_print_label
 #: field:res.users,ref_companies:0
@@ -135,6 +151,11 @@ msgid "Cover"
 msgstr "Cover"
 
 #. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Cover Products"
+msgstr "Cover"
+
+#. module: mrp_workflow_print_label
 #: field:mrp.print.label,create_uid:0
 #: field:mrp.print.label.validate,create_uid:0
 #: field:mrp.print.reason,create_uid:0
@@ -161,6 +182,7 @@ msgstr "Término de pago del cliente"
 #. module: mrp_workflow_print_label
 #: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
 #: view:website:mrp_workflow_print_label.label_cut
+#: view:website:mrp_workflow_print_label.shipment
 msgid "Cut Lot"
 msgstr "Lote de Corte"
 
@@ -170,14 +192,44 @@ msgid "Cut Lot:"
 msgstr "Lote de Corte:"
 
 #. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Cut Lot"
+msgstr "Lote de Corte"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Código : Ver 02"
+msgstr "Código : Ver 02"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "DELIVERED"
+msgstr "ENTREGADO"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "DRIVER:"
+msgstr "CHOFER:"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Date Shipment"
+msgstr "Fecha de Embarque"
+
+#. module: mrp_workflow_print_label
 #: help:res.users,last_reconciliation_date:0
 msgid "Date on which the partner accounting entries were fully reconciled last time. It differs from the last date where a reconciliation has been made for this partner, as here we depict the fact that nothing more was to be reconciled at this date. This can be achieved in 2 different ways: either the last unreconciled debit/credit entry of this partner was reconciled, either the user pressed the button \"Nothing more to reconcile\" during the manual reconciliation process."
 msgstr "Fecha en la que los asientos contables de la empresa se reconciliaron totalmente por última vez . Se diferencia de la última fecha en que la conciliación se ha hecho para esta empresa, ya que aquí representamos el hecho de que nada más iba a ser reconciliada en esta fecha . Esto se puede conseguir de 2 formas diferentes : o bien el último asiento de débito / crédito sin conciliar de esta empresa se reconcilió , ya sea que el usuario pulsa el botón de \" No hay nada más para conciliar \" durante el proceso de conciliación manual."
 
 #. module: mrp_workflow_print_label
+#: model:ir.actions.report.xml,name:mrp_workflow_print_label.print_shipment
+msgid "Departure Boarding"
+msgstr "Salida de Embarque"
+
+#. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cut
 msgid "Description"
-msgstr "Descripción"
+msgstr "Descripción"
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cloth
@@ -190,6 +242,21 @@ msgstr "Descripción:"
 #: field:mrp.print.reason,display_name:0
 msgid "Display Name"
 msgstr "Nombre para mostrar"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "ECONOMICAL:"
+msgstr "ECONOMICO:"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "FAX."
+msgstr "FAX."
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "FOR-ADM-03"
+msgstr "FOR-ADM-03"
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cloth
@@ -289,7 +356,7 @@ msgstr "Asistente de Impresión de Etiqueta MRP Workflow"
 #. module: mrp_workflow_print_label
 #: model:ir.model,name:mrp_workflow_print_label.model_mrp_production
 msgid "Manufacturing Order"
-msgstr "Orden de Fabricación"
+msgstr "Orden de fabricación"
 
 #. module: mrp_workflow_print_label
 #: field:mrp.print.reason,name:0
@@ -318,6 +385,11 @@ msgid "PIN FOR MRP RE-PRINT"
 msgstr "PIN PARA REIMPRIMIR MRP"
 
 #. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "PLATES"
+msgstr "PLACAS"
+
+#. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cut
 msgid "Part Number"
 msgstr "Número de Parte"
@@ -333,6 +405,11 @@ msgid "Payable Limit"
 msgstr "Límite de Pago"
 
 #. module: mrp_workflow_print_label
+#: model:ir.model,name:mrp_workflow_print_label.model_stock_picking
+msgid "Picking List"
+msgstr "Albarán"
+
+#. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cloth
 msgid "Pieces Total:"
 msgstr "Total de Piezas:"
@@ -343,7 +420,19 @@ msgid "Print"
 msgstr "Imprimir"
 
 #. module: mrp_workflow_print_label
+#: field:mrp.production,print_button:0
+msgid "Print Button"
+msgstr "Imprimir"
+
+#. module: mrp_workflow_print_label
+#: code:addons/mrp_workflow_print_label/models/mrp_production.py:17
+#, python-format
+msgid "Print Label"
+msgstr "Imprimir etiqueta"
+
+#. module: mrp_workflow_print_label
 #: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
+#: view:website:mrp_workflow_print_label.shipment
 msgid "Print Lot"
 msgstr "Lote de Impresión"
 
@@ -354,6 +443,7 @@ msgstr "Administrar Razones de Re-impreción"
 
 #. module: mrp_workflow_print_label
 #: view:mrp.production:mrp_workflow_print_label.mrp_production_form_view_inherid
+#: view:stock.picking:mrp_workflow_print_label.stock_picking_report_form
 msgid "Print Report"
 msgstr "Imprimir Reporte"
 
@@ -376,7 +466,18 @@ msgid "Printing Lot"
 msgstr "Lote de Impresión"
 
 #. module: mrp_workflow_print_label
+#: view:mrp.production:mrp_workflow_print_label.mrp_production_form_view_inherid
+msgid "Produce"
+msgstr "Producir"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Product"
+msgstr "Producto"
+
+#. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cut
+#: view:website:mrp_workflow_print_label.shipment
 msgid "Quantity"
 msgstr "Cantidad"
 
@@ -390,6 +491,11 @@ msgstr "Cantidad por Contenedor"
 #: field:mrp.production,container_qty:0
 msgid "Quantity per Lot"
 msgstr "Cantidad por Lote"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "RECEIPT"
+msgstr "RECIBO"
 
 #. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:36
@@ -438,6 +544,21 @@ msgid "Roll Lot:"
 msgstr "Lote del Rollo:"
 
 #. module: mrp_workflow_print_label
+#: field:res.users,sale_order_ids:0
+msgid "Sales Order"
+msgstr "Sales Order"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Shipment #"
+msgstr "EMBARQUE #"
+
+#. module: mrp_workflow_print_label
+#: model:ir.model,name:mrp_workflow_print_label.model_stock_move
+msgid "Stock Move"
+msgstr "Movimiento stock"
+
+#. module: mrp_workflow_print_label
 #: field:res.users,property_stock_supplier:0
 msgid "Supplier Location"
 msgstr "Localización de Proveedores"
@@ -448,15 +569,14 @@ msgid "Supplier Payment Term"
 msgstr "Término de pago del Proveedor"
 
 #. module: mrp_workflow_print_label
-#: field:res.users,task_ids:0
-msgid "Tasks"
-msgstr "Tareas"
+#: view:website:mrp_workflow_print_label.shipment
+msgid "TRACTOR:"
+msgstr "TRACTOR:"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/mrp_print_label.py:74
-#, python-format
-msgid "The Bill of Material doesn't have a cloth type. Please check your data."
-msgstr "La lista de materiales no tiene un tipo de tela. Compruebe sus datos."
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Tel:"
+msgstr "Tel:"
 
 #. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/models/res_users.py:17
@@ -532,6 +652,11 @@ msgid "Total pieces"
 msgstr "Total de Piezas"
 
 #. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "Units"
+msgstr "Unidades"
+
+#. module: mrp_workflow_print_label
 #: model:ir.model,name:mrp_workflow_print_label.model_res_users
 msgid "Users"
 msgstr "Usuarios"
@@ -546,6 +671,11 @@ msgstr "Declaración Legal IVA"
 #: view:website:mrp_workflow_print_label.label_cut
 msgid "Ver.01"
 msgstr "Ver.01"
+
+#. module: mrp_workflow_print_label
+#: view:website:mrp_workflow_print_label.shipment
+msgid "________________________________"
+msgstr "________________________________"
 
 #. module: mrp_workflow_print_label
 #: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
