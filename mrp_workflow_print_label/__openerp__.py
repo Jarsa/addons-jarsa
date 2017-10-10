@@ -19,11 +19,13 @@
     "data": [
         'wizard/mrp_print_label.xml',
         'wizard/mrp_print_label_validate.xml',
+        'wizard/stock_inventory_wizard_view.xml',
         'views/mrp_production_view.xml',
         'views/mrp_print_reason_view.xml',
         'views/res_users_view.xml',
         'views/mrp_bom_view.xml',
         'views/mrp_workflow.xml',
+        'views/stock_inventory.xml',
         'reports/label.xml',
         "security/security.xml",
         "security/ir.model.access.csv",
