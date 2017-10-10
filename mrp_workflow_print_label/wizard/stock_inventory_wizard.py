@@ -4,8 +4,13 @@
 
 import base64
 import logging
+import sys
 
 from openerp import _, api, fields, models
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 
 _logger = logging.getLogger(__name__)
 try:
