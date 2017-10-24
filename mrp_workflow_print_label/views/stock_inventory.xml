@@ -4,7 +4,7 @@
         <menuitem 
             id="menu_warehouse_product" 
             name="Export Inventory to Excel" 
-            parent="stock.menu_stock_configuration" 
+            parent="stock.menu_stock_inventory_control" 
             action="mrp_workflow_print_label.stock_inventory" />
     </data>
 </openerp>
