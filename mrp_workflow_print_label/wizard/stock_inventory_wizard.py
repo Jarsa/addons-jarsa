@@ -56,7 +56,7 @@ class StockInventoryWizard(models.TransientModel):
             product_uom = obj_product.search(
                 [('id', '=', line['product_id'][0])]).uom_id.name
             qty = str(line['qty'])
-            lot = line['lot_id'] if line['lot_id'] else 'N/A'
+            lot = line['lot_id'][1] if line['lot_id'] else 'N/A'
             location = line['location_id'][1]
             letters['A'] = self.calculate_value(product, letters['A'])
             letters['B'] = self.calculate_value(product_uom, letters['B'])
