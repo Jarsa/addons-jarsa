@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <record id="view_stock_inventory" model="ir.ui.view">
+            <field name="name">Inventory</field>
+            <field name="model">stock.inventory.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <center><h2>Your File is ready to download.!!!</h2></center>
+                    </header>
+                    <group>
+                        <field name="name" invisible="1"/>
+                        <field filename="name" name="file_binary" readonly="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record id="stock_inventory" model="ir.actions.act_window">
+            <field name="name">Inventory</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">stock.inventory.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</openerp>

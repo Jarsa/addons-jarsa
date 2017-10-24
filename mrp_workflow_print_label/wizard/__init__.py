@@ -4,3 +4,4 @@
 
 from . import mrp_print_label
 from . import mrp_print_label_validate
+from . import stock_inventory_wizard

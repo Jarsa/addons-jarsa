@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <menuitem 
+            id="menu_warehouse_product" 
+            name="Export Inventory to Excel" 
+            parent="stock.menu_stock_configuration" 
+            action="mrp_workflow_print_label.stock_inventory" />
+    </data>
+</openerp>
