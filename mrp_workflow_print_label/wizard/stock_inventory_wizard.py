@@ -31,45 +31,61 @@ class StockInventoryWizard(models.TransientModel):
         res = super(StockInventoryWizard, self).default_get(
             fields)
         obj_product = self.env['product.product']
-        data = self.env['stock.quant'].read_group(
-            [], ['product_id', 'qty', 'location_id', 'lot_id'],
+        location_ids = self.env['stock.location'].search(
+            [('usage', '=', 'internal')])
+        stock_quants = self.env['stock.quant'].search([
+            ('location_id', 'in', location_ids.ids)])
+        product_ids = stock_quants.mapped('product_id')
+        data = stock_quants.read_group(
+            [('location_id', 'in', location_ids.ids)],
+            ['product_id', 'qty', 'location_id', 'lot_id'],
             ['product_id', 'location_id', 'lot_id'], lazy=False,
             orderby="product_id")
         wb = Workbook()
         ws1 = wb.active
         ws1.append({
             'A': _('Product'),
-            'B': _('UoM'),
-            'C': _('Quantity'),
-            'D': _('Lot'),
-            'E': _('Warehouse'),
+            'B': _('Lot'),
+            'C': _('Warehouse'),
+            'D': _('UoM'),
+            'E': _('Quantity'),
         })
         letters = {
             'A': len(_('Product')),
-            'B': len(_('UoM')),
-            'C': len(_('Quantity')),
-            'D': len(_('Lot')),
-            'E': len(_('Warehouse')),
+            'B': len(_('Lot')),
+            'C': len(_('Warehouse')),
+            'D': len(_('UoM')),
+            'E': len(_('Quantity')),
         }
-        for line in data:
-            product = line['product_id'][1]
-            product_uom = obj_product.search(
-                [('id', '=', line['product_id'][0])]).uom_id.name
-            qty = str(line['qty'])
-            lot = line['lot_id'][1] if line['lot_id'] else 'N/A'
-            location = line['location_id'][1]
-            letters['A'] = self.calculate_value(product, letters['A'])
-            letters['B'] = self.calculate_value(product_uom, letters['B'])
-            letters['C'] = self.calculate_value(qty, letters['C'])
-            letters['D'] = self.calculate_value(lot, letters['D'])
-            letters['E'] = self.calculate_value(location, letters['E'])
-            ws1.append({
-                'A': product,
-                'B': product_uom,
-                'C': line['qty'],
-                'D': lot,
-                'E': location,
-            })
+        name = ''
+        for product in product_ids:
+            if product.code:
+                name = '[' + product.code + '] ' + product.name
+            else:
+                name = product.name
+            ws1.append({'A': name, 'B': '', 'C': '', 'D': '', 'E': ''})
+            letters['A'] = self.calculate_value(name, letters['A'])
+            for line in data:
+                product_line = line['product_id'][1]
+                if name == product_line:
+                    product_uom = obj_product.search(
+                        [('id', '=', line['product_id'][0])]).uom_id.name
+                    qty = str(line['qty'])
+                    lot = line['lot_id'][1] if line['lot_id'] else 'N/A'
+                    location = line['location_id'][1]
+                    letters['B'] = self.calculate_value(lot, letters['D'])
+                    letters['C'] = self.calculate_value(location, letters['E'])
+                    letters['D'] = self.calculate_value(
+                        product_uom, letters['B'])
+                    letters['E'] = self.calculate_value(qty, letters['C'])
+                    ws1.append({
+                        'A': '',
+                        'B': lot,
+                        'C': location,
+                        'D': product_uom,
+                        'E': line['qty'] if line['qty'] > 0 else 0,
+
+                    })
         for key, value in letters.items():
             ws1.column_dimensions[key].width = value
         xlsx_file = save_virtual_workbook(wb)
