@@ -18,7 +18,6 @@ class StockPicking(models.Model):
             production_order = stock_move.production_id
             if not production_order.cloth_type:
                 raise validationError(_('The products has not a cloth type'))
-
         context = dict(
             self.env.context or {},
             active_ids=[self.id],
@@ -60,7 +59,7 @@ class StockPicking(models.Model):
                         'product': line.product_id.name,
                         'cloth_rolls': ','.join(list(set(filter(
                             lambda a: a is not False, lots)))),
-                        'cut_lot': production_order.print_lot,
+                        'cut_lot': line.lot_id.name,
                         'quantity': line.product_qty,
                     })
                 elif production_order.cloth_type == 'cover':
@@ -69,7 +68,7 @@ class StockPicking(models.Model):
                         'product': line.product_id.name,
                         'cut_rolls': ','.join(list(set(filter(
                             lambda a: a is not False, lots)))),
-                        'print_lot': production_order.print_lot,
+                        'print_lot': line.lot_id.name,
                         'quantity': line.product_qty,
                     })
         return lines
