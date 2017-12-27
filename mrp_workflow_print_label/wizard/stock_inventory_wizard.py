@@ -15,6 +15,7 @@ sys.setdefaultencoding('utf-8')
 _logger = logging.getLogger(__name__)
 try:
     from openpyxl import Workbook
+    from openpyxl.styles import Font
     from openpyxl.writer.excel import save_virtual_workbook
 except ImportError:
     _logger.debug('Cannot `import openpyxl`.')
@@ -63,11 +64,15 @@ class StockInventoryWizard(models.TransientModel):
                 name = '[' + product.code + '] ' + product.name
             else:
                 name = product.name
-            ws1.append({'A': name, 'B': '', 'C': '', 'D': '', 'E': ''})
+            sum_total = sum([
+                line['qty']
+                if line['product_id'][0] == product.id and line['qty'] > 0
+                else 0 for line in data])
+            ws1.append({'A': name, 'B': '', 'C': '', 'D': '', 'E': sum_total})
             letters['A'] = self.calculate_value(name, letters['A'])
             for line in data:
-                product_line = line['product_id'][1]
-                if name == product_line:
+                product_line = line['product_id'][0]
+                if product.id == product_line:
                     product_uom = obj_product.search(
                         [('id', '=', line['product_id'][0])]).uom_id.name
                     qty = str(line['qty'])
@@ -79,7 +84,7 @@ class StockInventoryWizard(models.TransientModel):
                         product_uom, letters['B'])
                     letters['E'] = self.calculate_value(qty, letters['C'])
                     ws1.append({
-                        'A': '',
+                        'A': line['product_id'][1],
                         'B': lot,
                         'C': location,
                         'D': product_uom,
@@ -88,6 +93,20 @@ class StockInventoryWizard(models.TransientModel):
                     })
         for key, value in letters.items():
             ws1.column_dimensions[key].width = value
+        for row in ws1.iter_rows():
+            if row[0].value and not row[1].value:
+                ws1[row[0].coordinate].font = Font(
+                    bold=True, color='800000')
+                ws1[row[4].coordinate].font = Font(
+                    bold=True, color='800000')
+            if row[0].value and row[1].value:
+                ws1[row[0].coordinate].font = Font(
+                    bold=False, color='000080')
+            if row[0].value == _('Product'):
+                ws_range = row[0].coordinate + ':' + row[4].coordinate
+                for row_cell in enumerate(ws1[ws_range]):
+                    for cell in enumerate(row_cell[1]):
+                        cell[1].font = Font(bold=True)
         xlsx_file = save_virtual_workbook(wb)
         res['file_binary'] = base64.encodestring(xlsx_file)
         res['name'] = 'Inventory.xlsx'
