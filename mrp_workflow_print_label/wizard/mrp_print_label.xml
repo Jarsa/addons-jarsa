@@ -9,7 +9,7 @@
                 <form string="Label">
                     <group string="Lots">
                         <group col="4">
-                            <label attrs="{'invisible': [('bom_cloth', '=', ['cloth', False])]}" col="2" for="print_lot" string="Cut Lot"/>
+                            <label attrs="{'invisible': [('bom_cloth', '=', ['cloth', False])]}" col="2" for="print_lot" string="Paint Lot"/>
                             <label attrs="{'invisible': [('bom_cloth', 'in', 'cover',)]}" col="2" for="print_lot" string="Print Lot"/>
                             <field attrs="{'invisible' :[('bom_cloth', '=', True)]}" col="2" colspan="2" name="print_lot" nolabel="1"/>
                         </group><br/>

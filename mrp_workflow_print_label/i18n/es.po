@@ -6,14 +6,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 8.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-10 22:29+0000\n"
-"PO-Revision-Date: 2017-10-10 22:29+0000\n"
+"POT-Creation-Date: 2018-02-09 18:30+0000\n"
+"PO-Revision-Date: 2018-02-09 18:30+0000\n"
 "Last-Translator: <>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: mrp_workflow_print_label
+#: field:res.users,supplier_invoice_count:0
+msgid "# Supplier Invoices"
+msgstr "# Supplier Invoices"
+
+#. module: mrp_workflow_print_label
+#: field:res.users,purchase_order_count:0
+msgid "# of Purchase Order"
+msgstr "# of Purchase Order"
+
+#. module: mrp_workflow_print_label
+#: field:res.users,sale_order_count:0
+msgid "# of Sales Order"
+msgstr "# de Pedidos de Venta"
 
 #. module: mrp_workflow_print_label
 #: code:addons/mrp_workflow_print_label/wizard/mrp_print_label_validate.py:40
@@ -50,7 +65,7 @@ msgstr "Auditor/Inspector:"
 #. module: mrp_workflow_print_label
 #: model:ir.model,name:mrp_workflow_print_label.model_mrp_bom
 msgid "Bill of Material"
-msgstr "Lista de Materiales"
+msgstr "Lista de material"
 
 #. module: mrp_workflow_print_label
 #: field:mrp.production,produce_button:0
@@ -177,7 +192,6 @@ msgid "Customer Payment Term"
 msgstr "Término de pago del cliente"
 
 #. module: mrp_workflow_print_label
-#: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
 #: view:website:mrp_workflow_print_label.label_cut
 #: view:website:mrp_workflow_print_label.shipment
 msgid "Cut Lot"
@@ -234,7 +248,7 @@ msgstr "Nombre para mostrar"
 #. module: mrp_workflow_print_label
 #: field:stock.inventory.wizard,file_binary:0
 msgid "Download File"
-msgstr "Descargar Archivo""
+msgstr "Descargar Archivo\""
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.shipment
@@ -351,8 +365,8 @@ msgid "Latest Full Reconciliation Date"
 msgstr "Última fecha de conciliación completa"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:39
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:46
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:49
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:56
 #, python-format
 msgid "Lot"
 msgstr "Lote"
@@ -410,6 +424,11 @@ msgid "PLATES"
 msgstr "PLACAS"
 
 #. module: mrp_workflow_print_label
+#: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
+msgid "Paint Lot"
+msgstr "Lote de Pintura"
+
+#. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.label_cut
 msgid "Part Number"
 msgstr "Número de Parte"
@@ -448,7 +467,7 @@ msgstr "Imprimir"
 #: code:addons/mrp_workflow_print_label/models/mrp_production.py:17
 #, python-format
 msgid "Print Label"
-msgstr "Imprimir etiqueta"
+msgstr "Impresión Etiqueta"
 
 #. module: mrp_workflow_print_label
 #: view:mrp.print.label:mrp_workflow_print_label.view_mrp_print_label_wizard
@@ -491,16 +510,22 @@ msgid "Produce"
 msgstr "Producir"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:36
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:43
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:48
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:55
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:105
 #: view:website:mrp_workflow_print_label.shipment
 #, python-format
 msgid "Product"
 msgstr "Producto"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:38
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:45
+#: field:res.users,property_product_pricelist_purchase:0
+msgid "Purchase Pricelist"
+msgstr "Purchase Pricelist"
+
+#. module: mrp_workflow_print_label
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:52
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:59
 #: view:website:mrp_workflow_print_label.label_cut
 #: view:website:mrp_workflow_print_label.shipment
 #, python-format
@@ -568,6 +593,11 @@ msgstr "Responsable"
 #: view:website:mrp_workflow_print_label.label_cloth
 msgid "Roll Lot:"
 msgstr "Lote del Rollo:"
+
+#. module: mrp_workflow_print_label
+#: field:res.users,sale_order_ids:0
+msgid "Sales Order"
+msgstr "Órdenes de venta"
 
 #. module: mrp_workflow_print_label
 #: view:website:mrp_workflow_print_label.shipment
@@ -638,6 +668,11 @@ msgid "This payment term will be used instead of the default one for sale orders
 msgstr "Este plazo de pago será utilizado en lugar del que viene por defecto para las órdenes de venta y facturas de los clientes"
 
 #. module: mrp_workflow_print_label
+#: help:res.users,property_product_pricelist_purchase:0
+msgid "This pricelist will be used, instead of the default one, for purchases from the current partner"
+msgstr "This pricelist will be used, instead of the default one, for purchases from the current partner"
+
+#. module: mrp_workflow_print_label
 #: help:res.users,property_stock_customer:0
 msgid "This stock location will be used, instead of the default one, as the destination location for goods you send to this partner"
 msgstr "Se utilizará esta ubicación stock , en lugar de la opción por defecto , como la ubicación de destino de los bienes que enviar a este socio."
@@ -684,8 +719,8 @@ msgid "Units"
 msgstr "Unidades"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:37
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:44
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:51
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:58
 #, python-format
 msgid "UoM"
 msgstr "Unidad de Medida"
@@ -712,8 +747,8 @@ msgid "Ver.02"
 msgstr "Ver.02"
 
 #. module: mrp_workflow_print_label
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:40
-#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:47
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:50
+#: code:addons/mrp_workflow_print_label/wizard/stock_inventory_wizard.py:57
 #, python-format
 msgid "Warehouse"
 msgstr "Almacén"
