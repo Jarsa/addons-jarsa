@@ -7,28 +7,22 @@
                     <div class="page">
                         <div class="row">
                             <div class="col-xs-3">
-                                <img style="max-height:100px; max-width:100px;" t-att-src="'data:image/png;base64,%s' % doc.sale_id.company_id.logo" t-if="doc.sale_id.company_id.logo"/>
+                                <img style="max-height:100px; max-width:100px;" t-att-src="'data:image/png;base64,%s' % user.company_id.logo" t-if="user.company_id.logo"/>
                             </div>
                             <div class="col-xs-8 col-xs-offset-1">
                                 <strong style="font-size:12px;">
-                                    <span t-esc="doc.sale_id.company_id.partner_id.name"/>
+                                    <span t-esc="user.company_id.partner_id.name"/>
                                     <br/>
-                                    <span t-esc="doc.sale_id.company_id.partner_id.street"/>
-                                    <span t-esc="doc.sale_id.company_id.partner_id.street2"/>
-                                    <span t-esc="doc.sale_id.company_id.partner_id.zip"/>
-                                    <span t-esc="doc.sale_id.company_id.partner_id.city"/>
+                                    <span t-esc="user.company_id.partner_id.street"/>
+                                    <span t-esc="user.company_id.partner_id.street2"/>
+                                    <span t-esc="user.company_id.partner_id.zip"/>
+                                    <span t-esc="user.company_id.partner_id.city"/>
                                     <br/>
-                                    <span t-esc="doc.sale_id.company_id.partner_id.state_id.name"/>
-                                    <span t-esc="doc.sale_id.company_id.partner_id.country_id.name"/>Tel: 
-                                    
-                                    
-                                    
-                                    <span t-esc="doc.sale_id.company_id.partner_id.phone"/>
+                                    <span t-esc="user.company_id.partner_id.state_id.name"/>
+                                    <span t-esc="user.company_id.partner_id.country_id.name"/>Tel: 
+                                    <span t-esc="user.company_id.partner_id.phone"/>
                                     FAX. 
-                                    
-                                    
-                                    
-                                    <span t-esc="doc.sale_id.company_id.partner_id.fax"/></strong>
+                                    <span t-esc="user.company_id.partner_id.fax"/></strong>
                             </div>
                             <div class="row zero_min_height">
                                 <div class="col-xs-12">
@@ -85,7 +79,7 @@
                             <div class="col-xs-3">
                                 <span>Date Shipment</span>
                                 <br/>
-                                <span t-esc="doc.date"/>
+                                <span t-esc="doc._get_time(doc.date)"/>
                             </div>
                             <div class="col-xs-3">
                                 <span>Comercial:</span>

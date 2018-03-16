@@ -4,6 +4,8 @@
 
 from openerp import _, api, models
 from openerp.exceptions import Warning as validationError
+from datetime import datetime
+import pytz
 
 
 class StockPicking(models.Model):
@@ -40,6 +42,15 @@ class StockPicking(models.Model):
                 list_type.append(production_order.cloth_type)
             str_list_type = list(set(list_type))
             return str_list_type[0]
+
+    def _get_time(self, date):
+        field_date = date
+        start = datetime.strptime(field_date, "%Y-%m-%d %H:%M:%S")
+        user = self.env.user
+        tz = pytz.timezone(user.tz) if user.tz else pytz.utc
+        start = pytz.utc.localize(start).astimezone(tz)
+        tz_date = start.strftime("%Y-%m-%d %H:%M:%S")
+        return tz_date
 
     @api.model
     def _get_data(self):
