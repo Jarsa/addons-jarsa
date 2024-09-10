@@ -26,6 +26,7 @@
         'views/mrp_bom_view.xml',
         'views/mrp_workflow.xml',
         'views/stock_inventory.xml',
+        "views/res_company_view.xml",
         'reports/label.xml',
         "security/security.xml",
         "security/ir.model.access.csv",

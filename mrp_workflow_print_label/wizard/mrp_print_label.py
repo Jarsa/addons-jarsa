@@ -24,15 +24,15 @@ class MrpPrintLabel(models.TransientModel):
         message = _("Printed by: %s") % self.order_id.user_id.name
         if self.order_id.bom_id.cloth_type == 'cloth':
             image = self.env['report'].barcode(
-                'Code128', self.print_lot,
-                width=300, height=50, humanreadable=1)
+                'QR', self._prepare_qr_code(),
+                width=300, height=300)
             image_b64 = base64.encodestring(image)
         else:
             message = message + _(
                 '<br/>Container Quantity: %s') % self.container_qty
             image = self.env['report'].barcode(
-                'Code128', self.print_lot,
-                width=300, height=50, humanreadable=1)
+                'QR', self._prepare_qr_code(),
+                width=300, height=300)
             image_b64 = base64.encodestring(image)
         self.order_id.write({
             'components_number': self.components_number,
@@ -64,6 +64,15 @@ class MrpPrintLabel(models.TransientModel):
                 'context': context,
                 'docs': self.order_id.id
             }
+
+    @api.multi
+    def _prepare_qr_code(self):
+        qr_code = "1J{supplier_number}Q{quantity}P{part_number}V{supplier_number}1T{lot}21L".format(
+            supplier_number=self.order_id.company_id.supplier_number,
+            quantity=self.total_pieces,
+            part_number=self.order_id.product_id.default_code or "",
+            lot=self.print_lot)
+        return qr_code
 
     @api.model
     def default_get(self, fields):

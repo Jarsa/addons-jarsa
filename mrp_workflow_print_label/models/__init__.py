@@ -8,3 +8,4 @@ from . import mrp_print_reason
 from . import mrp_bom
 from . import stock_picking
 from . import stock_move
+from . import res_company

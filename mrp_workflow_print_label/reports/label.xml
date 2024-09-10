@@ -36,7 +36,7 @@
                                     <span t-esc="doc.product_id.default_code"/>
                                 </td>
                                 <td rowspan="4">
-                                    <img style="max-height: 45px;" t-att-src="'data:image/png;base64,%s' % res_company.logo" t-if="res_company.logo"/>
+                                    <img style="max-height: 200px;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
                                 </td>
                             </tr>
                             <tr>
@@ -51,8 +51,12 @@
                                     <span t-esc="doc.user_id.name"/>
                                 </td>
                             </tr>
+                            <tr>
+                                <td colspan="2" class="text-center">
+                                    <img style="max-height: 80px;" t-att-src="'data:image/png;base64,%s' % res_company.logo" t-if="res_company.logo"/>
+                                </td>
+                            </tr>
                         </table>
-                        <img style="aling:center;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
                         <br/>
                         <div>
                             <span style="float:left;font-size:11px">FOR-PRO-18</span>
@@ -115,7 +119,7 @@
                                 </td>
                             </tr>
                         </table>
-                        <img style="aling:center;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
+                        <img style="max-height: 100px;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
                         <br/>
                        <div>
                             <span style="float:left;font-size:11px">FOR-PRO-17</span>
