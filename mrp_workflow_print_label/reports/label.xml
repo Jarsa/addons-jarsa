@@ -36,7 +36,8 @@
                                     <span t-esc="doc.product_id.default_code"/>
                                 </td>
                                 <td rowspan="4">
-                                    <img style="max-height: 200px;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
+                                    <img style="max-height: 200px;" t-att-src="'data:image/png;base64,%s' % doc.production_barcode"/>
+                                    <img style="max-height: 50px;" t-att-src="'data:image/png;base64,%s' % res_company.logo" t-if="res_company.logo"/>
                                 </td>
                             </tr>
                             <tr>
@@ -53,14 +54,14 @@
                             </tr>
                             <tr>
                                 <td colspan="2" class="text-center">
-                                    <img style="max-height: 80px;" t-att-src="'data:image/png;base64,%s' % res_company.logo" t-if="res_company.logo"/>
+                                    <img style="max-height: 50px;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
                                 </td>
                             </tr>
                         </table>
                         <br/>
                         <div>
                             <span style="float:left;font-size:11px">FOR-PRO-18</span>
-                            <span style="float:right;font-size:11px">Ver.01</span>                            
+                            <span style="float:right;font-size:11px">Ver.02</span>
                         </div>
                     </div>
                 </t>
@@ -119,16 +120,16 @@
                                 </td>
                             </tr>
                         </table>
-                        <img style="max-height: 100px;" t-att-src="'data:image/png;base64,%s' % doc.print_lot_barcode"/>
+                        <img style="max-height: 100px;" t-att-src="'data:image/png;base64,%s' % doc.production_barcode"/>
                         <br/>
-                       <div>
+                        <div>
                             <span style="float:left;font-size:11px">FOR-PRO-17</span>
-                            <span style="float:right;font-size:11px">Ver.01</span>                            
+                            <span style="float:right;font-size:11px">Ver.02</span>
                         </div>
                     </div>
                 </t>
             </t>
-        </template>        
+        </template>
         <template id="label_cut_translate">
             <t t-call="report.html_container">
                 <t t-foreach="doc_ids" t-as="doc_id">
@@ -158,7 +159,7 @@
             <field name="header_spacing">0</field>
             <field name="dpi">90</field>
         </record>
-        <report 
+        <report
             file="mrp_workflow_print_label.label_cut"
             id="print_label_cut"
             model="mrp.production"
@@ -168,7 +169,7 @@
         <record id="print_label_cut" model="ir.actions.report.xml">
             <field name="paperformat_id" ref="paperformat_94_150"/>
         </record>
-        <report 
+        <report
             file="mrp_workflow_print_label.label_cloth"
             id="print_label_cloth"
             model="mrp.production"
