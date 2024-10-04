@@ -25,6 +25,7 @@ class MrpProduction(models.Model):
     cloth_rolls = fields.Char(string="Cloth Rolls", readonly=True)
     total_pieces = fields.Integer(readonly=True)
     print_lot_barcode = fields.Binary(readonly=True)
+    production_barcode = fields.Binary(readonly=True)
     cloth_type = fields.Selection(related='bom_id.cloth_type')
     produce_button = fields.Boolean(
         string='Button Produce',
