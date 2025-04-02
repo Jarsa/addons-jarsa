@@ -74,15 +74,29 @@ class MrpPrintLabel(models.TransientModel):
 
     @api.multi
     def _prepare_qr_code(self):
-        qr_code = (
-            "[)>␞06␝{license_plate}␝Q{quantity}␝P{part_number}␝V{supplier_number}␝1T{lot}21L␞␄").format(
-            supplier_number=self.order_id.company_id.supplier_number,
-            quantity=self.components_pieces * self.components_number,
-            part_number=self.order_id.product_id.default_code or "",
-            lot=self.print_lot,
-            license_plate=self._get_license_plate(),
-        )
-        return qr_code
+      RS = chr(30)  # ␞
+      GS = chr(29)  # ␝
+      EOT = chr(4)  # ␄
+
+      qr_code = (
+         "[)>{RS}06{GS}"
+         "1J{license_plate}{GS}"
+         "Q{quantity}{GS}"
+         "P{part_number}{GS}"
+         "V{supplier_number}{GS}"
+         "1T{lot}21L{RS}{EOT}"
+      ).format(
+         RS=RS,
+         GS=GS,
+         EOT=EOT,
+         supplier_number=self.order_id.company_id.supplier_number,
+         quantity=self.components_pieces * self.components_number,
+         part_number=self.order_id.product_id.default_code or "",
+         lot=self.print_lot,
+         license_plate=self._get_license_plate(),
+      )
+
+      return qr_code
 
     @api.multi
     def _get_license_plate(self):
