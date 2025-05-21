@@ -80,7 +80,7 @@ class MrpPrintLabel(models.TransientModel):
 
       qr_code = (
          "[)>{RS}06{GS}"
-         "1J{license_plate}{GS}"
+         "{license_plate}{GS}"
          "Q{quantity}{GS}"
          "P{part_number}{GS}"
          "V{supplier_number}{GS}"
@@ -101,7 +101,7 @@ class MrpPrintLabel(models.TransientModel):
     @api.multi
     def _get_license_plate(self):
         return "1J{supplier_number}{id}".format(
-            supplier_number=self.order_id.company_id.supplier_number.rjust(9, '0'),
+            supplier_number=self.order_id.company_id.supplier_number,
             id=(str(date.today().year) + str(self.order_id.id)).rjust(9, '0'),
         )
 
